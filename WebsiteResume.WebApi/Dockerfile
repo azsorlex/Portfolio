@@ -3,13 +3,16 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
 EXPOSE 8081
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["WebsiteResume.WebApi/WebsiteResume.WebApi.csproj", "WebsiteResume.WebApi/"]
+COPY ["WebsiteResume.Application/WebsiteResume.Application.csproj", "WebsiteResume.Application/"]
+COPY ["WebsiteResume.Domain/WebsiteResume.Domain.csproj", "WebsiteResume.Domain/"]
+COPY ["WebsiteResume.Infrastructure/WebsiteResume.Infrastructure.csproj", "WebsiteResume.Infrastructure/"]
 RUN dotnet restore "./WebsiteResume.WebApi/WebsiteResume.WebApi.csproj"
 COPY . .
 WORKDIR "/src/WebsiteResume.WebApi"

@@ -12,16 +12,16 @@ namespace WebsiteResume.Infrastructure.Configurations
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).HasColumnType("varchar").HasMaxLength(50);
+            builder.Property(x => x.Id).HasMaxLength(50);
 
             builder.Property(x => x.Order).IsRequired();
 
             builder.HasData(
-                new Skill() { Id = "SQL", Order = 4 },
-                new Skill() { Id = "Microsoft Azure", Order = 2 },
-                new Skill() { Id = "C#", Order = 0 },
-                new Skill() { Id = "ASP.NET Core", Order = 1 },
-                new Skill() { Id = "React.js", Order = 3 }
+                new() { Id = "SQL", Order = 4 },
+                new() { Id = "Microsoft Azure", Order = 2 },
+                new() { Id = "C#", Order = 0 },
+                new() { Id = "ASP.NET Core", Order = 1 },
+                new() { Id = "React.js", Order = 3 }
             );
         }
     }

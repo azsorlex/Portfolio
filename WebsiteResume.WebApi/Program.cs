@@ -54,18 +54,12 @@ void Configure()
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();
-    app.MapFallbackToFile("/index.html");
 }
 
 async Task InitialiseDatabase()
 {
     using var scope = app.Services.CreateScope();
     await using var dbContext = scope.ServiceProvider.GetRequiredService<RepositoryDBContext>();
-
-    if (app.Environment.IsDevelopment())
-    {
-        await dbContext.Database.EnsureDeletedAsync();
-    }
 
     await dbContext.Database.EnsureCreatedAsync();
 }
