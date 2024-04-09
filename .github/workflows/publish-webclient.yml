@@ -1,10 +1,14 @@
-name: Publish Docker image
+name: Publish Web Client
 
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - 'WebsiteResume.WebClient/**'
   pull_request:
     branches: [ "master" ]
+    paths:
+      - 'WebsiteResume.WebClient/**'
 
 jobs:
   docker:
@@ -23,14 +27,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push (API)
-        uses: docker/build-push-action@v5
-        with:
-          context: "{{defaultContext}}:WebsiteResume.WebApi"
-          push: true
-          tags: azsorlex/websiteresume-api:latest
-      -
-        name: Build and push (WebClient)
+        name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:WebsiteResume.WebClient"
