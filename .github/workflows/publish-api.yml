@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: "WebsiteResume.WebApi:Dockerfile"
+          file: "WebsiteResume.WebApi/Dockerfile"
           push: true
           tags: azsorlex/websiteresume-api:latest
