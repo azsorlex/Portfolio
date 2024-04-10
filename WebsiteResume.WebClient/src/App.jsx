@@ -30,9 +30,10 @@ function App() {
 
     async function loadSkills() {
         try {
-            const response = await axios.get('Skills');
+            const response = await axios.get('api/skills');
             setSkills(response.data);
         } catch (error) {
+            console.error(error);
             const placeholder = [{
                 'id': 'Error',
                 'order': 0

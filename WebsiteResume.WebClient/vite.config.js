@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { env } from 'process';
 
-const target = env.TESTING ? 'https://host.docker.internal:44373' :
+const target = env.TESTING ? 'http://host.docker.internal:8080' :
     env.API_URL ? env.API_URL : 'https://localhost:44373';
 
 export default defineConfig({
@@ -16,13 +16,13 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/Skills': {
+            '^/api/.*': {
                 target,
+                changeOrigin: true,
                 secure: false
             }
         },
         host: true,
-        strictPort: true,
         port: 5173
     },
     preview: {

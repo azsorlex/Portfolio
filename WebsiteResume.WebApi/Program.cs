@@ -41,8 +41,8 @@ void ConfigureServices(IServiceCollection services)
 
 void Configure()
 {
+    app.UsePathBase("/api");
     app.UseDefaultFiles();
-    app.UseStaticFiles();
 
     if (app.Environment.IsDevelopment())
     {
@@ -50,10 +50,11 @@ void Configure()
         app.UseSwaggerUI();
     }
 
-    app.UseMiddleware<ExceptionHandlingMiddleware>();
     app.UseHttpsRedirection();
+    app.UseRouting();
     app.UseAuthorization();
     app.MapControllers();
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
 }
 
 async Task InitialiseDatabase()
