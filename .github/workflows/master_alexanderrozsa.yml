@@ -8,11 +8,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'WebsiteResume.WebClient/**'
-  pull_request:
-    branches: [ "master" ]
-    paths:
-      - 'WebsiteResume.WebClient/**'
+      - 'Portfolio.WebClient/**'
 
 jobs:
   build:
@@ -34,9 +30,9 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v5
       with:
-        context: "{{defaultContext}}:WebsiteResume.WebClient"
+        context: "{{defaultContext}}:Portfolio.WebClient"
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_178375d61e614b5cb7b6665c9ce3c29a }}/websiteresume-client:latest
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_178375d61e614b5cb7b6665c9ce3c29a }}/portfolio-client:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,4 +49,4 @@ jobs:
         app-name: 'alexanderrozsa'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a180eabddcf4769a3a92888b6a663c5 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_178375d61e614b5cb7b6665c9ce3c29a }}/websiteresume-client:latest'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_178375d61e614b5cb7b6665c9ce3c29a }}/portfolio-client:latest'

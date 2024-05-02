@@ -8,17 +8,10 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'WebsiteResume.WebApi/**'
-      - 'WebsiteResume.Application/**'
-      - 'WebsiteResume.Domain/**'
-      - 'WebsiteResume.Infrastructure/**'
-  pull_request:
-    branches: [ "master" ]
-    paths:
-      - 'WebsiteResume.WebApi/**'
-      - 'WebsiteResume.Application/**'
-      - 'WebsiteResume.Domain/**'
-      - 'WebsiteResume.Infrastructure/**'
+      - 'Portfolio.WebApi/**'
+      - 'Portfolio.Application/**'
+      - 'Portfolio.Domain/**'
+      - 'Portfolio.Infrastructure/**'
 
 jobs:
   build:
@@ -41,8 +34,8 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c3571a764ed14ab5a5b844138253c1d0 }}/websiteresume-api:latest
-        file: ./WebsiteResume.WebApi/Dockerfile
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c3571a764ed14ab5a5b844138253c1d0 }}/portfolio-api:latest
+        file: ./Portfolio.WebApi/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -59,4 +52,4 @@ jobs:
         app-name: 'arwebapi'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_012cbbfc9562494d80183fb6632bb620 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c3571a764ed14ab5a5b844138253c1d0 }}/websiteresume-api:latest'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c3571a764ed14ab5a5b844138253c1d0 }}/portfolio-api:latest'

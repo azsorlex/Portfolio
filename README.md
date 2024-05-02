@@ -1,5 +1,5 @@
-﻿# website-resume
-A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around LinkedIn's 50 skills limit. The site utilises React.js for the frontend, ASP.NET Core + EntityFramework Core for the API, and Microsoft SQL Server for the database. As of now, there isn't too much in terms of the website, only the main application architecture has been set up. In the future, a more feature-rich site will be set up as well as various different backend functionalities.
+# Portfolio
+A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around LinkedIn's 50 skills limit. The site utilises React.js for the frontend, ASP.NET Core + EntityFramework Core for the API, and Microsoft SQL Server for the database. As of now, there isn't too much in terms of the website. In the future, a more feature-rich site will be set up as well as various different backend functionalities.
 
 ## Local testing
   - ### Prerequesites

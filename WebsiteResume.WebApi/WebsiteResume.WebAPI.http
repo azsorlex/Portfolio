@@ -1,6 +1,0 @@
-@WebsiteResume.WebApi_HostAddress = http://localhost:5057
-
-GET {{WebsiteResume.WebApi_HostAddress}}/Skills/
-Accept: application/json
-
-###
