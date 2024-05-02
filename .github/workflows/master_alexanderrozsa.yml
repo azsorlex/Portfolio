@@ -9,10 +9,6 @@ on:
     branches: [ "master" ]
     paths:
       - 'Portfolio.WebClient/**'
-  pull_request:
-    branches: [ "master" ]
-    paths:
-      - 'Portfolio.WebClient/**'
 
 jobs:
   build:

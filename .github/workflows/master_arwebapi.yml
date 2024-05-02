@@ -12,13 +12,6 @@ on:
       - 'Portfolio.Application/**'
       - 'Portfolio.Domain/**'
       - 'Portfolio.Infrastructure/**'
-  pull_request:
-    branches: [ "master" ]
-    paths:
-      - 'Portfolio.WebApi/**'
-      - 'Portfolio.Application/**'
-      - 'Portfolio.Domain/**'
-      - 'Portfolio.Infrastructure/**'
 
 jobs:
   build:
