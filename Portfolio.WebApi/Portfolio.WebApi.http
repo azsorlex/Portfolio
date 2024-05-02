@@ -1,0 +1,6 @@
+@Portfolio.WebApi_HostAddress = http://localhost:5057
+
+GET {{Portfolio.WebApi_HostAddress}}/Skills/
+Accept: application/json
+
+###
