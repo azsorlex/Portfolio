@@ -1,13 +1,26 @@
+import { AppBar, Avatar, Box, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
-        <header>
-            <h1>Alexander Rozsa</h1>
-            <Link to="/">Homepage</Link>
-            <br />
-            <Link to="/skills">Skills</Link>
-        </header>
+        <AppBar className="navbar" position="sticky" sx={{ backgroundColor: '#333' }}>
+            <Toolbar>
+                <Link to="/">
+                    <Avatar alt="Alexander Rozsa">AR</Avatar>
+                </Link>
+                <Box sx={{ flexGrow: 1 }} />
+                <Link to="/">
+                    <Typography variant="p">
+                        Home
+                    </Typography>
+                </Link>
+                <Link to="/skills">
+                    <Typography variant="p">
+                        Skills
+                    </Typography>
+                </Link>
+            </Toolbar>
+        </AppBar>
     );
 }
 
