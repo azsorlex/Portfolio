@@ -6,7 +6,7 @@ const Header = () => {
         <AppBar position="sticky" color="primary">
             <Toolbar>
                 <Link to="/" className="spacer">
-                    <Avatar alt="Alexander Rozsa">AR</Avatar>
+                    <Avatar alt="AR" src="/android-chrome-192x192.png" />
                 </Link>
                 <Link to="/" className="navlink">
                     <Typography variant="p">
