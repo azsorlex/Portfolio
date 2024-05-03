@@ -14,14 +14,14 @@ const Footer = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ top: 'auto', bottom: '0', backgroundColor: '#333333' }}>
+        <AppBar position="static">
             <Toolbar>
                 <Typography fontSize={12}>
                     Designed and developed by Alexander Rozsa
                 </Typography>
-                <Box sx={{ flexGrow: 1, alignSelf: 'center' }} />
+                <Box className="spacer" />
                 <Tooltip title='GitHub'>
-                    <Link onClick={handleClick} id="navlink">
+                    <Link onClick={handleClick} className="navlink">
                         <GitHub sx={{ mt: '5px' }} />
                     </Link>
                 </Tooltip>
@@ -52,7 +52,7 @@ const Footer = () => {
                     </MenuItem>
                 </Menu>
                 <Tooltip title='LinkedIn'>
-                    <Link to='https://www.linkedin.com/in/alexander-rozsa/' target="_blank" rel="noopener noreferrer" id="navlink">
+                    <Link to='https://www.linkedin.com/in/alexander-rozsa/' target="_blank" rel="noopener noreferrer" className="navlink">
                         <LinkedIn sx={{ mt: '5px' }} />
                     </Link>
                 </Tooltip>

@@ -1,14 +1,15 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Box } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 
 const Layout = ({ children }) => {
     return (
         <React.Fragment>
+            <CssBaseline />
             <Header />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box id="main" sx={{ flexGrow: 1 }}>
+            <Box className="spacer" />
+            <Box id="main">
                 {children}
             </Box>
             <Footer />

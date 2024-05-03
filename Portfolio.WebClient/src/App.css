@@ -1,8 +1,16 @@
-﻿#root {
+﻿#root, #main {
     text-align: center;
     display: flex;
     flex-flow: column;
+    align-items: center;
+}
+
+#root {
     height: 100vh;
+}
+
+#main, .spacer {
+    flex-grow: 1;
 }
 
 tr:nth-child(even) {
@@ -19,6 +27,6 @@ td {
     padding-right: 1rem;
 }
 
-#navlink {
+.navlink {
     margin-left: 15px;
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_ENDPOINTS } from '../data/Constants';
+import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
 
 const SkillsService = {
 
