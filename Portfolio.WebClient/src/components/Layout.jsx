@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Box, CssBaseline } from '@mui/material';
+import { Box, Container, CssBaseline } from '@mui/material';
 
 const Layout = ({ children }) => {
     return (
@@ -9,9 +9,9 @@ const Layout = ({ children }) => {
             <CssBaseline />
             <Header />
             <Box className="spacer" />
-            <Box id="main">
+            <Container component="main" maxWidth="lx">
                 {children}
-            </Box>
+            </Container>
             <Footer />
         </React.Fragment>
     );

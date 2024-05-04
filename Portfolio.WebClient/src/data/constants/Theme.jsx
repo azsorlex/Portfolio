@@ -8,7 +8,8 @@ const THEME = createTheme({
         secondary: {
             main: "#FFFFFF"
         }
-    }
+    },
+    spacing: 12
 });
 
 export default THEME;
