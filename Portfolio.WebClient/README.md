@@ -1,7 +1,7 @@
 # WebClient Development Steps
 
 ## Prerequesites
-- [Portfolio.WebApi/README.md](Portfolio.WebApi/README.md)
+- [Portfolio.WebApi/README.md](../Portfolio.WebApi/README.md)
 - Run ```npm i``` to install the packages.
 
 ### Dev
