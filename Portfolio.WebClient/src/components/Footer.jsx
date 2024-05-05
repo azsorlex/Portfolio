@@ -14,7 +14,7 @@ const Footer = () => {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar component="footer" position="static">
             <Toolbar>
                 <Typography fontSize={12}>
                     Designed and developed by Alexander Rozsa

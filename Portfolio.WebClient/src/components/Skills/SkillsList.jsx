@@ -1,14 +1,18 @@
+import { List, ListItem, ListItemText } from "@mui/material";
+
 const SkillsList = ({ skills }) => {
     return (
-        <ol>
-            {
-                skills.map(x => {
-                    return (
-                        <li key={x.id}>{x.id}</li>
-                    )
-                })
-            }
-        </ol>
+        <List sx={{ listStyle: "decimal", pt: 2 }}>
+            {skills.map(x => (
+                <ListItem
+                    key={x.id}
+                    disablePadding
+                    sx={{ display: "list-item", textAlign: "center" }}
+                >
+                    <ListItemText primary={x.id} />
+                </ListItem>
+            ))}
+        </List>
     );
 }
 

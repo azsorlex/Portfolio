@@ -44,7 +44,7 @@ void Configure()
     app.UsePathBase("/api");
     app.UseDefaultFiles();
 
-    if (app.Environment.IsDevelopment())
+    if (app.Environment.EnvironmentName.StartsWith("Development"))
     {
         app.UseSwagger();
         app.UseSwaggerUI(c =>

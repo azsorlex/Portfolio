@@ -1,4 +1,4 @@
-﻿#root, main {
+﻿#root, #main {
     text-align: center;
     display: flex;
     flex-flow: column;
@@ -9,7 +9,11 @@
     height: 100vh;
 }
 
-main, .spacer {
+header {
+    margin-bottom: 20px;
+}
+
+#main, .spacer {
     flex-grow: 1;
 }
 

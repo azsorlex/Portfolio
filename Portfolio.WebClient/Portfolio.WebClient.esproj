@@ -10,9 +10,8 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\.dockerignore">
-      <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
-      <Link>.dockerignore</Link>
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -20,5 +19,6 @@
     <Folder Include="src\components\" />
     <Folder Include="src\data\" />
     <Folder Include="src\pages\" />
+    <Folder Include="src\services\" />
   </ItemGroup>
 </Project>

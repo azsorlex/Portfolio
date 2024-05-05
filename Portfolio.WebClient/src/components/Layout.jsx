@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             <CssBaseline />
             <Header />
             <Box className="spacer" />
-            <Container component="main" maxWidth="lx">
+            <Container id="main" component="main" maxWidth="lx">
                 {children}
             </Container>
             <Footer />
