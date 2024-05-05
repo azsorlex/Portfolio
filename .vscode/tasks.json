@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/WebsiteResume.WebApi/WebsiteResume.WebApi.csproj",
+                "${workspaceFolder}/Portfolio.WebApi/Portfolio.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/WebsiteResume.WebApi/WebsiteResume.WebApi.csproj",
+                "${workspaceFolder}/Portfolio.WebApi/Portfolio.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/WebsiteResume.WebApi/WebsiteResume.WebApi.csproj"
+                "${workspaceFolder}/Portfolio.WebApi/Portfolio.WebApi.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
