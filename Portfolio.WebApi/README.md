@@ -1,7 +1,7 @@
 # WebApi Development Steps
 
 ## Prerequesites
-- Ensure you create a new sysadmin user. Sample user credentials are defined in the connection string in appsettings.Development.
+- Ensure you create a new sysadmin user in MS SQL Server. Sample user credentials are defined in the connection string in appsettings.Development.
 
 ### Dev
 - For VS 2022, run "IIS Express".
