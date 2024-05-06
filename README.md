@@ -21,6 +21,6 @@ Follow each of the projects' readmes for how to develop with each one:
 <br>
 <br>
 <h2 align="center">
-  <a href="Portfolio.WebApi/README.md">Portfolio.WebApi/README.md</a> &nbsp; &nbsp; &nbsp;
-  <a href="Portfolio.WebClient/README.md">Portfolio.WebClient/README.md</a>
+  <a href="Portfolio.WebApi#webapi-development-steps">Portfolio.WebApi</a> &nbsp; &nbsp; &nbsp;
+  <a href="Portfolio.WebClient#webclient-development-steps">Portfolio.WebClient</a>
 </h2>
