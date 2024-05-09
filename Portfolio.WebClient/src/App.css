@@ -1,36 +1,58 @@
-﻿#root, #main {
+﻿#root {
+    height: 100vh;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root,
+#main {
     text-align: center;
     display: flex;
     flex-flow: column;
     align-items: center;
 }
 
-#root {
-    height: 100vh;
+#main,
+.spacer {
+    flex-grow: 1;
+}
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: #747ae9;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
 header {
     margin-bottom: 20px;
 }
 
-#main, .spacer {
-    flex-grow: 1;
+header.transparent {
+    background-color: transparent;
+    transition: all 0.3s ease-out 0s;
 }
 
-tr:nth-child(even) {
-    background: #F2F2F2;
-}
-
-tr:nth-child(odd) {
-    background: #FFF;
-}
-
-th,
-td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+header.blurred {
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease-out 0s;
 }
 
 .navlink {
     margin-left: 15px;
+    margin-top: 5px;
 }

@@ -1,15 +1,14 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Box, Container, CssBaseline } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 const Layout = ({ children }) => {
     return (
         <React.Fragment>
-            <CssBaseline />
             <Header />
             <Box className="spacer" />
-            <Container id="main" component="main" maxWidth="lx">
+            <Container id="main" component="main" maxWidth="md">
                 {children}
             </Container>
             <Footer />

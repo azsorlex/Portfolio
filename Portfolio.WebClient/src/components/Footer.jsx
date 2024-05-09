@@ -14,29 +14,26 @@ const Footer = () => {
     };
 
     return (
-        <AppBar component="footer" position="static">
-            <Toolbar>
+        <AppBar component="footer" position="static" color="primary" enableColorOnDark>
+            <Toolbar variant="dense">
                 <Typography fontSize={12}>
-                    Designed and developed by Alexander Rozsa
+                    Built from scratch by yours truly
                 </Typography>
                 <Box className="spacer" />
                 <Tooltip title='GitHub'>
                     <Link onClick={handleClick} className="navlink">
-                        <GitHub sx={{ mt: '5px' }} />
+                        <GitHub />
                     </Link>
                 </Tooltip>
                 <Menu
-                    id='git-menu'
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
-                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-                    sx={{
-                        "& .MuiMenu-paper": { backgroundColor: "#333333" }
-                    }}>
+                    transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+                >
                     <MenuItem>
-                        <Tooltip title='Profile' position='top'>
+                        <Tooltip title='Profile'>
                             <Link to='https://github.com/azsorlex' target="_blank" rel="noopener noreferrer">
                                 <Home />
                             </Link>
@@ -53,7 +50,7 @@ const Footer = () => {
                 </Menu>
                 <Tooltip title='LinkedIn'>
                     <Link to='https://www.linkedin.com/in/alexander-rozsa/' target="_blank" rel="noopener noreferrer" className="navlink">
-                        <LinkedIn sx={{ mt: '5px' }} />
+                        <LinkedIn />
                     </Link>
                 </Tooltip>
             </Toolbar>
