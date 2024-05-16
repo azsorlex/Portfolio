@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Skills from './pages/Skills';
 
-const App = () => {
+export default function App() {
     const darkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = React.useMemo(() => createTheme(GetDesignTokens(darkMode ? 'dark' : 'light')), [darkMode]);
 
@@ -23,5 +23,3 @@ const App = () => {
         </ThemeProvider>
     );
 }
-
-export default App;

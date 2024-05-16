@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AppBar, Box, Divider, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import { AccountTree, GitHub, Home, LinkedIn } from "@mui/icons-material";
 
-const Footer = () => {
+export default function Footer() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -57,5 +57,3 @@ const Footer = () => {
         </AppBar>
     );
 }
-
-export default Footer;

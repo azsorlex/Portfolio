@@ -3,17 +3,15 @@ import Header from './Header';
 import Footer from './Footer';
 import { Box, Container } from '@mui/material';
 
-const Layout = ({ children }) => {
+export default function Layout(props) {
     return (
         <React.Fragment>
             <Header />
             <Box className="spacer" />
-            <Container id="main" component="main" maxWidth="md">
-                {children}
+            <Container component="main" maxWidth="md">
+                {props.children}
             </Container>
             <Footer />
         </React.Fragment>
     );
 }
-
-export default Layout;

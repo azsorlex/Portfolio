@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemText } from "@mui/material";
 
-const SkillsList = ({ skills }) => {
+export default function SkillsList({ skills }) {
     return (
         <List sx={{ listStyle: "decimal", pt: 2 }}>
             {skills.map(x => (
@@ -15,5 +15,3 @@ const SkillsList = ({ skills }) => {
         </List>
     );
 }
-
-export default SkillsList;

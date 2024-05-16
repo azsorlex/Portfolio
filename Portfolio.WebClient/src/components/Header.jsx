@@ -1,23 +1,19 @@
 import { Home, School } from "@mui/icons-material";
-import { AppBar, Avatar, Box, Container, Toolbar, Tooltip, alpha, useTheme } from "@mui/material";
-import { useState } from "react";
+import { AppBar, Avatar, Box, Container, Toolbar, Tooltip, alpha, useScrollTrigger, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+export default function Header() {
     const theme = useTheme();
-    const [className, setClassName] = useState("transparent");
-
-    window.addEventListener("scroll", () => {
-        setClassName(window.scrollY > 0 ? "blurred" : "transparent");
+    const trigger = useScrollTrigger({
+        disableHysteresis: true,
+        threshold: 0,
     });
 
     return (
-        <AppBar className={className} position="sticky" color="transparent" enableColorOnDark sx={{ backgroundColor: alpha(theme.palette.primary.main, 0.2), boxShadow: 0 }}>
+        <AppBar className={trigger ? "blurred" : "transparent"} position="sticky" color="transparent" enableColorOnDark sx={{ backgroundColor: alpha(theme.palette.primary.main, 0.2), boxShadow: 0 }}>
             <Container component="div" maxWidth="lg">
                 <Toolbar variant="dense">
-                    <Link onClick={() => window.scrollTo(0, 0)}>
-                        <Avatar alt="AR" src="/android-chrome-192x192.png" />
-                    </Link>
+                    <Avatar alt="AR" src="/android-chrome-192x192.png" component="a" href="#root" />
                     <Box className="spacer" />
                     <Tooltip title="Home">
                         <Link to="/" className="navlink">
@@ -34,5 +30,3 @@ const Header = () => {
         </AppBar>
     );
 }
-
-export default Header;

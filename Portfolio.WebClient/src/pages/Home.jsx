@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material"
 
-const Home = () => {
+export default function Home() {
     return (
         <>
             <Typography variant="p">
@@ -12,5 +12,3 @@ const Home = () => {
         </>
     );
 }
-
-export default Home;

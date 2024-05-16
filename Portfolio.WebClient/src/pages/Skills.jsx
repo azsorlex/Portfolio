@@ -3,7 +3,7 @@ import SkillsService from '../services/SkillsService';
 import SkillsList from '../components/Skills/SkillsList';
 import { Typography } from '@mui/material';
 
-const Skills = () => {
+export default function Skills() {
     const [skills, setSkills] = useState([]);
 
     useEffect(() => {
@@ -31,5 +31,3 @@ const Skills = () => {
         </>
     );
 }
-
-export default Skills;
