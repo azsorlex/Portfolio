@@ -16,14 +16,9 @@ main,
     flex-grow: 1;
 }
 
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-}
-
-a:hover {
-    color: #747ae9;
+a:hover,
+button:hover {
+    color: #8f94ff;
 }
 
 h1 {
@@ -46,6 +41,12 @@ header.blurred {
 }
 
 .navlink {
-    margin-left: 15px;
-    margin-top: 5px;
+    margin-left: 15px !important;
+    margin-top: 5px !important;
+}
+
+.prevent-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

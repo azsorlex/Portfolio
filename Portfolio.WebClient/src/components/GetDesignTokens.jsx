@@ -1,44 +1,40 @@
-import { grey, red } from "@mui/material/colors";
+import { deepPurple, grey } from "@mui/material/colors";
 
-const GetDesignTokens = (mode) => ({
-    palette: {
-        mode,
-        primary: {
-            ...(mode === 'light' ? {
-                main: grey[900],
-            } : {
-                main: grey['A100']
-            }),
-        },
-        secondary: {
-            ...red,
-            ...(mode === 'dark' && {
-                main: red[900],
-            }),
-        },
-        ...(mode === 'light' ? {
-            background: {
-                default: '#FFFFFF',
-                paper: grey[900]
+export default function GetDesignTokens(mode) {
+    return ({
+        palette: {
+            mode,
+            primary: {
+                ...(mode === 'light' ? {
+                    main: grey[900],
+                } : {
+                    main: grey['A100']
+                }),
             },
-        } : {
+            secondary: {
+                ...deepPurple,
+                ...(mode === 'light' && {
+                    main: deepPurple[700],
+                }),
+            },
             background: {
-                default: '#000000',
-                paper: '#FFFFFF'
-            }
-        }),
-        text: {
-            ...(mode === 'light'
-                ? {
+                ...(mode === 'light' ? {
+                    default: '#FFFFFF',
+                    paper: grey[900]
+                } : {
+                    default: '#000000',
+                    paper: '#FFFFFF'
+                })
+            },
+            text: {
+                ...(mode === 'light' ? {
                     primary: grey[900],
                     secondary: grey[800],
-                }
-                : {
+                } : {
                     primary: '#fff',
                     secondary: grey[500],
                 }),
+            },
         },
-    },
-});
-
-export default GetDesignTokens;
+    });
+}

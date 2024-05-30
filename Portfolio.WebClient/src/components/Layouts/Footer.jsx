@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { AppBar, Box, Divider, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
-import { AccountTree, GitHub, Home, LinkedIn } from "@mui/icons-material";
+import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
+import NavLink from "./NavLink";
 
 export default function Footer() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -16,12 +16,13 @@ export default function Footer() {
     return (
         <AppBar component="footer" position="static" color="primary" enableColorOnDark>
             <Toolbar variant="dense">
+                <Copyright fontSize="xs" sx={{mr: 0.5}} />
                 <Typography fontSize={12}>
-                    Built from scratch by yours truly
+                    {`${new Date().getFullYear()} Alexander Rozsa`}
                 </Typography>
                 <Box className="spacer" />
                 <Tooltip title='GitHub'>
-                    <Link onClick={handleClick} className="navlink">
+                    <Link className="navlink" color="secondary" component="button" onClick={handleClick}>
                         <GitHub />
                     </Link>
                 </Tooltip>
@@ -34,7 +35,7 @@ export default function Footer() {
                 >
                     <MenuItem>
                         <Tooltip title='Profile'>
-                            <Link to='https://github.com/azsorlex' target="_blank" rel="noopener noreferrer">
+                            <Link href='https://github.com/azsorlex' color="secondary" target="_blank" rel="noopener">
                                 <Home />
                             </Link>
                         </Tooltip>
@@ -42,17 +43,14 @@ export default function Footer() {
                     <Divider />
                     <MenuItem>
                         <Tooltip title='Repository'>
-                            <Link to='https://github.com/azsorlex/website-resume' target="_blank" rel="noopener noreferrer">
-                                <AccountTree />
+                            <Link href='https://github.com/azsorlex/website-resume' color="secondary" target="_blank" rel="noopener">
+                                <Code />
                             </Link>
                         </Tooltip>
                     </MenuItem>
                 </Menu>
-                <Tooltip title='LinkedIn'>
-                    <Link to='https://www.linkedin.com/in/alexander-rozsa/' target="_blank" rel="noopener noreferrer" className="navlink">
-                        <LinkedIn />
-                    </Link>
-                </Tooltip>
+                <NavLink title='LinkedIn' icon={<LinkedIn />} to="https://www.linkedin.com/in/alexander-rozsa" target="_blank" rel="noopener" />
+                <NavLink title="Send me a message" icon={<Send />} to="mailto:arozsa@proton.me" target="_blank" rel="noopener" />
             </Toolbar>
         </AppBar>
     );
