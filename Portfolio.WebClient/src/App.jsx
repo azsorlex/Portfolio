@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme, useMediaQuery } from '@mui/material';
 import './App.css';
 import GetDesignTokens from './components/GetDesignTokens';
@@ -10,8 +10,17 @@ import About from './pages/About';
 import Experience from './pages/Experience';
 
 export default function App() {
+    const { pathname } = useLocation();
     const darkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    const theme = React.useMemo(() => createTheme(GetDesignTokens(darkMode ? 'dark' : 'light')), [darkMode]);
+    const theme = useMemo(() => createTheme(GetDesignTokens(darkMode ? 'dark' : 'light')), [darkMode]);
+
+    useEffect(() => {
+        document.documentElement.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant",
+        })
+    }, [pathname]);
 
     return (
         <ThemeProvider theme={theme}>

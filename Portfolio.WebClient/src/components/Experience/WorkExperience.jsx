@@ -1,14 +1,6 @@
-import { Box, Link, List, ListItem, ListItemText, Typography, styled } from "@mui/material";
+import { Box, Link, List, ListItem, ListItemText, Typography } from "@mui/material";
 import dayjs from "dayjs";
-
-const StyledExperience = styled('div')({
-    display: 'inline-block',
-    backgroundColor: 'limegreen',
-    color: "black",
-    borderRadius: 32,
-    margin: 4,
-    padding: 6
-});
+import StyledSkill from "./StyledSkill";
 
 export default function WorkExperience({ experience = {} }) {
     return (
@@ -22,15 +14,11 @@ export default function WorkExperience({ experience = {} }) {
                 ].join(' | ')}
             </Typography>
             {experience.skills.map((x) => (
-                <StyledExperience className="prevent-select">
-                    <Typography variant="p">
-                        {x}
-                    </Typography>
-                </StyledExperience>
+                <StyledSkill key={`${x}_${experience._id.$oid}`} text={x} />
             ))}
             <List sx={{ listStyleType: 'disc' }}>
                 {experience.descriptionLines.map((x) => (
-                    <ListItem sx={{ display: 'list-item' }}>
+                    <ListItem key={x} sx={{ display: 'list-item' }}>
                         <ListItemText>
                             {x}
                         </ListItemText>
@@ -43,7 +31,7 @@ export default function WorkExperience({ experience = {} }) {
                 </Typography>
             }
             {experience.media.map((x) => (
-                <Box sx={{ mb: 2 }}>
+                <Box key={x.title} mb={2}>
                     <Typography>
                         {x.title}
                     </Typography>

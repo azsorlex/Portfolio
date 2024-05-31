@@ -10,7 +10,7 @@ export default function About() {
             <Typography gutterBottom>
                 {`I'm a software develper that's been doing what I do since 2014.
                 From humble beginings where I first picked up HTML4 and said "This. This is what I want to do.",
-                I've been gradually honing my craft to the point that I can create a full stack website using the latest technologies and frameworks, hosted on the cloud (you're looking at it).
+                I've been gradually honing my craft through academia and individual study.
                 Now I have 2 years of experience in full stack development and I'd like to broaden my horizons with new opportunities.`}
             </Typography>
             <Typography>

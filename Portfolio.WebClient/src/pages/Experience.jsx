@@ -1,5 +1,4 @@
 import { Box, Container, List, ListItem, ListItemText, Typography } from "@mui/material";
-import SkillsList from "../components/Skills/SkillsList";
 import PageNav from "../components/Layouts/PageNav";
 import WorkExperience from "../components/Experience/WorkExperience";
 
@@ -77,7 +76,7 @@ const sampleData = [
         "media": [],
         "startDate": "2024-03-20"
     }
-]
+];
 
 export default function Experience() {
     return (
@@ -87,7 +86,7 @@ export default function Experience() {
             </Typography>
             <Container maxWidth="sm">
                 {sampleData.filter(x => x.type === "Work").map((x) => (
-                    <WorkExperience experience={x} />
+                    <WorkExperience key={x._id.$oid} experience={x} />
                 ))}
             </Container>
             <Typography variant="h1">
@@ -95,13 +94,13 @@ export default function Experience() {
             </Typography>
             <Container maxWidth="xl">
                 {sampleData.filter(x => x.type === "Project").map((x) => (
-                    <Box>
+                    <Box key={x._id.$oid}>
                         <Typography variant="h6">
                             {x.name}
                         </Typography>
                         <List sx={{ listStyleType: 'disc' }}>
                             {x.descriptionLines.map((y) => (
-                                <ListItem sx={{ display: 'list-item' }}>
+                                <ListItem key={y} sx={{ display: 'list-item' }}>
                                     <ListItemText>
                                         {y}
                                     </ListItemText>

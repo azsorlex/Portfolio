@@ -8,7 +8,7 @@ export default function GetDesignTokens(mode) {
                 ...(mode === 'light' ? {
                     main: grey[900],
                 } : {
-                    main: grey['A100']
+                    main: grey['A100'],
                 }),
             },
             secondary: {
@@ -20,10 +20,12 @@ export default function GetDesignTokens(mode) {
             background: {
                 ...(mode === 'light' ? {
                     default: '#FFFFFF',
-                    paper: grey[900]
+                    paper: grey[900],
+                    object: '#000FFc',
                 } : {
                     default: '#000000',
-                    paper: '#FFFFFF'
+                    paper: '#FFFFFF',
+                    object: '#00033c',
                 })
             },
             text: {
