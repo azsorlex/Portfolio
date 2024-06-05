@@ -5,5 +5,7 @@ namespace Portfolio.Application.Services.Interfaces
     public interface IExperienceService
     {
         Task<IEnumerable<ExperienceDTO>> GetAllExperiences();
+
+        Task<ExperienceDTO> GetExperienceById(string id);
     }
 }

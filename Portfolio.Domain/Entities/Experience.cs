@@ -4,7 +4,7 @@ using Portfolio.Domain.Enums;
 
 namespace Portfolio.Domain.Entities
 {
-    public sealed class Experience
+    public class Experience : BaseEntity
     {
         [BsonId]
         public ObjectId Id { get; set; }

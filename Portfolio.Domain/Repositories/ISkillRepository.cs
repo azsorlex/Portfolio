@@ -1,9 +1,10 @@
 ﻿using Portfolio.Domain.Entities;
+using Portfolio.Domain.Enums;
 
 namespace Portfolio.Domain.Repositories
 {
-    public interface ISkillRepository
+    public interface ISkillRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Skill, new()
     {
-        Task<IEnumerable<Skill>> GetAllSkills();
+        Task<IEnumerable<TEntity>> GetSkillsByType(SkillType type);
     }
 }

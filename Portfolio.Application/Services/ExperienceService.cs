@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MongoDB.Bson;
 using Portfolio.Application.Models.DTOs;
 using Portfolio.Application.Services.Interfaces;
 using Portfolio.Domain.Entities;
@@ -14,12 +15,18 @@ namespace Portfolio.Application.Services
 
         public async Task<IEnumerable<ExperienceDTO>> GetAllExperiences()
         {
-            var results = await _repositoryManager.ExperienceRepository.GetAllExperiences();
+            var results = await _repositoryManager.ExperienceRepository.GetAll();
 
             if (!results.Any())
                 throw new NotFoundException(nameof(Experience));
 
             return _mapper.Map<IEnumerable<ExperienceDTO>>(results);
+        }
+
+        public async Task<ExperienceDTO> GetExperienceById(string id)
+        {
+            var results = await _repositoryManager.ExperienceRepository.GetByIds(ObjectId.Parse(id)) ?? throw new NotFoundException(nameof(Experience));
+            return _mapper.Map<ExperienceDTO>(results);
         }
     }
 }

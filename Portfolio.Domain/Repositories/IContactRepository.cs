@@ -2,8 +2,7 @@
 
 namespace Portfolio.Domain.Repositories
 {
-    public interface IContactRepository
+    public interface IContactRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Contact, new()
     {
-        Task<ICollection<Contact>> GetAllContacts();
     }
 }

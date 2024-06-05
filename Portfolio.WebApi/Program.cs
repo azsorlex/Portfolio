@@ -8,6 +8,7 @@ using Portfolio.Infrastructure.Repositories;
 using Portfolio.WebApi.Extensions;
 using Portfolio.Infrastructure.DBContexts.SQL;
 using Portfolio.Infrastructure.DBContexts.MongoDB;
+using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -26,7 +27,13 @@ void ConfigureServices(IServiceCollection services)
         mc.AddProfile(new MappingProfile());
     });
 
-    services.AddControllers();
+    services
+        .AddControllers()
+        .AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
+        });
+    services.AddSwaggerGenNewtonsoftSupport();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 

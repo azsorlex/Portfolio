@@ -4,6 +4,8 @@ namespace Portfolio.Application.Services.Interfaces
 {
     public interface IContactService
     {
-        Task<ICollection<ContactDTO>> GetAllContacts();
+        Task<IEnumerable<ContactDTO>> GetAllContacts();
+        
+        Task<ContactDTO> GetContactById(int id);
     }
 }

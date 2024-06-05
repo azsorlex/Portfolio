@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Models.DTOs;
 using Portfolio.Application.Services.Interfaces;
+using Portfolio.Domain.Enums;
 
 namespace Portfolio.WebApi.Controllers
 {
@@ -12,11 +14,24 @@ namespace Portfolio.WebApi.Controllers
         private readonly ILogger<SkillsController> _logger = logger;
 
         [HttpGet]
-        public async Task<IActionResult> GetAllSkills()
+        [ProducesResponseType(typeof(IEnumerable<SkillDTO>), 200)]
+        public async Task<IActionResult> GetAllSkills(SkillType? type = null)
         {
             _logger.LogDebug("Fetching skills");
-            var response = await _serviceManager.SkillService.GetAllSkills();
+            var response = type == null
+                ? await _serviceManager.SkillService.GetAllSkills()
+                : await _serviceManager.SkillService.GetSkillsByType(type.Value);
             _logger.LogDebug("Skills successfully fetched");
+            return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(SkillDTO), 200)]
+        public async Task<IActionResult> GetSkillById(string id)
+        {
+            _logger.LogDebug("Fetching skill with ID {0}", id);
+            var response = await _serviceManager.SkillService.GetSkillById(id);
+            _logger.LogDebug("Skill successfully fetched");
             return Ok(response);
         }
     }

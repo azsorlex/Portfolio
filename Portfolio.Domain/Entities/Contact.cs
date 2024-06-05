@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Domain.Entities
 {
-    public sealed class Contact
+    public class Contact : BaseEntity
     {
         public int Id { get; set; }
         public string Icon { get; set; }

@@ -12,14 +12,20 @@ namespace Portfolio.Application.Services
         private readonly IRepositoryManager _repositoryManager = repositoryManager;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<ICollection<ContactDTO>> GetAllContacts()
+        public async Task<IEnumerable<ContactDTO>> GetAllContacts()
         {
-            var result = await _repositoryManager.ContactRepository.GetAllContacts();
+            var result = await _repositoryManager.ContactRepository.GetAll();
 
             if (!result.Any())
                 throw new NotFoundException(nameof(Contact));
 
-            return _mapper.Map<ICollection<ContactDTO>>(result);
+            return _mapper.Map<IEnumerable<ContactDTO>>(result);
+        }
+
+        public async Task<ContactDTO> GetContactById(int id)
+        {
+            var result = await _repositoryManager.ContactRepository.GetByIds(id) ?? throw new NotFoundException(nameof(Contact));
+            return _mapper.Map<ContactDTO>(result);
         }
     }
 }

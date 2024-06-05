@@ -9,7 +9,6 @@ namespace Portfolio.Application.Models.DTOs
     {
         public string? Id { get; init; }
         [Required]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ExperienceType Type { get; init; }
         [Required]
         public string Name { get; init; }

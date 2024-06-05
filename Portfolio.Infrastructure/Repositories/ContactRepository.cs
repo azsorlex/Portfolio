@@ -1,14 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Portfolio.Domain.Entities;
+﻿using Portfolio.Domain.Entities;
 using Portfolio.Domain.Repositories;
 using Portfolio.Infrastructure.DBContexts.SQL;
 
 namespace Portfolio.Infrastructure.Repositories
 {
-    internal sealed class ContactRepository(SQLDBContext context) : IContactRepository
+    internal sealed class ContactRepository<TEntity>(SQLDBContext context) :
+        BaseRepository<TEntity>(context),
+        IContactRepository<TEntity> where TEntity : Contact, new()
     {
-        private readonly SQLDBContext _context = context;
-
-        public async Task<ICollection<Contact>> GetAllContacts() => await _context.Contacts.ToListAsync();
     }
 }

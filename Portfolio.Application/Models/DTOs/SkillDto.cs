@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Portfolio.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,7 +10,6 @@ namespace Portfolio.Application.Models.DTOs
         [Required]
         public string Name { get; init; }
         [Required]
-        [JsonConverter(typeof(StringEnumConverter))]
         public SkillType Type { get; init; }
         [Required]
         public byte Priority { get; init; }

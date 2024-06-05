@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Domain.Entities
 {
-    public sealed class Certification
+    public class Certification : BaseEntity
     {
         public int Id { get; set; }
         public int IssuerId { get; set; }

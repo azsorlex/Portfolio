@@ -1,4 +1,5 @@
-﻿using Portfolio.Domain.Repositories;
+﻿using Portfolio.Domain.Entities;
+using Portfolio.Domain.Repositories;
 using Portfolio.Infrastructure.DBContexts.MongoDB;
 using Portfolio.Infrastructure.DBContexts.SQL;
 
@@ -6,12 +7,12 @@ namespace Portfolio.Infrastructure.Repositories
 {
     public sealed class RepositoryManager(SQLDBContext sqlDbContext, MongoDBContext mongoDBContext) : IRepositoryManager
     {
-        private readonly Lazy<IContactRepository> _contactRepository = new(() => new ContactRepository(sqlDbContext));
-        private readonly Lazy<IExperienceRepository> _experienceRepository = new(() => new ExperienceRepository(mongoDBContext));
-        private readonly Lazy<ISkillRepository> _skillRepository = new(() => new SkillRepository(mongoDBContext));
+        private readonly Lazy<IContactRepository<Contact>> _contactRepository = new(() => new ContactRepository<Contact>(sqlDbContext));
+        private readonly Lazy<IExperienceRepository<Experience>> _experienceRepository = new(() => new ExperienceRepository<Experience>(mongoDBContext));
+        private readonly Lazy<ISkillRepository<Skill>> _skillRepository = new(() => new SkillRepository<Skill>(mongoDBContext));
 
-        public IContactRepository ContactRepository => _contactRepository.Value;
-        public IExperienceRepository ExperienceRepository => _experienceRepository.Value;
-        public ISkillRepository SkillRepository => _skillRepository.Value;
+        public IContactRepository<Contact> ContactRepository => _contactRepository.Value;
+        public IExperienceRepository<Experience> ExperienceRepository => _experienceRepository.Value;
+        public ISkillRepository<Skill> SkillRepository => _skillRepository.Value;
     }
 }

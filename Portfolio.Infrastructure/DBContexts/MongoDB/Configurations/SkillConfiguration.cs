@@ -39,13 +39,13 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                 await collection.InsertManyAsync([
                     new Skill() {
                         Name = "C#",
-                        Type = SkillType.ProgrammingLanguages,
+                        Type = SkillType.Programming_Languages,
                         Priority = 0,
                         Image = "csharp"
                     },
                     new Skill() {
                         Name = "React.js",
-                        Type = SkillType.LibrariesToolsAndFrameworks,
+                        Type = SkillType.Libraries_Tools_and_Frameworks,
                         Priority = 0,
                         Image = "csharp"
                     },
@@ -57,7 +57,7 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                     },
                     new Skill() {
                         Name = "Azure",
-                        Type = SkillType.OperatingSystemsAndEnvironments,
+                        Type = SkillType.Operating_Systems_and_Environments,
                         Priority = 0,
                         Image = "csharp"
                     }
