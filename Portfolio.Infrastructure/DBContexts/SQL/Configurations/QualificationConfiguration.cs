@@ -40,8 +40,8 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 InstitutionId = 1,
                 QualificationLevelId = 1,
                 Major = "Computer Science",
-                StartDate = DateOnly.Parse("2017-02-01"),
-                EndDate = DateOnly.Parse("2021-01-01")
+                StartDate = new(2017, 2, 1),
+                EndDate = new(2021, 1, 1)
             });
         }
     }

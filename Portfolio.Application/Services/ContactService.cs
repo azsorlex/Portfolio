@@ -7,19 +7,19 @@ using Portfolio.Domain.Repositories;
 
 namespace Portfolio.Application.Services
 {
-    internal sealed class SkillService(IRepositoryManager repositoryManager, IMapper mapper) : ISkillService
+    internal sealed class ContactService(IRepositoryManager repositoryManager, IMapper mapper) : IContactService
     {
         private readonly IRepositoryManager _repositoryManager = repositoryManager;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<IEnumerable<SkillDTO>> GetAllSkills()
+        public async Task<ICollection<ContactDTO>> GetAllContacts()
         {
-            var results = await _repositoryManager.SkillRepository.GetAllSkills();
+            var result = await _repositoryManager.ContactRepository.GetAllContacts();
 
-            if (!results.Any())
-                throw new NotFoundException(nameof(Skill));
+            if (!result.Any())
+                throw new NotFoundException(nameof(Contact));
 
-            return _mapper.Map<IEnumerable<SkillDTO>>(results);
+            return _mapper.Map<ICollection<ContactDTO>>(result);
         }
     }
 }

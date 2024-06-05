@@ -2,8 +2,8 @@
 
 namespace Portfolio.Application.Services.Interfaces
 {
-    public interface ISkillService
+    public interface IContactService
     {
-        Task<IEnumerable<SkillDTO>> GetAllSkills();
+        Task<ICollection<ContactDTO>> GetAllContacts();
     }
 }

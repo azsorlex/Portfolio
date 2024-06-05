@@ -44,8 +44,8 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                             "Worked in a large agile scrum team in the organisation’s Health Insurance division.",
                             "The main responsibilities were implementing brand new features and maintaining existing ones for the Product and Information Management (PIM) project."
                         ],
-                        StartDate = DateTime.Parse("2022-01-31"),
-                        EndDate = DateTime.Parse("2024-01-30")
+                        StartDate = new(2022, 1, 31),
+                        EndDate = new(2024, 1, 30)
                     },
                     new Experience()
                     {
@@ -77,11 +77,13 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                                 URL = "https://lucid.app/documents/view/8fddcecc-ab71-46aa-b95f-13cfbad9083a"
                             }
                         ],
-                        StartDate = DateTime.Parse("2024-03-28")
+                        StartDate = new(2024, 3, 29)
                     }
                 ]);
             }
-            catch (Exception ex) { }
+            catch (Exception)
+            {
+            }
         }
     }
 }

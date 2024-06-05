@@ -7,19 +7,19 @@ using Portfolio.Domain.Repositories;
 
 namespace Portfolio.Application.Services
 {
-    internal sealed class SkillService(IRepositoryManager repositoryManager, IMapper mapper) : ISkillService
+    internal sealed class ExperienceService(IRepositoryManager repositoryManager, IMapper mapper) : IExperienceService
     {
         private readonly IRepositoryManager _repositoryManager = repositoryManager;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<IEnumerable<SkillDTO>> GetAllSkills()
+        public async Task<IEnumerable<ExperienceDTO>> GetAllExperiences()
         {
-            var results = await _repositoryManager.SkillRepository.GetAllSkills();
+            var results = await _repositoryManager.ExperienceRepository.GetAllExperiences();
 
             if (!results.Any())
-                throw new NotFoundException(nameof(Skill));
+                throw new NotFoundException(nameof(Experience));
 
-            return _mapper.Map<IEnumerable<SkillDTO>>(results);
+            return _mapper.Map<IEnumerable<ExperienceDTO>>(results);
         }
     }
 }

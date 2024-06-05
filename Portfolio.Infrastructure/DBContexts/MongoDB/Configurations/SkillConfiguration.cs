@@ -63,7 +63,9 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                     }
                 ]);
             }
-            catch (Exception ex) { }
+            catch (Exception)
+            {
+            }
         }
     }
 }

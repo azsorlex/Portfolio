@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Application.Models.DTOs
 {
-    public class SkillDto
+    public sealed record SkillDTO
     {
-        public string? _id { get; set; }
+        public string? Id { get; init; }
         [Required]
-        public string Name { get; set; }
+        public string Name { get; init; }
         [Required]
         [JsonConverter(typeof(StringEnumConverter))]
-        public SkillType Type { get; set; }
+        public SkillType Type { get; init; }
         [Required]
-        public byte Priority { get; set; }
+        public byte Priority { get; init; }
         [Required]
-        public string Image {  get; set; }
+        public string Image { get; init; }
     }
 }

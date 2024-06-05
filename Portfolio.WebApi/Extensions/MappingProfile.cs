@@ -8,7 +8,10 @@ namespace Portfolio.WebApi.Extensions
     {
         public MappingProfile()
         {
-            CreateMap<Skill, SkillDto>().ReverseMap();
+            CreateMap<ContactDTO, Contact>().ReverseMap();
+            CreateMap<ExperienceDTO, Experience>().ReverseMap();
+            CreateMap<MediaDTO, Media>().ReverseMap();
+            CreateMap<SkillDTO, Skill>().ReverseMap();
         }
     }
 }

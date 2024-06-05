@@ -2,8 +2,8 @@
 
 namespace Portfolio.Application.Services.Interfaces
 {
-    public interface ISkillService
+    public interface IExperienceService
     {
-        Task<IEnumerable<SkillDTO>> GetAllSkills();
+        Task<IEnumerable<ExperienceDTO>> GetAllExperiences();
     }
 }

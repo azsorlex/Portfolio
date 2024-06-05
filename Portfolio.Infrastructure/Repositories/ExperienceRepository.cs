@@ -5,10 +5,10 @@ using Portfolio.Infrastructure.DBContexts.MongoDB;
 
 namespace Portfolio.Infrastructure.Repositories
 {
-    internal sealed class SkillRepository(MongoDBContext context) : ISkillRepository
+    internal sealed class ExperienceRepository(MongoDBContext context) : IExperienceRepository
     {
         private readonly MongoDBContext _context = context;
 
-        public async Task<IEnumerable<Skill>> GetAllSkills() => await _context.Skills.ToListAsync();
+        public async Task<IEnumerable<Experience>> GetAllExperiences() => await _context.Experiences.ToListAsync();
     }
 }

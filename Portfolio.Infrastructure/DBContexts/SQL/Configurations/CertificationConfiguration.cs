@@ -46,7 +46,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 Id = 1,
                 IssuerId = 1,
                 Name = "Azure Fundamentals (AZ-900)",
-                IssueDate = DateOnly.Parse("2024-05-19"),
+                IssueDate = new(2024, 5, 19),
                 URL = "https://learn.microsoft.com/api/credentials/share/en-gb/AlexanderRozsa/A78FE043E18F7ADA?sharingId=6D6A8C67B7D53131"
             });
         }

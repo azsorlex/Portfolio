@@ -7,7 +7,7 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB
 {
     public sealed class MongoDBContext(DbContextOptions options, IConfiguration configuration) : DbContext(options)
     {
-        public IMongoDatabase Db { get; init; } = new MongoClient(configuration.GetConnectionString("MongoDB")).GetDatabase("portfoliowebsite");
+        public readonly IMongoDatabase Db = new MongoClient(configuration.GetConnectionString("MongoDB")).GetDatabase("portfoliowebsite");
 
         public DbSet<Experience> Experiences { get; init; }
         public DbSet<Skill> Skills { get; init; }
@@ -16,7 +16,7 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB
         {
             var type = GetType();
             modelBuilder.ApplyConfigurationsFromAssembly(type.Assembly, t =>
-                t.Namespace.StartsWith(type.Namespace)
+                t.Namespace!.StartsWith(type.Namespace!)
                 && t.GetMethod("TemporaryConfigure")?.Invoke(null, [Db]) != null);
 
             base.OnModelCreating(modelBuilder);

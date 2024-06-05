@@ -13,7 +13,7 @@ namespace Portfolio.Domain.Entities
         public string Name { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public SkillType Type { get; set; }
-        public byte Priority {  get; set; }
+        public byte Priority { get; set; }
         public string Image { get; set; }
     }
 }

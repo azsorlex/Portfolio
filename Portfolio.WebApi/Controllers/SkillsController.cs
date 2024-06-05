@@ -8,12 +8,15 @@ namespace Portfolio.WebApi.Controllers
     [Produces("application/json")]
     public class SkillsController(IServiceManager serviceManager, ILogger<SkillsController> logger) : ControllerBase
     {
+        private readonly IServiceManager _serviceManager = serviceManager;
+        private readonly ILogger<SkillsController> _logger = logger;
+
         [HttpGet]
         public async Task<IActionResult> GetAllSkills()
         {
-            logger.LogDebug("Fetching skills");
-            var response = await serviceManager.SkillService.GetAllSkills();
-            logger.LogDebug("Skills successfully fetched");
+            _logger.LogDebug("Fetching skills");
+            var response = await _serviceManager.SkillService.GetAllSkills();
+            _logger.LogDebug("Skills successfully fetched");
             return Ok(response);
         }
     }
