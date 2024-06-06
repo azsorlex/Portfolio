@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using Portfolio.Domain.Enums;
 
-namespace Portfolio.Domain.Entities
+namespace Portfolio.Infrastructure.Entities
 {
     public class Experience : BaseEntity
     {

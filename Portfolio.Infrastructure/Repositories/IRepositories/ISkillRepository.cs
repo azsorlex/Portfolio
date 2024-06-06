@@ -1,7 +1,7 @@
-﻿using Portfolio.Domain.Entities;
-using Portfolio.Domain.Enums;
+﻿using Portfolio.Domain.Enums;
+using Portfolio.Infrastructure.Entities;
 
-namespace Portfolio.Domain.Repositories
+namespace Portfolio.Infrastructure.Repositories.IRepositories
 {
     public interface ISkillRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Skill, new()
     {

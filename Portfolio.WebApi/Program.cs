@@ -2,13 +2,15 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.WebApi.Middleware;
 using Portfolio.Application.Services;
-using Portfolio.Application.Services.Interfaces;
-using Portfolio.Domain.Repositories;
 using Portfolio.Infrastructure.Repositories;
 using Portfolio.WebApi.Extensions;
 using Portfolio.Infrastructure.DBContexts.SQL;
 using Portfolio.Infrastructure.DBContexts.MongoDB;
 using Newtonsoft.Json.Converters;
+using System.Reflection;
+using Portfolio.Infrastructure.Repositories.IRepositories;
+using Portfolio.Application.Services.IServices;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -29,13 +31,14 @@ void ConfigureServices(IServiceCollection services)
 
     services
         .AddControllers()
+        .AddApplicationPart(Assembly.Load("Portfolio.Presentation"))
         .AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
         });
     services.AddSwaggerGenNewtonsoftSupport();
     services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
+    services.AddSwaggerGen(c => c.SwaggerDoc("v1", new() { Title = "Portfolio Web API", Version = "v1" }));
 
     services.AddSingleton(mapperConfig.CreateMapper());
     services.AddSingleton<IConfiguration>(builder.Configuration);
@@ -51,7 +54,7 @@ void ConfigureServices(IServiceCollection services)
     });
     services.AddDbContextPool<MongoDBContext>(config =>
     {
-        config.UseMongoDB(builder.Configuration.GetConnectionString("MongoDB"), "portfoliowebsite");
+        config.UseMongoDB(builder.Configuration.GetConnectionString("MongoDB")!, "portfoliowebsite");
     });
 }
 

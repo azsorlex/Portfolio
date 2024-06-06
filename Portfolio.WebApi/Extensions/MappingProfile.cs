@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Portfolio.Application.Models.DTOs;
-using Portfolio.Domain.Entities;
+using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.WebApi.Extensions
 {

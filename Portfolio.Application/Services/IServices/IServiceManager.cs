@@ -1,4 +1,4 @@
-﻿namespace Portfolio.Application.Services.Interfaces
+﻿namespace Portfolio.Application.Services.IServices
 {
     public interface IServiceManager
     {

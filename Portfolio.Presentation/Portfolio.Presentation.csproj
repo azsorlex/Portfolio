@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Exceptions\" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Bson" Version="2.25.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<ProjectReference Include="..\Portfolio.Application\Portfolio.Application.csproj" />
+		<ProjectReference Include="..\Portfolio.Domain\Portfolio.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

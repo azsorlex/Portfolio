@@ -1,4 +1,4 @@
-﻿namespace Portfolio.Domain.Entities
+﻿namespace Portfolio.Infrastructure.Entities
 {
     public class Institution : BaseEntity
     {

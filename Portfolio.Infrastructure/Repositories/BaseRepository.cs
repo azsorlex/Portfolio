@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Portfolio.Domain.Entities;
-using Portfolio.Domain.Repositories;
+using Portfolio.Infrastructure.Entities;
+using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Infrastructure.Repositories
 {

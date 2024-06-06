@@ -1,6 +1,6 @@
 ﻿using Portfolio.Application.Models.DTOs;
 
-namespace Portfolio.Application.Services.Interfaces
+namespace Portfolio.Application.Services.IServices
 {
     public interface IExperienceService
     {

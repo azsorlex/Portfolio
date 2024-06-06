@@ -1,6 +1,6 @@
-﻿using Portfolio.Domain.Entities;
+﻿using Portfolio.Infrastructure.Entities;
 
-namespace Portfolio.Domain.Repositories
+namespace Portfolio.Infrastructure.Repositories.IRepositories
 {
     public interface IRepositoryManager
     {

@@ -1,6 +1,6 @@
-﻿using Portfolio.Domain.Entities;
-using Portfolio.Domain.Repositories;
-using Portfolio.Infrastructure.DBContexts.MongoDB;
+﻿using Portfolio.Infrastructure.DBContexts.MongoDB;
+using Portfolio.Infrastructure.Entities;
+using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Infrastructure.Repositories
 {

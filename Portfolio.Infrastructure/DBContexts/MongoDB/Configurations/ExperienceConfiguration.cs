@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.EntityFrameworkCore.Extensions;
-using Portfolio.Domain.Entities;
 using Portfolio.Domain.Enums;
+using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
 {

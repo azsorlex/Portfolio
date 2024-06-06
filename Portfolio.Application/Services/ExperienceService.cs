@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MongoDB.Bson;
 using Portfolio.Application.Models.DTOs;
-using Portfolio.Application.Services.Interfaces;
-using Portfolio.Domain.Entities;
+using Portfolio.Application.Services.IServices;
 using Portfolio.Domain.Exceptions;
-using Portfolio.Domain.Repositories;
+using Portfolio.Infrastructure.Entities;
+using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Application.Services
 {

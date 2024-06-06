@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Portfolio.Application.Models.DTOs;
-using Portfolio.Application.Services.Interfaces;
+using Portfolio.Application.Services.IServices;
 using Portfolio.Domain.Enums;
 
-namespace Portfolio.WebApi.Controllers
+namespace Portfolio.Presentation.Controllers
 {
     [ApiController]
     [Route("[controller]")]

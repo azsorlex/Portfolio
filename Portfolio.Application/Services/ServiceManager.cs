@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Portfolio.Application.Services.Interfaces;
-using Portfolio.Domain.Repositories;
+using Portfolio.Application.Services.IServices;
+using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Application.Services
 {

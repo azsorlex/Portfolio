@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Portfolio.Domain.Entities;
+using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
 {
