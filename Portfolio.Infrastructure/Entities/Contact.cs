@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Infrastructure.Entities
 {
-    public class Contact : BaseEntity
+    public sealed class Contact : BaseEntity
     {
         public int Id { get; set; }
         public string Icon { get; set; }

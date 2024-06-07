@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 using System.Reflection;
 using Portfolio.Infrastructure.Repositories.IRepositories;
 using Portfolio.Application.Services.IServices;
-using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -54,7 +54,7 @@ void ConfigureServices(IServiceCollection services)
     });
     services.AddDbContextPool<MongoDBContext>(config =>
     {
-        config.UseMongoDB(builder.Configuration.GetConnectionString("MongoDB")!, "portfoliowebsite");
+        config.UseMongoDB(new MongoClient(builder.Configuration.GetConnectionString("MongoDB")), "portfoliowebsite");
     });
 }
 
@@ -82,6 +82,7 @@ void Configure()
 async Task InitialiseSQLDatabase()
 {
     await using var dbContext = scope.ServiceProvider.GetRequiredService<SQLDBContext>();
+    await dbContext.Database.EnsureDeletedAsync();
     await dbContext.Database.EnsureCreatedAsync();
 }
 

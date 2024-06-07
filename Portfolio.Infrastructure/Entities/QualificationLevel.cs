@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Infrastructure.Entities
 {
-    public class QualificationLevel : BaseEntity
+    public sealed class QualificationLevel : BaseEntity
     {
         public int Id { get; set; }
         public byte Level { get; set; }

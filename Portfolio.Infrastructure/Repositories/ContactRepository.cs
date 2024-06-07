@@ -4,9 +4,7 @@ using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Infrastructure.Repositories
 {
-    internal sealed class ContactRepository<TEntity>(SQLDBContext context) :
-        BaseRepository<TEntity>(context),
-        IContactRepository<TEntity> where TEntity : Contact, new()
+    internal sealed class ContactRepository(SQLDBContext context) : BaseRepository<Contact>(context), IContactRepository
     {
     }
 }

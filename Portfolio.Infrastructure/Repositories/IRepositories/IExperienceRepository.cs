@@ -2,7 +2,7 @@
 
 namespace Portfolio.Infrastructure.Repositories.IRepositories
 {
-    public interface IExperienceRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Experience, new()
+    public interface IExperienceRepository : IBaseRepository<Experience>
     {
     }
 }

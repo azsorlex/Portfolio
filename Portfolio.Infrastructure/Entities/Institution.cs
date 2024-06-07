@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Infrastructure.Entities
 {
-    public class Institution : BaseEntity
+    public sealed class Institution : BaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

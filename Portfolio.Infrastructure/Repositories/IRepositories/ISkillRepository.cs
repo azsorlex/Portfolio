@@ -3,8 +3,8 @@ using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.Infrastructure.Repositories.IRepositories
 {
-    public interface ISkillRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Skill, new()
+    public interface ISkillRepository : IBaseRepository<Skill>
     {
-        Task<IEnumerable<TEntity>> GetSkillsByType(SkillType type);
+        Task<IEnumerable<Skill>> GetSkillsByType(SkillType type);
     }
 }

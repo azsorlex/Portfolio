@@ -1,6 +1,6 @@
 ﻿namespace Portfolio.Infrastructure.Entities
 {
-    public class Certification : BaseEntity
+    public sealed class Certification : BaseEntity
     {
         public int Id { get; set; }
         public int IssuerId { get; set; }

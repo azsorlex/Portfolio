@@ -1,12 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace Portfolio.Infrastructure.DBContexts.MongoDB
 {
-    public sealed class MongoDBContext(DbContextOptions options, IConfiguration configuration) : DbContext(options)
+    public sealed class MongoDBContext : DbContext
     {
-        public readonly IMongoDatabase Db = new MongoClient(configuration.GetConnectionString("MongoDB")).GetDatabase("portfoliowebsite");
+        public readonly IMongoDatabase Db;
+
+        public MongoDBContext(DbContextOptions options) : base(options) {
+            var properties = options.GetExtension<MongoOptionsExtension>();
+            Db = properties.MongoClient!.GetDatabase(properties.DatabaseName);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
