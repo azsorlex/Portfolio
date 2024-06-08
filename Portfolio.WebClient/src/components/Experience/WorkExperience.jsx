@@ -14,7 +14,7 @@ export default function WorkExperience({ experience = {} }) {
                 ].join(' | ')}
             </Typography>
             {experience.skills.map((x) => (
-                <StyledSkill key={`${x}_${experience._id.$oid}`} text={x} />
+                <StyledSkill key={`${x}_${experience.id}`} text={x} />
             ))}
             <List sx={{ listStyleType: 'disc' }}>
                 {experience.descriptionLines.map((x) => (

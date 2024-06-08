@@ -18,6 +18,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.8",
     "dayjs": "^1.11.11",
+    "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",

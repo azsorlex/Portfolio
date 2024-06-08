@@ -15,9 +15,9 @@ namespace Portfolio.Presentation.Controllers
         private readonly IServiceManager _serviceManager = serviceManager;
         private readonly ILogger<SkillsController> _logger = logger;
 
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(List<SkillDTO>), 200)]
-        public async Task<IActionResult> GetAllSkills([FromBody] SkillType? type = null)
+        public async Task<IActionResult> GetAllSkills(SkillType? type = null)
         {
             _logger.LogDebug("Fetching skills");
             var response = type == null

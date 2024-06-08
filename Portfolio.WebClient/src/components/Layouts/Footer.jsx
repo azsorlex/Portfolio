@@ -1,14 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
+//import * as MUIcon from "@mui/icons-material";
 import NavLink from "./NavLink";
+import ContactsService from "../../services/ContactsService";
 
 export default function Footer() {
-    const [anchorEl, setAnchorEl] = useState(null);
+    //const [contactMD, setContactMD] = useState(undefined);
+    const [anchorEl, setAnchorEl] = useState(undefined);
     const open = Boolean(anchorEl);
+
+    /*useEffect(() => {
+        loadContactMetadata();
+    }, []);
+
+    const loadContactMetadata = async () => {
+        try {
+            const response = await ContactsService.loadContacts();
+            setContactMD(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getIconFromString = (name) => {
+        const md = contactMD.find(x => x.name === name);
+        const Icon = MUIcon[md.icon];
+        return <Icon />
+    }*/
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -16,16 +40,19 @@ export default function Footer() {
     return (
         <AppBar component="footer" position="static" color="primary" enableColorOnDark>
             <Toolbar variant="dense">
-                <Copyright fontSize="xs" sx={{mr: 0.5}} />
+                <Copyright fontSize="xs" sx={{ mr: 0.5 }} />
                 <Typography fontSize={12}>
                     {`${new Date().getFullYear()} Alexander Rozsa`}
                 </Typography>
                 <Box className="spacer" />
-                <Tooltip title='GitHub'>
-                    <Link className="navlink" color="secondary" component="button" onClick={handleClick}>
-                        <GitHub />
-                    </Link>
-                </Tooltip>
+                {//contactMD &&
+                    <Tooltip title='GitHub'>
+                        <Link className="navlink" color="secondary" component="button" onClick={handleClick}>
+                            {//getIconFromString("GitHub")
+                            }
+                            <GitHub />
+                        </Link>
+                    </Tooltip>}
                 <Menu
                     anchorEl={anchorEl}
                     open={open}

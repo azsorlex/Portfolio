@@ -2,74 +2,38 @@ import { Box, Button, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import SkillsList from "../components/Skills/SkillsList";
 import PageNav from "../components/Layouts/PageNav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StyledSkill from "../components/Experience/StyledSkill";
-
-const sampleData = [
-    {
-        "_id": {
-            "$oid": "6656c4794d70b6186496a19f"
-        },
-        "type": "Work",
-        "name": "IT Consultant",
-        "company": "FDM Group",
-        "location": "Melbourne, AU",
-        "skills": [
-            "React.js",
-            "MySQL",
-            "MongoDB",
-            "EF Core"
-        ],
-        "descriptionLines": [
-            "Received training to be a DevOps consultant for the first three months, then carried out the Bupa contract.",
-            "Undertook additional professional and technical upskilling and team project work to increase suitability for future contracts."
-        ],
-        "media": [
-            {
-                "title": "SampleMedia",
-                "description": "This is a piece of sample media to demonstrate linking to external resources.",
-                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            },
-            {
-                "title": "SampleMedia2",
-                "description": "This is also a piece of sample media to demonstrate linking to external resources.",
-                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            }
-        ],
-        "startDate": "2021-10-16"
-    },
-    {
-        "_id": {
-            "$oid": "6656c4794d70b6186496a19f"
-        },
-        "type": "Project",
-        "name": "Portfolio Website",
-        "skills": [
-            "React.js",
-            "C#",
-            "MongoDB",
-            "EF Core",
-            "ASP.NET Core",
-            "MS SQL Server"
-        ],
-        "descriptionLines": [
-            "A full stack portfolio website to showcase my works and also my expertise."
-        ],
-        "media": [],
-        "startDate": "2024-03-20"
-    }
-];
+import ExperiencesService from "../services/ExperiencesService";
+import SkillsService from "../services/SkillsService";
 
 export default function Home() {
-    const [latestWork, setLatestWork] = useState(sampleData.find(x => x.type === "Work"));
-    const [latestProject, setLatestProject] = useState(sampleData.find(x => x.type === "Project"));
+    const [topSkills, setTopSkills] = useState(undefined)
+    const [currentWork, setCurrentWork] = useState(undefined);
+    const [currentProject, setCurrentProject] = useState(undefined);
 
-    const toggleWork = () => {
-        setLatestWork(latestWork === null ? sampleData.find(x => x.type === "Work") : null);
-    };
+    useEffect(() => {
+        getTopSkills();
+        getCurrentExperience();
+    }, []);
 
-    const toggleProject = () => {
-        setLatestProject(latestProject === null ? sampleData.find(x => x.type === "Project") : null);
+    const getTopSkills = async () => {
+        try {
+            const response = await SkillsService.loadSkills();
+            setTopSkills(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getCurrentExperience = async () => {
+        try {
+            const response = await ExperiencesService.loadExperiences();
+            setCurrentWork(response.data.find(x => x.type === "Work"));
+            setCurrentProject(response.data.find(x => x.type === "Project"));
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -97,7 +61,10 @@ export default function Home() {
                     Top skills:
                 </Typography>
                 <Box width="85%" margin="auto" p={1} borderRadius={8} bgcolor="background.object">
-                    <SkillsList skills={[{ name: "C#", image: "csharp" }, { name: "Azure", image: "csharp" }, { name: "React.js", image: "csharp" }, { name: "Python", image: "csharp" }, { name: "Java", image: "csharp" }, { name: "JavaScript", image: "csharp" }]} />
+                    {topSkills
+                        ? <SkillsList skills={topSkills} />
+                        : <Typography variant="h2">Loading</Typography>
+                    }
                 </Box>
                 <Link component={RouterLink} to="/skills" underline="none">
                     <Button variant="contained">
@@ -105,44 +72,38 @@ export default function Home() {
                     </Button>
                 </Link>
             </Box>
-            <Button variant="contained" onClick={toggleWork}>
-                {`(experimental) toggle work`}
-            </Button>
             <Box bgcolor="background.object" p={4} mb={4} borderRadius={8} width="46%">
                 <Typography variant="h4">
                     {`Currently working at:`}
                 </Typography>
                 <Typography variant="h5">
-                    {latestWork ? `${latestWork.company} as a${latestWork.name.match('^[aeiouAEIOU].*') && 'n'} ${latestWork.name}`
+                    {currentWork ? `${currentWork.company} as a${currentWork.name.match('^[aeiouAEIOU].*') ? 'n' : ''} ${currentWork.name}`
                         : `Nowhere. I'm looking for work.`}
                 </Typography>
-                {latestWork &&
+                {currentWork &&
                     <>
                         <Typography variant="h6">
                             Skills used in this role:
                         </Typography>
-                        {latestWork.skills.map((x) => (
+                        {currentWork.skills.map((x) => (
                             <StyledSkill key={x} text={x} />
                         ))}
                     </>
                 }
             </Box>
-            <Button variant="contained" onClick={toggleProject}>
-                {`(experimental) toggle project`}
-            </Button>
             <Box bgcolor="background.object" p={4} borderRadius={8} width="46%">
                 <Typography variant="h4">
                     {`Currently working on:`}
                 </Typography>
                 <Typography variant="h5">
-                    {latestProject ? latestProject.name : `Nothing. Some inspiration should come soon though.`}
+                    {currentProject ? currentProject.name : `Nothing. Some inspiration should come soon though.`}
                 </Typography>
-                {latestProject &&
+                {currentProject &&
                     <>
                         <Typography variant="h6">
                             Skills used in this project:
                         </Typography>
-                        {latestProject.skills.map((x) => (
+                        {currentProject.skills.map((x) => (
                             <StyledSkill key={x} text={x} />
                         ))}
                     </>

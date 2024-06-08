@@ -1,114 +1,62 @@
 import { Box, Container, List, ListItem, ListItemText, Typography } from "@mui/material";
 import PageNav from "../components/Layouts/PageNav";
 import WorkExperience from "../components/Experience/WorkExperience";
-
-const sampleData = [
-    {
-        "_id": {
-            "$oid": "6656c4794d70b6186496a19f"
-        },
-        "type": "Work",
-        "name": "IT Consultant",
-        "company": "FDM Group",
-        "location": "Melbourne, AU",
-        "skills": [
-            "React.js",
-            "MySQL",
-            "MongoDB",
-            "EF Core"
-        ],
-        "descriptionLines": [
-            "Received training to be a DevOps consultant for the first three months, then carried out the Bupa contract.",
-            "Undertook additional professional and technical upskilling and team project work to increase suitability for future contracts."
-        ],
-        "media": [
-            {
-                "title": "SampleMedia",
-                "description": "This is a piece of sample media to demonstrate linking to external resources.",
-                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            },
-            {
-                "title": "SampleMedia2",
-                "description": "This is also a piece of sample media to demonstrate linking to external resources.",
-                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            }
-        ],
-        "startDate": "2021-10-16"
-    },
-    {
-        "_id": {
-            "$oid": "6656c4794d70b6186496a19e"
-        },
-        "type": "Work",
-        "name": "Full Stack .NET Developer",
-        "company": "Bupa",
-        "location": "Melbourne, AU",
-        "skills": [
-            "C#",
-            "React.js",
-            "MS SQL Server",
-            "ASP.NET Core",
-            "CosmosDB"
-        ],
-        "descriptionLines": [
-            "Worked in a large agile scrum team in the organisation’s Health Insurance division.",
-            "The main responsibilities were implementing brand new features and maintaining existing ones for the Product and Information Management (PIM) project."
-        ],
-        "media": [],
-        "startDate": "2022-01-31",
-        "endDate": "2024-01-30"
-    },
-    {
-        "_id": {
-            "$oid": "6656c4794d70b6186496a19f"
-        },
-        "type": "Project",
-        "name": "Portfolio Website",
-        "skills": [
-            "React.js",
-            "MySQL",
-            "MongoDB",
-            "EF Core"
-        ],
-        "descriptionLines": [
-            "A full stack portfolio website to showcase my works and also my expertise."
-        ],
-        "media": [],
-        "startDate": "2024-03-20"
-    }
-];
+import { useEffect, useState } from "react";
+import ExperiencesService from "../services/ExperiencesService";
 
 export default function Experience() {
+    const [work, setWork] = useState(undefined);
+    const [projects, setProjects] = useState(undefined);
+
+    useEffect(() => {
+        getExperience();
+    }, []);
+
+    const getExperience = async () => {
+        try {
+            const response = await ExperiencesService.loadExperiences();
+            console.log(response.data.find(x => x.type === "Work"));
+            setWork(response.data.filter(x => x.type === "Work"));
+            setProjects(response.data.filter(x => x.type === "Project"));
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <>
             <Typography variant="h1">
                 Work experience.
             </Typography>
             <Container maxWidth="sm">
-                {sampleData.filter(x => x.type === "Work").map((x) => (
-                    <WorkExperience key={x._id.$oid} experience={x} />
-                ))}
+                {work
+                    ? work.map((x) => (
+                        <WorkExperience key={x.id} experience={x} />
+                    ))
+                    : <Typography variant="h2">Loading</Typography>}
             </Container>
             <Typography variant="h1">
                 Projects.
             </Typography>
             <Container maxWidth="xl">
-                {sampleData.filter(x => x.type === "Project").map((x) => (
-                    <Box key={x._id.$oid}>
-                        <Typography variant="h6">
-                            {x.name}
-                        </Typography>
-                        <List sx={{ listStyleType: 'disc' }}>
-                            {x.descriptionLines.map((y) => (
-                                <ListItem key={y} sx={{ display: 'list-item' }}>
-                                    <ListItemText>
-                                        {y}
-                                    </ListItemText>
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
-                ))}
+                {projects
+                    ? projects.map((x) => (
+                        <Box key={x.id}>
+                            <Typography variant="h6">
+                                {x.name}
+                            </Typography>
+                            <List sx={{ listStyleType: 'disc' }}>
+                                {x.descriptionLines.map((y) => (
+                                    <ListItem key={y} sx={{ display: 'list-item' }}>
+                                        <ListItemText>
+                                            {y}
+                                        </ListItemText>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Box>
+                    ))
+                    : <Typography variant="h2">Loading</Typography>}
             </Container>
             <PageNav beforeTo="/skills" beforeTitle="Skills" />
         </>
