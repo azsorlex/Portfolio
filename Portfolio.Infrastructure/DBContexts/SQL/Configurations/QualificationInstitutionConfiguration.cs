@@ -4,11 +4,11 @@ using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
 {
-    internal sealed class InstitutionConfiguration : IEntityTypeConfiguration<Institution>
+    internal sealed class QualificationInstitutionConfiguration : IEntityTypeConfiguration<QualificationInstitution>
     {
-        public void Configure(EntityTypeBuilder<Institution> builder)
+        public void Configure(EntityTypeBuilder<QualificationInstitution> builder)
         {
-            builder.ToTable(nameof(Institution));
+            builder.ToTable(nameof(QualificationInstitution));
 
             builder.HasKey(x => x.Id);
 
@@ -22,7 +22,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 .HasForeignKey(q => q.InstitutionId)
                 .HasPrincipalKey(x => x.Id);
 
-            builder.HasData(new Institution()
+            builder.HasData(new QualificationInstitution()
             {
                 Id = 1,
                 Name = "Queensland University of Technology (QUT)"

@@ -12,7 +12,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Major)
+            builder.Property(x => x.Name)
                 .IsRequired()
                 .IsUnicode(false)
                 .HasMaxLength(50);
@@ -39,7 +39,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 Id = 1,
                 InstitutionId = 1,
                 QualificationLevelId = 1,
-                Major = "Computer Science",
+                Name = "Computer Science",
                 StartDate = new(2017, 2, 1),
                 EndDate = new(2021, 1, 1)
             });

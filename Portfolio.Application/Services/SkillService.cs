@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Portfolio.Application.Models.DTOs;
+using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Exceptions;
@@ -12,14 +12,14 @@ namespace Portfolio.Application.Services
     {
         private new readonly ISkillRepository _repository = repositoryManager.SkillRepository;
 
-        public async Task<IEnumerable<SkillDTO>> GetSkillsByType(SkillType type)
+        public async Task<List<SkillDTO>> GetSkillsByType(SkillType type)
         {
             var results = await _repository.GetSkillsByType(type);
 
             if (!results.Any())
                 throw new NotFoundException(nameof(Skill));
 
-            return _mapper.Map<IEnumerable<SkillDTO>>(results);
+            return _mapper.Map<List<SkillDTO>>(results);
         }
     }
 }

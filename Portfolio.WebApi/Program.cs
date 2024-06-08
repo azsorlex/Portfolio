@@ -11,6 +11,7 @@ using System.Reflection;
 using Portfolio.Infrastructure.Repositories.IRepositories;
 using Portfolio.Application.Services.IServices;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -82,7 +83,6 @@ void Configure()
 async Task InitialiseSQLDatabase()
 {
     await using var dbContext = scope.ServiceProvider.GetRequiredService<SQLDBContext>();
-    await dbContext.Database.EnsureDeletedAsync();
     await dbContext.Database.EnsureCreatedAsync();
 }
 

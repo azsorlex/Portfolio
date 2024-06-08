@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Portfolio.Application.Models.DTOs;
+using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
 using Portfolio.Infrastructure.Entities;
 using Portfolio.Infrastructure.Repositories.IRepositories;

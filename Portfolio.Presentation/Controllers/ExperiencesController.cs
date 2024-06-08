@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using Portfolio.Application.Models.DTOs;
+using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
 
 namespace Portfolio.Presentation.Controllers
@@ -15,7 +15,7 @@ namespace Portfolio.Presentation.Controllers
         private readonly ILogger<ExperiencesController> _logger = logger;
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ExperienceDTO>), 200)]
+        [ProducesResponseType(typeof(List<ExperienceDTO>), 200)]
         public async Task<IActionResult> GetAllExperiences()
         {
             _logger.LogDebug("Fetching experiences");

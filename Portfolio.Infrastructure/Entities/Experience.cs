@@ -9,7 +9,6 @@ namespace Portfolio.Infrastructure.Entities
         [BsonId]
         public ObjectId Id { get; set; }
         public ExperienceType Type { get; set; }
-        public string Name { get; set; }
         public string? Company { get; set; }
         public string? Location { get; set; }
         public List<string>? Skills { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Portfolio.Application.Models.DTOs;
+using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
 
 namespace Portfolio.Presentation.Controllers
@@ -14,7 +14,7 @@ namespace Portfolio.Presentation.Controllers
         private readonly ILogger<ContactsController> _logger = logger;
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ContactDTO>), 200)]
+        [ProducesResponseType(typeof(List<ContactDTO>), 200)]
         public async Task<IActionResult> GetAllContacts()
         {
             _logger.LogDebug("Fetching contacts");
@@ -29,7 +29,7 @@ namespace Portfolio.Presentation.Controllers
         {
             _logger.LogDebug("Fetching contact with ID {0}", id);
             var response = await _serviceManager.ContactService.GetByIds(id);
-            _logger.LogDebug("Contacts successfully fetched");
+            _logger.LogDebug("Contact successfully fetched");
             return Ok(response);
         }
     }

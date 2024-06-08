@@ -12,5 +12,7 @@ namespace Portfolio.Infrastructure.Repositories
         public virtual async Task<IEnumerable<TEntity>> GetAll() => await _set.ToListAsync();
 
         public virtual async Task<TEntity?> GetByIds(params object[] keys) => await _set.FindAsync(keys);
+
+        public virtual async Task<IEnumerable<TEntity>> GetByName(string name) => await _set.Where(x => x.Name == name).ToListAsync();
     }
 }

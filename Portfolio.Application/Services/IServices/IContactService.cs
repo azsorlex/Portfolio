@@ -1,4 +1,4 @@
-﻿using Portfolio.Application.Models.DTOs;
+﻿using Portfolio.Application.Models;
 
 namespace Portfolio.Application.Services.IServices
 {

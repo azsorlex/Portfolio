@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using Portfolio.Application.Models.DTOs;
+using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
 using Portfolio.Domain.Enums;
 
@@ -15,9 +15,9 @@ namespace Portfolio.Presentation.Controllers
         private readonly IServiceManager _serviceManager = serviceManager;
         private readonly ILogger<SkillsController> _logger = logger;
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<SkillDTO>), 200)]
-        public async Task<IActionResult> GetAllSkills(SkillType? type = null)
+        [HttpPost]
+        [ProducesResponseType(typeof(List<SkillDTO>), 200)]
+        public async Task<IActionResult> GetAllSkills([FromBody] SkillType? type = null)
         {
             _logger.LogDebug("Fetching skills");
             var response = type == null

@@ -1,11 +1,13 @@
-﻿namespace Portfolio.Infrastructure.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Portfolio.Infrastructure.Entities
 {
     public sealed class Certification : BaseEntity
     {
+        [Column(Order = 1)]
         public int Id { get; set; }
         public int IssuerId { get; set; }
         public int? ParentId { get; set; }
-        public string Name { get; set; }
         public DateOnly IssueDate { get; set; }
         public DateOnly? ExpiryDate { get; set; }
         public string? Image { get; set; }

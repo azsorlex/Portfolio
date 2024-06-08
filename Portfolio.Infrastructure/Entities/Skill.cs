@@ -8,7 +8,6 @@ namespace Portfolio.Infrastructure.Entities
     {
         [BsonId]
         public ObjectId Id { get; set; }
-        public string Name { get; set; }
         public SkillType Type { get; set; }
         public byte Priority { get; set; }
         public string Image { get; set; }

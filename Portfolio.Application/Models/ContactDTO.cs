@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Portfolio.Application.Models.DTOs
+namespace Portfolio.Application.Models
 {
     public sealed record ContactDTO
     {

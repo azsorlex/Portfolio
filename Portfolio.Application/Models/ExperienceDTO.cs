@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Portfolio.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portfolio.Application.Models.DTOs
+namespace Portfolio.Application.Models
 {
     public sealed record ExperienceDTO
     {
