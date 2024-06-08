@@ -2,10 +2,7 @@
 
 namespace Portfolio.Application.Services.IServices
 {
-    public interface IContactService
+    public interface IContactService : IBaseService<ContactDTO>
     {
-        Task<IEnumerable<ContactDTO>> GetAllContacts();
-
-        Task<ContactDTO> GetContactById(int id);
     }
 }

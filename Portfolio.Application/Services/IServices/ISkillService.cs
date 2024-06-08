@@ -3,12 +3,8 @@ using Portfolio.Domain.Enums;
 
 namespace Portfolio.Application.Services.IServices
 {
-    public interface ISkillService
+    public interface ISkillService : IBaseService<SkillDTO>
     {
-        Task<IEnumerable<SkillDTO>> GetAllSkills();
-
-        Task<SkillDTO> GetSkillById(string id);
-
         Task<IEnumerable<SkillDTO>> GetSkillsByType(SkillType type);
     }
 }

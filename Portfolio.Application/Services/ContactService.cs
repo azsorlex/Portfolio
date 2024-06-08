@@ -1,31 +1,12 @@
 ﻿using AutoMapper;
 using Portfolio.Application.Models.DTOs;
 using Portfolio.Application.Services.IServices;
-using Portfolio.Domain.Exceptions;
 using Portfolio.Infrastructure.Entities;
 using Portfolio.Infrastructure.Repositories.IRepositories;
 
 namespace Portfolio.Application.Services
 {
-    internal sealed class ContactService(IRepositoryManager repositoryManager, IMapper mapper) : IContactService
+    internal sealed class ContactService(IRepositoryManager repositoryManager, IMapper mapper) : BaseService<Contact, ContactDTO>(repositoryManager.ContactRepository, mapper), IContactService
     {
-        private readonly IRepositoryManager _repositoryManager = repositoryManager;
-        private readonly IMapper _mapper = mapper;
-
-        public async Task<IEnumerable<ContactDTO>> GetAllContacts()
-        {
-            var result = await _repositoryManager.ContactRepository.GetAll();
-
-            if (!result.Any())
-                throw new NotFoundException(nameof(Contact));
-
-            return _mapper.Map<IEnumerable<ContactDTO>>(result);
-        }
-
-        public async Task<ContactDTO> GetContactById(int id)
-        {
-            var result = await _repositoryManager.ContactRepository.GetByIds(id) ?? throw new NotFoundException(nameof(Contact));
-            return _mapper.Map<ContactDTO>(result);
-        }
     }
 }

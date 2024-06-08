@@ -18,7 +18,7 @@ namespace Portfolio.Presentation.Controllers
         public async Task<IActionResult> GetAllContacts()
         {
             _logger.LogDebug("Fetching contacts");
-            var response = await _serviceManager.ContactService.GetAllContacts();
+            var response = await _serviceManager.ContactService.GetAll();
             _logger.LogDebug("Contacts successfully fetched");
             return Ok(response);
         }
@@ -28,7 +28,7 @@ namespace Portfolio.Presentation.Controllers
         public async Task<IActionResult> GetContactById(int id)
         {
             _logger.LogDebug("Fetching contact with ID {0}", id);
-            var response = await _serviceManager.ContactService.GetContactById(id);
+            var response = await _serviceManager.ContactService.GetByIds(id);
             _logger.LogDebug("Contacts successfully fetched");
             return Ok(response);
         }

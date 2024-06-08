@@ -2,10 +2,7 @@
 
 namespace Portfolio.Application.Services.IServices
 {
-    public interface IExperienceService
+    public interface IExperienceService : IBaseService<ExperienceDTO>
     {
-        Task<IEnumerable<ExperienceDTO>> GetAllExperiences();
-
-        Task<ExperienceDTO> GetExperienceById(string id);
     }
 }
