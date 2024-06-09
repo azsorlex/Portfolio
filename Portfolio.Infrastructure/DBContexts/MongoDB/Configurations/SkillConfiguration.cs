@@ -33,7 +33,11 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                     new CreateIndexModel<Skill>(baseBuilder.Combine(
                         baseBuilder.Ascending(x => x.Type),
                         baseBuilder.Ascending(x => x.Priority)
-                    ), new() { Name = "Type 1 Priority 1" })
+                    ), new() { Name = "Type 1 Priority 1" }),
+                    new CreateIndexModel<Skill>(baseBuilder.Combine(
+                        baseBuilder.Ascending(x => x.Priority),
+                        baseBuilder.Ascending(x => x.Type)
+                    ), new() { Name = "Priority 1 Type 1" })
                 ]);
 
                 await collection.InsertManyAsync([

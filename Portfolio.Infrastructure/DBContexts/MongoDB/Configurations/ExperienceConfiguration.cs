@@ -27,6 +27,11 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                 """);
 
                 var collection = Db.GetCollection<Experience>(nameof(Experience));
+                var baseBuilder = Builders<Experience>.IndexKeys;
+                await collection.Indexes.CreateOneAsync(
+                    new CreateIndexModel<Experience>(baseBuilder.Descending(x => x.StartDate), new() { Name = "StartDate -1" })
+                );
+
                 await collection.InsertManyAsync([
                     new Experience()
                     {
