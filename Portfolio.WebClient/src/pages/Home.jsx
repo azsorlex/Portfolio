@@ -3,14 +3,14 @@ import { Link as RouterLink } from "react-router-dom";
 import SkillsList from "../components/Skills/SkillsList";
 import PageNav from "../components/Layouts/PageNav";
 import { useEffect, useState } from "react";
-import StyledSkill from "../components/Experience/StyledSkill";
 import ExperiencesService from "../services/ExperiencesService";
 import SkillsService from "../services/SkillsService";
+import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 
 export default function Home() {
     const [topSkills, setTopSkills] = useState(undefined)
-    const [currentWork, setCurrentWork] = useState(undefined);
-    const [currentProject, setCurrentProject] = useState(undefined);
+    const [currentWork, setCurrentWork] = useState([]);
+    const [currentProjects, setCurrentProjects] = useState([]);
 
     useEffect(() => {
         getTopSkills();
@@ -19,7 +19,7 @@ export default function Home() {
 
     const getTopSkills = async () => {
         try {
-            const response = await SkillsService.loadSkills();
+            const response = await SkillsService.getTopSkills(4);
             setTopSkills(response.data);
         } catch (error) {
             console.log(error);
@@ -28,11 +28,20 @@ export default function Home() {
 
     const getCurrentExperience = async () => {
         try {
-            const response = await ExperiencesService.loadExperiences();
-            setCurrentWork(response.data.find(x => x.type === "Work"));
-            setCurrentProject(response.data.find(x => x.type === "Project"));
+            const response = await ExperiencesService.getCurrentExperiences();
+            setCurrentWork(response.data.filter(x => x.type === 'Work'));
+            setCurrentProjects(response.data.filter(x => x.type === 'Project'));
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    const toggleExperience = async () => {
+        if (currentWork.length === 0 && currentProjects.length === 0) {
+            await getCurrentExperience();
+        } else {
+            setCurrentWork([]);
+            setCurrentProjects([]);
         }
     }
 
@@ -62,7 +71,7 @@ export default function Home() {
                 </Typography>
                 <Box width="85%" margin="auto" p={1} borderRadius={8} bgcolor="background.object">
                     {topSkills
-                        ? <SkillsList skills={topSkills} />
+                        ? <SkillsList skills={topSkills} columns={4} />
                         : <Typography variant="h2">Loading</Typography>
                     }
                 </Box>
@@ -72,41 +81,19 @@ export default function Home() {
                     </Button>
                 </Link>
             </Box>
-            <Box bgcolor="background.object" p={4} mb={4} borderRadius={8} width="46%">
-                <Typography variant="h4">
-                    {`Currently working at:`}
-                </Typography>
-                <Typography variant="h5">
-                    {currentWork ? `${currentWork.company} as a${currentWork.name.match('^[aeiouAEIOU].*') ? 'n' : ''} ${currentWork.name}`
-                        : `Nowhere. I'm looking for work.`}
-                </Typography>
-                {currentWork &&
-                    <>
-                        <Typography variant="h6">
-                            Skills used in this role:
-                        </Typography>
-                        {currentWork.skills.map((x) => (
-                            <StyledSkill key={x} text={x} />
-                        ))}
-                    </>
+            <Button variant="contained" onClick={toggleExperience}>
+                {`(experimental) Toggle Work and Projects`}
+            </Button>
+            <Box width="46%" mb={4}>
+                {currentWork.length > 0
+                    ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
+                    : <CurrentExperienceBox experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
                 }
             </Box>
-            <Box bgcolor="background.object" p={4} borderRadius={8} width="46%">
-                <Typography variant="h4">
-                    {`Currently working on:`}
-                </Typography>
-                <Typography variant="h5">
-                    {currentProject ? currentProject.name : `Nothing. Some inspiration should come soon though.`}
-                </Typography>
-                {currentProject &&
-                    <>
-                        <Typography variant="h6">
-                            Skills used in this project:
-                        </Typography>
-                        {currentProject.skills.map((x) => (
-                            <StyledSkill key={x} text={x} />
-                        ))}
-                    </>
+            <Box width="46%">
+                {currentProjects.length > 0
+                    ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
+                    : <CurrentExperienceBox experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
                 }
             </Box>
             <Link display="block" mt={5} component={RouterLink} to="/experience" underline="none">

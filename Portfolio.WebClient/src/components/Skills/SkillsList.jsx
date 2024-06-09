@@ -1,8 +1,8 @@
 import { ImageList, ImageListItem, Tooltip } from "@mui/material";
 
-export default function SkillsList({ skills }) {
+export default function SkillsList({ skills, columns }) {
     return (
-        <ImageList cols={6} gap={50}>
+        <ImageList cols={columns} gap={50}>
             {skills.map((skill) => {
                 return (
                     <Tooltip key={skill.name} title={skill.name}>

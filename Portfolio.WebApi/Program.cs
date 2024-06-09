@@ -11,7 +11,7 @@ using System.Reflection;
 using Portfolio.Infrastructure.Repositories.IRepositories;
 using Portfolio.Application.Services.IServices;
 using MongoDB.Driver;
-using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -55,7 +55,7 @@ void ConfigureServices(IServiceCollection services)
     });
     services.AddDbContextPool<MongoDBContext>(config =>
     {
-        config.UseMongoDB(new MongoClient(builder.Configuration.GetConnectionString("MongoDB")), "portfoliowebsite");
+        config.UseMongoDB(new MongoClient(builder.Configuration.GetConnectionString("MongoDB")), builder.Configuration.GetSection("DBConfig:MongoDBName").Value!);
     });
 }
 
@@ -70,6 +70,7 @@ void Configure()
         app.UseSwaggerUI(c =>
         {
             c.DisplayRequestDuration();
+            c.DocExpansion(DocExpansion.None);
         });
     }
 

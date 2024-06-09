@@ -6,6 +6,7 @@ namespace Portfolio.Application.Models
         public string Name { get; init; }
         public string Issuer { get; init; }
         public CertificationDTO? Parent { get; init; }
+        public string CredentialId { get; init; }
         public DateOnly IssueDate { get; init; }
         public DateOnly? ExpiryDate { get; init; }
         public string? Image { get; init; }

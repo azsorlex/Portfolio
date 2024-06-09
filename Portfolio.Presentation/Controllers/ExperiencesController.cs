@@ -16,10 +16,12 @@ namespace Portfolio.Presentation.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(List<ExperienceDTO>), 200)]
-        public async Task<IActionResult> GetAllExperiences()
+        public async Task<IActionResult> GetAllExperiences(bool? current)
         {
             _logger.LogDebug("Fetching experiences");
-            var response = await _serviceManager.ExperienceService.GetAll();
+            var response = (current ?? false)
+                ? await _serviceManager.ExperienceService.GetCurrentExperiences()
+                : await _serviceManager.ExperienceService.GetAll();
             _logger.LogDebug("Experiences successfully fetched");
             return Ok(response);
         }

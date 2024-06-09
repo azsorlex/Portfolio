@@ -44,9 +44,21 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                         Image = "csharp"
                     },
                     new Skill() {
-                        Name = "React.js",
+                        Name = "JavaScript",
+                        Type = SkillType.Programming_Languages,
+                        Priority = 1,
+                        Image = "csharp"
+                    },
+                    new Skill() {
+                        Name = "ASP.NET Core",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
                         Priority = 0,
+                        Image = "csharp"
+                    },
+                    new Skill() {
+                        Name = "EF Core",
+                        Type = SkillType.Libraries_Tools_and_Frameworks,
+                        Priority = 1,
                         Image = "csharp"
                     },
                     new Skill() {
@@ -56,9 +68,27 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                         Image = "csharp"
                     },
                     new Skill() {
-                        Name = "Azure",
+                        Name = "MySQL",
+                        Type = SkillType.Databases,
+                        Priority = 1,
+                        Image = "csharp"
+                    },
+                    new Skill() {
+                        Name = "Linux",
                         Type = SkillType.Operating_Systems_and_Environments,
                         Priority = 0,
+                        Image = "csharp"
+                    },
+                    new Skill() {
+                        Name = "Windows",
+                        Type = SkillType.Operating_Systems_and_Environments,
+                        Priority = 1,
+                        Image = "csharp"
+                    },
+                    new Skill() {
+                        Name = "Azure",
+                        Type = SkillType.Operating_Systems_and_Environments,
+                        Priority = 2,
                         Image = "csharp"
                     }
                 ]);

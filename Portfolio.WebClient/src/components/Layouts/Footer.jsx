@@ -3,7 +3,7 @@ import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typograph
 import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
 //import * as MUIcon from "@mui/icons-material";
 import NavLink from "./NavLink";
-import ContactsService from "../../services/ContactsService";
+//import ContactsService from "../../services/ContactsService";
 
 export default function Footer() {
     //const [contactMD, setContactMD] = useState(undefined);

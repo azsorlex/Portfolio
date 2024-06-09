@@ -3,7 +3,7 @@ import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
 
 const CertificationsService = {
 
-    loadCertifications: async () => {
+    getCertifications: async () => {
         return await axios.get(BASE_ENDPOINTS.CERTIFICATIONS);
     }
 

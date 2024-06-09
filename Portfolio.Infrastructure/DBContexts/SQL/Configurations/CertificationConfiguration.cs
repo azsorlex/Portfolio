@@ -14,8 +14,12 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
 
             builder.Property(x => x.Name)
                 .IsRequired()
-                .IsUnicode(false)
                 .HasMaxLength(100);
+
+            builder.Property(x => x.CredentialId)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasMaxLength(50);
 
             builder.Property(x => x.IssueDate)
                 .HasColumnType("date")
@@ -45,8 +49,31 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
             {
                 Id = 1,
                 IssuerId = 1,
+                Name = "ITIL® v4 Foundation",
+                CredentialId = "GR671331654AR",
+                IssueDate = new(2021, 11, 4),
+                ExpiryDate = new(2024, 11, 3),
+                Image = "csharp",
+                URL = "https://learn.microsoft.com/api/credentials/share/en-gb/AlexanderRozsa/A78FE043E18F7ADA?sharingId=6D6A8C67B7D53131"
+            },
+            new Certification()
+            {
+                Id = 2,
+                IssuerId = 2,
+                Name = "Tricentis Tosca Fundamentals − Automating web application testing (AS1)",
+                CredentialId = "v4bejcn9852t",
+                IssueDate = new(2024, 3, 7),
+                Image = "csharp",
+                URL = "https://verify.skilljar.com/c/v4bejcn9852t"
+            },
+            new Certification()
+            {
+                Id = 3,
+                IssuerId = 3,
                 Name = "Azure Fundamentals (AZ-900)",
+                CredentialId = "A78FE043E18F7ADA",
                 IssueDate = new(2024, 5, 19),
+                Image = "csharp",
                 URL = "https://learn.microsoft.com/api/credentials/share/en-gb/AlexanderRozsa/A78FE043E18F7ADA?sharingId=6D6A8C67B7D53131"
             });
         }

@@ -16,7 +16,7 @@ export default function Skills() {
 
     const loadSkills = async () => {
         try {
-            const response = await SkillsService.loadSkills();
+            const response = await SkillsService.getSkills();
             setSkills(response.data);
         } catch (error) {
             console.error(error);
@@ -29,7 +29,7 @@ export default function Skills() {
 
     const loadCertifications = async () => {
         try {
-            const response = await CertificationsService.loadCertifications();
+            const response = await CertificationsService.getCertifications();
             setCertifications(response.data);
         } catch (error) {
             console.error(error);
@@ -44,11 +44,11 @@ export default function Skills() {
         <>
             <Typography variant='h1'>Skills.</Typography>
             {skills
-                ? <SkillsList skills={skills} />
+                ? <SkillsList skills={skills} columns={6} />
                 : <Typography variant='h2'>Loading</Typography>}
             <Typography variant='h1'>Certifications.</Typography>
             {certifications
-                ? <SkillsList skills={certifications} />
+                ? <SkillsList skills={certifications} columns={6} />
                 : <Typography variant='h2'>Loading</Typography>}
             <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" />
         </>

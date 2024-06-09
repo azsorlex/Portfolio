@@ -73,7 +73,7 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                             },
                             new() {
                                 Title = "Portfolio Website ERD",
-                                Description = "",
+                                Description = "My project's ERD. Assisted heavily in planning.",
                                 URL = "https://lucid.app/documents/view/8fddcecc-ab71-46aa-b95f-13cfbad9083a"
                             }
                         ],

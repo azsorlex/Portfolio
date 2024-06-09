@@ -3,8 +3,12 @@ import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
 
 const ExperiencesService = {
 
-    loadExperiences: async () => {
+    getExperiences: async () => {
         return await axios.get(BASE_ENDPOINTS.EXPERIENCES);
+    },
+
+    getCurrentExperiences: async () => {
+        return await axios.get(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`);
     }
 
 }

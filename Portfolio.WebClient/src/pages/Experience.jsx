@@ -1,8 +1,11 @@
+import dayjs from "dayjs";
 import { Box, Container, List, ListItem, ListItemText, Typography } from "@mui/material";
 import PageNav from "../components/Layouts/PageNav";
 import WorkExperience from "../components/Experience/WorkExperience";
 import { useEffect, useState } from "react";
 import ExperiencesService from "../services/ExperiencesService";
+import StyledSkill from "../components/Experience/StyledSkill";
+import MediaSection from "../components/Experience/MediaSection";
 
 export default function Experience() {
     const [work, setWork] = useState(undefined);
@@ -14,7 +17,7 @@ export default function Experience() {
 
     const getExperience = async () => {
         try {
-            const response = await ExperiencesService.loadExperiences();
+            const response = await ExperiencesService.getExperiences();
             console.log(response.data.find(x => x.type === "Work"));
             setWork(response.data.filter(x => x.type === "Work"));
             setProjects(response.data.filter(x => x.type === "Project"));
@@ -25,7 +28,7 @@ export default function Experience() {
 
     return (
         <>
-            <Typography variant="h1">
+            <Typography variant="h1" gutterBottom>
                 Work experience.
             </Typography>
             <Container maxWidth="sm">
@@ -35,26 +38,13 @@ export default function Experience() {
                     ))
                     : <Typography variant="h2">Loading</Typography>}
             </Container>
-            <Typography variant="h1">
+            <Typography variant="h1" gutterBottom>
                 Projects.
             </Typography>
-            <Container maxWidth="xl">
+            <Container maxWidth="sm">
                 {projects
                     ? projects.map((x) => (
-                        <Box key={x.id}>
-                            <Typography variant="h6">
-                                {x.name}
-                            </Typography>
-                            <List sx={{ listStyleType: 'disc' }}>
-                                {x.descriptionLines.map((y) => (
-                                    <ListItem key={y} sx={{ display: 'list-item' }}>
-                                        <ListItemText>
-                                            {y}
-                                        </ListItemText>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Box>
+                        <WorkExperience key={x.id} experience={x} />
                     ))
                     : <Typography variant="h2">Loading</Typography>}
             </Container>

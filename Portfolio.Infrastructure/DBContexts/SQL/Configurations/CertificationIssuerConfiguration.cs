@@ -25,7 +25,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
             builder.HasData(new CertificationIssuer()
             {
                 Id = 1,
-                Name = "Microsoft"
+                Name = "PeopleCert"
             },
             new CertificationIssuer()
             {
@@ -35,7 +35,7 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
             new CertificationIssuer()
             {
                 Id = 3,
-                Name = "PeopleCert"
+                Name = "Microsoft"
             });
         }
     }

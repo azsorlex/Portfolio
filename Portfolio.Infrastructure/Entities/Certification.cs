@@ -8,6 +8,7 @@ namespace Portfolio.Infrastructure.Entities
         public int Id { get; set; }
         public int IssuerId { get; set; }
         public int? ParentId { get; set; }
+        public string CredentialId { get; set; }
         public DateOnly IssueDate { get; set; }
         public DateOnly? ExpiryDate { get; set; }
         public string? Image { get; set; }

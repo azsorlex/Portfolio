@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using Portfolio.Application.Models;
 using Portfolio.Application.Services.IServices;
-using Portfolio.Domain.Enums;
 
 namespace Portfolio.Presentation.Controllers
 {
@@ -17,12 +16,10 @@ namespace Portfolio.Presentation.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(List<SkillDTO>), 200)]
-        public async Task<IActionResult> GetAllSkills(SkillType? type = null)
+        public async Task<IActionResult> GetAllSkills(int? limit)
         {
             _logger.LogDebug("Fetching skills");
-            var response = type == null
-                ? await _serviceManager.SkillService.GetAll()
-                : await _serviceManager.SkillService.GetSkillsByType(type.Value);
+            var response = await _serviceManager.SkillService.GetAll(limit);
             _logger.LogDebug("Skills successfully fetched");
             return Ok(response);
         }
