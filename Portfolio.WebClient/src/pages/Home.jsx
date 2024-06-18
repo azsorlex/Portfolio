@@ -47,15 +47,15 @@ export default function Home() {
 
     return (
         <>
-            <Box borderRadius={8} mt="25vh" mb="30vh" pt={4} pb={4} bgcolor="background.object">
-                <Box width="85%" margin='auto'>
-                    <Typography variant="h6">
+            <Box className="animation-zone" borderRadius={8} mt="30vh" mb="30vh" pt={4} pb={4} bgcolor="background.object">
+                <Box width="95%" margin='auto'>
+                    <Typography variant="subtitle2">
                         {"Hi, I'm"}
                     </Typography>
                     <Typography variant="h1">
-                        {"Alexander Rozsa"}
+                        {"ALEXANDER ROZSA"}
                     </Typography>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="subtitle1" paragraph>
                         {"But you can call me Alex. I'm a passionate software engineer with experience in full stack development, who enjoys building dynamic products from start to finish."}
                     </Typography>
                     <Link component={RouterLink} to="/about" underline="none">
@@ -65,11 +65,11 @@ export default function Home() {
                     </Link>
                 </Box>
             </Box>
-            <Box mb="30vh">
-                <Typography variant="h4">
-                    Top skills:
+            <Box className="animation-zone" mb="30vh">
+                <Typography variant="h2" paragraph>
+                    TOP SKILLS
                 </Typography>
-                <Box width="85%" margin="auto" p={1} borderRadius={8} bgcolor="background.object">
+                <Box margin="auto" width="60%" p={1} borderRadius={8} bgcolor="background.object">
                     {topSkills
                         ? <SkillsList skills={topSkills} columns={4} />
                         : <Typography variant="h2">Loading</Typography>
@@ -81,27 +81,27 @@ export default function Home() {
                     </Button>
                 </Link>
             </Box>
-            <Button variant="contained" onClick={toggleExperience}>
+            <Button className="animation-zone" variant="contained" onClick={toggleExperience}>
                 {`(experimental) Toggle Work and Projects`}
             </Button>
-            <Box width="46%" mb={4}>
+            <Box className="animation-zone" width="46%" mb={4}>
                 {currentWork.length > 0
                     ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
                     : <CurrentExperienceBox experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
                 }
             </Box>
-            <Box width="46%">
+            <Box className="animation-zone" width="46%">
                 {currentProjects.length > 0
                     ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
                     : <CurrentExperienceBox experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
                 }
             </Box>
-            <Link display="block" mt={5} component={RouterLink} to="/experience" underline="none">
+            <Link className="animation-zone" mt={5} component={RouterLink} to="/experience" underline="none">
                 <Button variant="contained">
                     See all my work here
                 </Button>
             </Link>
-            <PageNav afterTo="/about" afterTitle="About" />
+            <PageNav className="animation-zone" afterTo="/about" afterTitle="About" />
         </>
     );
 }

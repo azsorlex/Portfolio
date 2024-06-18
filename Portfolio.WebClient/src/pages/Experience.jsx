@@ -28,20 +28,20 @@ export default function Experience() {
 
     return (
         <>
-            <Typography variant="h1" gutterBottom>
-                Work experience.
+            <Typography className="animation-zone" variant="h1">
+                WORK EXPERIENCE
             </Typography>
-            <Container maxWidth="sm">
+            <Container className="animation-zone" maxWidth="sm">
                 {work
                     ? work.map((x) => (
                         <WorkExperience key={x.id} experience={x} />
                     ))
                     : <Typography variant="h2">Loading</Typography>}
             </Container>
-            <Typography variant="h1" gutterBottom>
-                Projects.
+            <Typography className="animation-zone" variant="h1">
+                PROJECTS
             </Typography>
-            <Container maxWidth="sm">
+            <Container className="animation-zone" maxWidth="sm">
                 {projects
                     ? projects.map((x) => (
                         <WorkExperience key={x.id} experience={x} />

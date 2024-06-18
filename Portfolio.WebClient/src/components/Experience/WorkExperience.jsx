@@ -6,7 +6,7 @@ import MediaSection from "./MediaSection";
 export default function WorkExperience({ experience = {} }) {
     return (
         <Box sx={{ mb: 4 }}>
-            <Typography variant="h5">
+            <Typography variant="h4">
                 {[
                     experience.name,
                     experience.company,

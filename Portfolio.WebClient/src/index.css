@@ -11,11 +11,11 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #212121;
+  background-color: #181818;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #21212133;
+  background-color: #18181833;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -36,11 +36,11 @@ html {
 
 @media (prefers-color-scheme: dark) {
   ::-webkit-scrollbar-thumb {
-    background-color: #f5f5f5;
+    background-color: #eeeeee;
   }
 
   ::-webkit-scrollbar-track {
     box-shadow: none;
-    background-color: #f5f5f533;
+    background-color: #eeeeee33;
   }
 }

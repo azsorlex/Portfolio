@@ -1,14 +1,29 @@
 import { deepPurple, grey } from "@mui/material/colors";
+import "@fontsource-variable/source-code-pro";
+import "@fontsource-variable/noto-serif";
 
 export default function GetDesignTokens(mode) {
     return ({
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: {
+                    body: {
+                        ...(mode === 'light' ? {
+                            backgroundImage: 'linear-gradient(#181818, #FFFFFF 50vh)',
+                        } : {
+                            backgroundImage: 'linear-gradient(to top, #BBBCBC, #2A2A2A 70vh)',
+                        }),
+                    },
+                },
+            },
+        },
         palette: {
             mode,
             primary: {
                 ...(mode === 'light' ? {
-                    main: grey[900],
+                    main: '#181818',
                 } : {
-                    main: grey['A100'],
+                    main: grey['A200'],
                 }),
             },
             secondary: {
@@ -19,13 +34,13 @@ export default function GetDesignTokens(mode) {
             },
             background: {
                 ...(mode === 'light' ? {
-                    default: '#FFFFFF',
+                    //default: '#FFFFFF',
                     paper: grey[900],
-                    object: '#000FFc',
+                    //object: '#000FFc',
                 } : {
-                    default: '#000000',
+                    default: '#181818',
                     paper: '#FFFFFF',
-                    object: '#00033c',
+                    //object: '#00033c',
                 })
             },
             text: {
@@ -38,5 +53,31 @@ export default function GetDesignTokens(mode) {
                 }),
             },
         },
+        typography: {
+            allVariants: {
+                fontFamily: [
+                    '"Source Code Pro Variable"',
+                    'monospace',
+                ].join(','),
+            },
+            h1: {
+                fontFamily: [
+                    '"Noto Serif Variable"',
+                    'serif',
+                ].join(','),
+            },
+            h2: {
+                fontFamily: [
+                    '"Noto Serif Variable"',
+                    'serif',
+                ].join(','),
+            },
+            h4: {
+                fontFamily: [
+                    '"Noto Serif Variable"',
+                    'serif',
+                ].join(','),
+            },
+        }
     });
 }

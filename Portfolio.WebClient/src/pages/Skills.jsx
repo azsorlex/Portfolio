@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import SkillsService from '../services/SkillsService';
 import SkillsList from '../components/Skills/SkillsList';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PageNav from '../components/Layouts/PageNav';
 import CertificationsService from '../services/CertificationsService';
 
@@ -42,14 +42,18 @@ export default function Skills() {
 
     return (
         <>
-            <Typography variant='h1'>Skills.</Typography>
-            {skills
-                ? <SkillsList skills={skills} columns={6} />
-                : <Typography variant='h2'>Loading</Typography>}
-            <Typography variant='h1'>Certifications.</Typography>
-            {certifications
-                ? <SkillsList skills={certifications} columns={6} />
-                : <Typography variant='h2'>Loading</Typography>}
+            <Typography className="animation-zone" variant='h1'>SKILLS</Typography>
+            <Box className="animation-zone" width={"75%"} mb={8}>
+                {skills
+                    ? <SkillsList skills={skills} columns={6} />
+                    : <Typography variant='h2'>Loading</Typography>}
+            </Box>
+            <Typography className="animation-zone" variant='h1'>CERTIFICATIONS</Typography>
+            <Box className="animation-zone" width={"75%"}>
+                {certifications
+                    ? <SkillsList skills={certifications} columns={6} />
+                    : <Typography variant='h2'>Loading</Typography>}
+            </Box>
             <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" />
         </>
     );

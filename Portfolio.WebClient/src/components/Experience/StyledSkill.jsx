@@ -2,8 +2,7 @@ import { Typography, styled } from "@mui/material";
 
 const SkillBlock = styled('div')({
     display: 'inline-block',
-    backgroundColor: 'limegreen',
-    color: "black",
+    backgroundColor: 'darkblue',
     borderRadius: 32,
     margin: 4,
     padding: 6
@@ -12,7 +11,7 @@ const SkillBlock = styled('div')({
 export default function StyledSkill({text}) {
     return (
         <SkillBlock className="prevent-select">
-            <Typography variant="p">
+            <Typography color="text.secondary">
                 {text}
             </Typography>
         </SkillBlock>
