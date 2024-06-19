@@ -3,10 +3,7 @@ import StyledSkill from "../Experience/StyledSkill";
 
 export default function CurrentExperienceBox({ experience }) {
     return (
-        <Box bgcolor="background.object" p={4} mb={4} borderRadius={8}>
-            <Typography variant="h4">
-                {`Currently working ${experience.type === 'Work' ? 'at' : 'on'}:`}
-            </Typography>
+        <Box pt={1} mb={4}>
             <Typography variant="h5">
                 {experience.company && experience.type === 'Work'
                     ? `${experience.company} as a${experience.name.match('^[aeiouAEIOU].*') ? 'n' : ''} ${experience.name}`

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
 //import * as MUIcon from "@mui/icons-material";
@@ -38,7 +38,7 @@ export default function Footer() {
     };
 
     return (
-        <AppBar component="footer" position="static" color="primary" enableColorOnDark sx={{boxShadow: 0}}>
+        <AppBar component="footer" position="static" enableColorOnDark sx={{boxShadow: 0}}>
             <Toolbar variant="dense">
                 <Copyright fontSize="xs" sx={{ mr: 0.5 }} />
                 <Typography fontSize={12}>

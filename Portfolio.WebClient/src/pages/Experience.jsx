@@ -1,11 +1,9 @@
-import dayjs from "dayjs";
-import { Box, Container, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import PageNav from "../components/Layouts/PageNav";
 import WorkExperience from "../components/Experience/WorkExperience";
 import { useEffect, useState } from "react";
 import ExperiencesService from "../services/ExperiencesService";
-import StyledSkill from "../components/Experience/StyledSkill";
-import MediaSection from "../components/Experience/MediaSection";
+import LoadingIcon from "../components/LoadingIcon";
 
 export default function Experience() {
     const [work, setWork] = useState(undefined);
@@ -23,6 +21,8 @@ export default function Experience() {
             setProjects(response.data.filter(x => x.type === "Project"));
         } catch (error) {
             console.error(error);
+            setWork(null);
+            setProjects(null);
         }
     }
 
@@ -36,7 +36,7 @@ export default function Experience() {
                     ? work.map((x) => (
                         <WorkExperience key={x.id} experience={x} />
                     ))
-                    : <Typography variant="h2">Loading</Typography>}
+                    : <LoadingIcon source={work} />}
             </Container>
             <Typography className="animation-zone" variant="h1">
                 PROJECTS
@@ -46,9 +46,9 @@ export default function Experience() {
                     ? projects.map((x) => (
                         <WorkExperience key={x.id} experience={x} />
                     ))
-                    : <Typography variant="h2">Loading</Typography>}
+                    : <LoadingIcon source={projects} />}
             </Container>
-            <PageNav beforeTo="/skills" beforeTitle="Skills" />
+            <PageNav beforeTo="/skills" beforeTitle="Skills" mb={32} mt={12} />
         </>
     );
 }

@@ -11,9 +11,6 @@ export default function Layout(props) {
                     entry.target.classList.toggle('animation-zone-animation', entry.isIntersecting);
                 });
             },
-            {
-                threshold: 0.5,
-            }
         );
 
         const animationElements = document.querySelectorAll('.animation-zone');

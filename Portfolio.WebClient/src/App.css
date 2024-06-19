@@ -15,15 +15,6 @@ main,
     flex-grow: 1;
 }
 
-a:hover,
-button:hover {
-    color: #8f94ff;
-}
-
-header {
-    margin-bottom: 20px;
-}
-
 header.transparent {
     background-color: transparent;
     transition: all 0.3s ease-out 0s;
@@ -62,7 +53,23 @@ header.blurred {
     0% {
         transform: translateY(25px);
     }
+
     100% {
         transform: translateY(0px);
+    }
+}
+
+
+.spin {
+    animation: spin 1s infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
     }
 }

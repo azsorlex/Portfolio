@@ -18,7 +18,7 @@ export default function About() {
                 My perfect job in this industry would be one where my contributions will have real, tangible effects. 
                 Much like how a bridge or tunnel being built will allow people to get to their destination faster, the systems I contribute to should visibly, positively impact peoples lives; to make advancements in the space.`}
             </Typography>
-            <PageNav beforeTo="/" beforeTitle="Home" afterTo="/skills" afterTitle="Skills & Experience" />
+            <PageNav beforeTo="/" beforeTitle="Home" afterTo="/skills" afterTitle="Skills & Experience" mt={8} />
         </>
     );
 }

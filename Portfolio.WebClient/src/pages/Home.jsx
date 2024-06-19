@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ExperiencesService from "../services/ExperiencesService";
 import SkillsService from "../services/SkillsService";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
+import LoadingIcon from "../components/LoadingIcon";
 
 export default function Home() {
     const [topSkills, setTopSkills] = useState(undefined)
@@ -20,24 +21,29 @@ export default function Home() {
     const getTopSkills = async () => {
         try {
             const response = await SkillsService.getTopSkills(4);
+            console.log("Top skills fetched.");
             setTopSkills(response.data);
         } catch (error) {
             console.log(error);
+            setTopSkills(null);
         }
     }
 
     const getCurrentExperience = async () => {
         try {
             const response = await ExperiencesService.getCurrentExperiences();
+            console.log("Current experiences fetched.");
             setCurrentWork(response.data.filter(x => x.type === 'Work'));
             setCurrentProjects(response.data.filter(x => x.type === 'Project'));
         } catch (error) {
-            console.error(error);
+            console.error(error); 
+            setCurrentWork(null);
+            setCurrentProjects(null);
         }
     }
 
     const toggleExperience = async () => {
-        if (currentWork.length === 0 && currentProjects.length === 0) {
+        if ((currentWork && currentWork.length === 0) && (currentProjects && currentProjects.length === 0)) {
             await getCurrentExperience();
         } else {
             setCurrentWork([]);
@@ -47,8 +53,8 @@ export default function Home() {
 
     return (
         <>
-            <Box className="animation-zone" borderRadius={8} mt="30vh" mb="30vh" pt={4} pb={4} bgcolor="background.object">
-                <Box width="95%" margin='auto'>
+            <Box display="flex" alignItems="center" height="calc(100vh - 48px)">
+                <Box className="animation-zone" width="95%" m="auto">
                     <Typography variant="subtitle2">
                         {"Hi, I'm"}
                     </Typography>
@@ -58,50 +64,67 @@ export default function Home() {
                     <Typography variant="subtitle1" paragraph>
                         {"But you can call me Alex. I'm a passionate software engineer with experience in full stack development, who enjoys building dynamic products from start to finish."}
                     </Typography>
-                    <Link component={RouterLink} to="/about" underline="none">
-                        <Button variant="contained">
-                            Learn more about me here
+                    <Link component={RouterLink} to="/about">
+                        <Button variant="outlined" color="secondary">
+                            Learn more about me
                         </Button>
                     </Link>
                 </Box>
             </Box>
-            <Box className="animation-zone" mb="30vh">
-                <Typography variant="h2" paragraph>
-                    TOP SKILLS
-                </Typography>
-                <Box margin="auto" width="60%" p={1} borderRadius={8} bgcolor="background.object">
-                    {topSkills
-                        ? <SkillsList skills={topSkills} columns={4} />
-                        : <Typography variant="h2">Loading</Typography>
-                    }
+            <Box display="flex" alignItems="center" height="100vh">
+                <Box className="animation-zone">
+                    <Typography variant="h2" paragraph>
+                        TOP SKILLS
+                    </Typography>
+                    <Box margin="auto" width="60%" p={1}>
+                        {topSkills
+                            ? <SkillsList skills={topSkills} columns={4} />
+                            : <LoadingIcon source={topSkills} />}
+                    </Box>
+                    <Link component={RouterLink} to="/skills" underline="none">
+                        <Button variant="outlined" color="secondary">
+                            All skills
+                        </Button>
+                    </Link>
                 </Box>
-                <Link component={RouterLink} to="/skills" underline="none">
-                    <Button variant="contained">
-                        All skills
+            </Box>
+            <Box display="flex" alignItems="center" height="75vh" width="100%">
+                <Box flexDirection="column" width="100%">
+                    <Button className="animation-zone" variant="outlined" color="secondary" onClick={toggleExperience}>
+                        {`(experimental) Toggle Work and Projects`}
                     </Button>
-                </Link>
+                    <Box display="flex" flexDirection="row" width="100%">
+                        <Box className="animation-zone" width="50%">
+                            <Typography variant="h4">
+                                {`CURRENTLY WORKING AT:`}
+                            </Typography>
+                            {currentWork
+                                ? currentWork.length > 0
+                                    ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
+                                    : <CurrentExperienceBox experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
+                                : <LoadingIcon source={currentWork} />
+                            }
+                        </Box>
+                        <Box className="animation-zone" width="50%" ml="auto">
+                            <Typography variant="h4">
+                                {`CURRENTLY WORKING ON:`}
+                            </Typography>
+                            {currentProjects
+                                ? currentProjects.length > 0
+                                    ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
+                                    : <CurrentExperienceBox experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
+                                : <LoadingIcon source={currentProjects} />
+                            }
+                        </Box>
+                    </Box>
+                    <Link className="animation-zone" mt={5} component={RouterLink} to="/experience">
+                        <Button className="animation-zone" variant="outlined" color="secondary">
+                            See all my work here
+                        </Button>
+                    </Link>
+                    <PageNav className="animation-zone" afterTo="/about" afterTitle="About" mt={16} width="50%" />
+                </Box>
             </Box>
-            <Button className="animation-zone" variant="contained" onClick={toggleExperience}>
-                {`(experimental) Toggle Work and Projects`}
-            </Button>
-            <Box className="animation-zone" width="46%" mb={4}>
-                {currentWork.length > 0
-                    ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
-                    : <CurrentExperienceBox experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
-                }
-            </Box>
-            <Box className="animation-zone" width="46%">
-                {currentProjects.length > 0
-                    ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
-                    : <CurrentExperienceBox experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
-                }
-            </Box>
-            <Link className="animation-zone" mt={5} component={RouterLink} to="/experience" underline="none">
-                <Button variant="contained">
-                    See all my work here
-                </Button>
-            </Link>
-            <PageNav className="animation-zone" afterTo="/about" afterTitle="About" />
         </>
     );
 }

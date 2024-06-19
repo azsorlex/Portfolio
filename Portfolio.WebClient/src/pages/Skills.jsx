@@ -4,6 +4,7 @@ import SkillsList from '../components/Skills/SkillsList';
 import { Box, Typography } from '@mui/material';
 import PageNav from '../components/Layouts/PageNav';
 import CertificationsService from '../services/CertificationsService';
+import LoadingIcon from '../components/LoadingIcon';
 
 export default function Skills() {
     const [skills, setSkills] = useState(undefined);
@@ -20,10 +21,7 @@ export default function Skills() {
             setSkills(response.data);
         } catch (error) {
             console.error(error);
-            const placeholder = ![undefined, ""].includes(error.response.data) && error.response.data.error.startsWith('SqlException: Connection Timeout Expired')
-                ? [{ 'name': 'Please wait a little longer while the database resumes :)' }]
-                : [{ 'name': 'Error', 'order': 0 }];
-            setSkills(placeholder);
+            setSkills(null);
         }
     }
 
@@ -33,10 +31,7 @@ export default function Skills() {
             setCertifications(response.data);
         } catch (error) {
             console.error(error);
-            const placeholder = ![undefined, ""].includes(error.response.data) && error.response.data.error.startsWith('SqlException: Connection Timeout Expired')
-                ? [{ 'name': 'Please wait a little longer while the database resumes :)' }]
-                : [{ 'name': 'Error', 'order': 0 }];
-            setCertifications(placeholder);
+            setCertifications(null);
         }
     }
 
@@ -46,15 +41,15 @@ export default function Skills() {
             <Box className="animation-zone" width={"75%"} mb={8}>
                 {skills
                     ? <SkillsList skills={skills} columns={6} />
-                    : <Typography variant='h2'>Loading</Typography>}
+                    : <LoadingIcon source={skills} />}
             </Box>
             <Typography className="animation-zone" variant='h1'>CERTIFICATIONS</Typography>
             <Box className="animation-zone" width={"75%"}>
                 {certifications
                     ? <SkillsList skills={certifications} columns={6} />
-                    : <Typography variant='h2'>Loading</Typography>}
+                    : <LoadingIcon source={certifications} />}
             </Box>
-            <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" />
+            <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" mt={8} />
         </>
     );
 }
