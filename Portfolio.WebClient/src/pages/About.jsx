@@ -1,9 +1,10 @@
 import { Typography } from "@mui/material";
 import PageNav from "../components/Layouts/PageNav";
+import AnimatedMain from "../components/Layouts/AnimatedMain";
 
 export default function About() {
     return (
-        <>
+        <AnimatedMain>
             <Typography className="animation-zone" variant="h1" gutterBottom>
                 ABOUT ME
             </Typography>
@@ -19,6 +20,6 @@ export default function About() {
                 Much like how a bridge or tunnel being built will allow people to get to their destination faster, the systems I contribute to should visibly, positively impact peoples lives; to make advancements in the space.`}
             </Typography>
             <PageNav beforeTo="/" beforeTitle="Home" afterTo="/skills" afterTitle="Skills & Experience" mt={8} />
-        </>
+        </AnimatedMain>
     );
 }

@@ -11,7 +11,7 @@ export default function Header() {
     });
 
     return (
-        <AppBar className={trigger ? "blurred" : "transparent"} position="sticky" color="transparent" enableColorOnDark sx={{ backgroundColor: alpha(theme.palette.primary.main, 0.2), boxShadow: 0 }}>
+        <AppBar className={trigger ? "blurred" : "transparent"} position="sticky" color="transparent" enableColorOnDark sx={{ backgroundColor: alpha(theme.palette.primary.main, 0.2), boxShadow: 0, zIndex: 0 }}>
             <Container component="div" maxWidth="lg">
                 <Toolbar variant="dense">
                     <Avatar alt="AR" src="/android-chrome-192x192.png" component={Link} to="/" />

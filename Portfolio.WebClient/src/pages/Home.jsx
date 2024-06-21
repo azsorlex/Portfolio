@@ -7,6 +7,7 @@ import ExperiencesService from "../services/ExperiencesService";
 import SkillsService from "../services/SkillsService";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
+import AnimatedMain from "../components/Layouts/AnimatedMain";
 
 export default function Home() {
     const [topSkills, setTopSkills] = useState(undefined)
@@ -36,7 +37,7 @@ export default function Home() {
             setCurrentWork(response.data.filter(x => x.type === 'Work'));
             setCurrentProjects(response.data.filter(x => x.type === 'Project'));
         } catch (error) {
-            console.error(error); 
+            console.error(error);
             setCurrentWork(null);
             setCurrentProjects(null);
         }
@@ -52,7 +53,7 @@ export default function Home() {
     }
 
     return (
-        <>
+        <AnimatedMain>
             <Box display="flex" alignItems="center" height="calc(100vh - 48px)">
                 <Box className="animation-zone" width="95%" m="auto">
                     <Typography variant="subtitle2">
@@ -125,6 +126,6 @@ export default function Home() {
                     <PageNav className="animation-zone" afterTo="/about" afterTitle="About" mt={16} width="50%" />
                 </Box>
             </Box>
-        </>
+        </AnimatedMain>
     );
 }

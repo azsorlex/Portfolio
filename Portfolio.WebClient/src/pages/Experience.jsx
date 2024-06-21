@@ -4,6 +4,7 @@ import WorkExperience from "../components/Experience/WorkExperience";
 import { useEffect, useState } from "react";
 import ExperiencesService from "../services/ExperiencesService";
 import LoadingIcon from "../components/LoadingIcon";
+import AnimatedMain from "../components/Layouts/AnimatedMain";
 
 export default function Experience() {
     const [work, setWork] = useState(undefined);
@@ -27,7 +28,7 @@ export default function Experience() {
     }
 
     return (
-        <>
+        <AnimatedMain>
             <Typography className="animation-zone" variant="h1">
                 WORK EXPERIENCE
             </Typography>
@@ -49,6 +50,6 @@ export default function Experience() {
                     : <LoadingIcon source={projects} />}
             </Container>
             <PageNav beforeTo="/skills" beforeTitle="Skills" mb={32} mt={12} />
-        </>
+        </AnimatedMain>
     );
 }

@@ -8,31 +8,38 @@ import Home from './pages/Home';
 import Skills from './pages/Skills';
 import About from './pages/About';
 import Experience from './pages/Experience';
+import { AnimatePresence } from 'framer-motion';
 
 export default function App() {
-    const { pathname } = useLocation();
+    const location = useLocation();
     const darkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = useMemo(() => responsiveFontSizes(createTheme(GetDesignTokens(darkMode ? 'dark' : 'light'))), [darkMode]);
 
-    useEffect(() => {
+    const scrollToTop = () => {
         document.documentElement.scrollTo({
             top: 0,
             left: 0,
             behavior: 'instant'
-        })
-    }, [pathname]);
+        });
+    };
+
+    useEffect(() => {
+        scrollToTop();
+    }, []);
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
-            <Layout>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/about' element={<About />} />
-                    <Route path='/experience' element={<Experience />} />
-                    <Route path='/skills' element={<Skills />} />
-                </Routes>
-            </Layout>
+            <AnimatePresence mode='wait' onExitComplete={scrollToTop}>
+                <Layout key={location.pathname}>
+                    <Routes location={location}>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/experience' element={<Experience />} />
+                        <Route path='/skills' element={<Skills />} />
+                    </Routes>
+                </Layout>
+            </AnimatePresence>
         </ThemeProvider>
     );
 }

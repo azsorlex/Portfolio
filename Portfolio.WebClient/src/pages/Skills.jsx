@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material';
 import PageNav from '../components/Layouts/PageNav';
 import CertificationsService from '../services/CertificationsService';
 import LoadingIcon from '../components/LoadingIcon';
+import AnimatedMain from '../components/Layouts/AnimatedMain';
 
 export default function Skills() {
     const [skills, setSkills] = useState(undefined);
@@ -36,7 +37,7 @@ export default function Skills() {
     }
 
     return (
-        <>
+        <AnimatedMain>
             <Typography className="animation-zone" variant='h1'>SKILLS</Typography>
             <Box className="animation-zone" width={"75%"} mb={8}>
                 {skills
@@ -50,6 +51,6 @@ export default function Skills() {
                     : <LoadingIcon source={certifications} />}
             </Box>
             <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" mt={8} />
-        </>
+        </AnimatedMain>
     );
 }
