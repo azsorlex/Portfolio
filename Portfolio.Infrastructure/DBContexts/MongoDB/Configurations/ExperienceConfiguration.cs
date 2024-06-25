@@ -41,9 +41,14 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                         Location = "Melbourne, AU",
                         Skills = [
                             "C#",
+                            "ASP.NET Core",
+                            "Entity Framework Core",
                             "React.js",
                             "MS SQL Server",
-                            "Azure"
+                            "Docker",
+                            "Azure",
+                            "Azure DevOps",
+                            "Ant Design"
                         ],
                         DescriptionLines = [
                             "Worked in a large agile scrum team in the organisation’s Health Insurance division.",
@@ -58,9 +63,15 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                         Name = "Portfolio Website",
                         Skills = [
                             "C#",
+                            "ASP.NET Core",
+                            "Entity Framework Core",
                             "React.js",
                             "MS SQL Server",
-                            "Azure"
+                            "Docker",
+                            "Azure",
+                            "MUI",
+                            "MongoDB",
+                            "Framer Motion"
                         ],
                         DescriptionLines = [
                             "A full stack portfolio website to showcase my works and also my expertise."

@@ -1,15 +1,18 @@
 import { Typography, styled } from "@mui/material";
+import { motion } from "framer-motion";
+import { fadeUpChild } from "../../data/constants/FramerVariants";
 
-const SkillBlock = styled('div')({
+const SkillBlock = styled(motion.div)({
     display: 'inline-block',
     borderRadius: 32,
     margin: 4,
     padding: 6
 });
 
-export default function StyledSkill({text}) {
+export default function StyledSkill({ text }) {
     return (
-        <SkillBlock className="prevent-select" sx={{ backgroundColor: "secondary.main"}}>
+        <SkillBlock className="prevent-select" sx={{ backgroundColor: "secondary.main" }}
+            variants={fadeUpChild}>
             <Typography>
                 {text}
             </Typography>

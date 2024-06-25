@@ -7,9 +7,14 @@ export default function AnimatedMain({ children }) {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
-                    entry.target.classList.toggle('animation-zone-animation', entry.isIntersecting);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animation-zone-animation');
+                    }
                 });
             },
+            {
+                threshold: 1
+            }
         );
 
         const animationElements = document.querySelectorAll('.animation-zone');

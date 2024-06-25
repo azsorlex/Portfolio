@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ExperiencesService from "../services/ExperiencesService";
 import LoadingIcon from "../components/LoadingIcon";
 import AnimatedMain from "../components/Layouts/AnimatedMain";
+import { AnimatePresence } from "framer-motion";
 
 export default function Experience() {
     const [work, setWork] = useState(undefined);
@@ -33,23 +34,27 @@ export default function Experience() {
                 WORK EXPERIENCE
             </Typography>
             <Container className="animation-zone" maxWidth="sm">
-                {work
-                    ? work.map((x) => (
-                        <WorkExperience key={x.id} experience={x} />
-                    ))
-                    : <LoadingIcon source={work} />}
+                <AnimatePresence mode="wait">
+                    {work
+                        ? work.map((x) => (
+                            <WorkExperience key={x.id} experience={x} />
+                        ))
+                        : <LoadingIcon key={work} source={work} />}
+                </AnimatePresence>
             </Container>
             <Typography className="animation-zone" variant="h1">
                 PROJECTS
             </Typography>
             <Container className="animation-zone" maxWidth="sm">
-                {projects
-                    ? projects.map((x) => (
-                        <WorkExperience key={x.id} experience={x} />
-                    ))
-                    : <LoadingIcon source={projects} />}
+                <AnimatePresence mode="wait">
+                    {projects
+                        ? projects.map((x) => (
+                            <WorkExperience key={x.id} experience={x} />
+                        ))
+                        : <LoadingIcon key={projects} source={projects} />}
+                </AnimatePresence>
             </Container>
-            <PageNav beforeTo="/skills" beforeTitle="Skills" mb={32} mt={12} />
+            <PageNav beforeTo="/skills" beforeTitle="Skills" mt={12} />
         </AnimatedMain>
     );
 }

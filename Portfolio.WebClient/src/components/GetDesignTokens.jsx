@@ -2,25 +2,22 @@ import { blue, grey } from "@mui/material/colors";
 import "@fontsource-variable/source-code-pro";
 import "@fontsource-variable/noto-serif";
 
+const dark = grey[900];
+const light = grey['A200'];
+const accent = blue[400];
+
 const GetDesignTokens = (mode) => ({
     components: {
         MuiCssBaseline: {
             styleOverrides: {
-                body: {
-                    ...(mode === 'light' ? {
-                        backgroundImage: `linear-gradient(to top, ${grey[900]}, ${grey['A400']} 70vh)`,
-                    } : {
-                        backgroundImage: `linear-gradient(to top, ${grey['A400']}, ${grey[900]} 70vh)`,
-                    }),
-                },
                 button: {
                     '&:hover': {
-                        color: blue[400],
+                        color: accent,
                     },
                 },
                 a: {
                     '&:hover': {
-                        color: blue[400],
+                        color: accent,
                     },
                 },
             },
@@ -30,9 +27,9 @@ const GetDesignTokens = (mode) => ({
         mode,
         primary: {
             ...(mode === 'light' ? {
-                main: grey[900],
+                main: dark,
             } : {
-                main: grey['A200'],
+                main: light,
             }),
         },
         secondary: {
@@ -40,9 +37,11 @@ const GetDesignTokens = (mode) => ({
         },
         background: {
             ...(mode === 'light' ? {
-                paper: grey[900],
+                default: light,
+                paper: dark,
             } : {
-                paper: grey['A200'],
+                default: dark,
+                paper: light,
             })
         },
     },

@@ -8,7 +8,7 @@ const target = env.TESTING ? 'http://host.docker.internal:29560' :
     env.API_URL ? env.API_URL : 'https://localhost:44373';
 
 export default defineConfig({
-    plugins: [ react() ],
+    plugins: [react()],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -27,5 +27,16 @@ export default defineConfig({
     },
     preview: {
         port: 5173
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    }
+                }
+            }
+        }
     }
 })

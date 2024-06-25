@@ -8,11 +8,12 @@ import SkillsService from "../services/SkillsService";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import AnimatedMain from "../components/Layouts/AnimatedMain";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
     const [topSkills, setTopSkills] = useState(undefined)
-    const [currentWork, setCurrentWork] = useState([]);
-    const [currentProjects, setCurrentProjects] = useState([]);
+    const [currentWork, setCurrentWork] = useState(undefined);
+    const [currentProjects, setCurrentProjects] = useState(undefined);
 
     useEffect(() => {
         getTopSkills();
@@ -22,7 +23,7 @@ export default function Home() {
     const getTopSkills = async () => {
         try {
             const response = await SkillsService.getTopSkills(4);
-            console.log("Top skills fetched.");
+            console.log('Top skills fetched.');
             setTopSkills(response.data);
         } catch (error) {
             console.log(error);
@@ -33,7 +34,7 @@ export default function Home() {
     const getCurrentExperience = async () => {
         try {
             const response = await ExperiencesService.getCurrentExperiences();
-            console.log("Current experiences fetched.");
+            console.log('Current experiences fetched.');
             setCurrentWork(response.data.filter(x => x.type === 'Work'));
             setCurrentProjects(response.data.filter(x => x.type === 'Project'));
         } catch (error) {
@@ -78,9 +79,11 @@ export default function Home() {
                         TOP SKILLS
                     </Typography>
                     <Box margin="auto" width="60%" p={1}>
-                        {topSkills
-                            ? <SkillsList skills={topSkills} columns={4} />
-                            : <LoadingIcon source={topSkills} />}
+                        <AnimatePresence mode="wait">
+                            {topSkills
+                                ? <SkillsList key={topSkills} skills={topSkills} columns={4} />
+                                : <LoadingIcon key={topSkills} source={topSkills} />}
+                        </AnimatePresence>
                     </Box>
                     <Link component={RouterLink} to="/skills" underline="none">
                         <Button variant="outlined" color="secondary">
@@ -99,23 +102,27 @@ export default function Home() {
                             <Typography variant="h4">
                                 {`CURRENTLY WORKING AT:`}
                             </Typography>
-                            {currentWork
-                                ? currentWork.length > 0
-                                    ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
-                                    : <CurrentExperienceBox experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
-                                : <LoadingIcon source={currentWork} />
-                            }
+                            <AnimatePresence mode="wait">
+                                {currentWork
+                                    ? currentWork.length > 0
+                                        ? currentWork.map((work) => (<CurrentExperienceBox key={work.id} experience={work} />))
+                                        : <CurrentExperienceBox key={currentWork} experience={{ type: 'Work', name: "Nowhere. I'm looking for work" }} />
+                                    : <LoadingIcon key={currentWork} source={currentWork} />
+                                }
+                            </AnimatePresence>
                         </Box>
                         <Box className="animation-zone" width="50%" ml="auto">
                             <Typography variant="h4">
                                 {`CURRENTLY WORKING ON:`}
                             </Typography>
-                            {currentProjects
-                                ? currentProjects.length > 0
-                                    ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
-                                    : <CurrentExperienceBox experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
-                                : <LoadingIcon source={currentProjects} />
-                            }
+                            <AnimatePresence mode="wait">
+                                {currentProjects
+                                    ? currentProjects.length > 0
+                                        ? currentProjects.map((project) => (<CurrentExperienceBox key={project.id} experience={project} />))
+                                        : <CurrentExperienceBox key={currentProjects} experience={{ type: 'Project', name: "Nothing. Some inspiration should come soon though." }} />
+                                    : <LoadingIcon key={currentProjects} source={currentProjects} />
+                                }
+                            </AnimatePresence>
                         </Box>
                     </Box>
                     <Link className="animation-zone" mt={5} component={RouterLink} to="/experience">
