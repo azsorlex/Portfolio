@@ -1,20 +1,22 @@
 # Portfolio
-A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around LinkedIn's 50 skills limit.
+A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around Seek's 50 skills limit.
 <br>
-As of now, there isn't too much in terms of the website, but in the future, a more feature-rich site will be set up as well as various different backend functionalities.
+In the future I plan to finalise the site structure as well as add in additional backend features.
 
 ## Built with:
 - React.js
 - Material UI
+- Framer Motion
 - Vite
 - ASP.NET Core
 - Entity Framework Core
 - Docker
+- MongoDB
 - Microsoft SQL Server
 - Microsoft Azure
 
 ## Getting started
-You'll need `git`, `node.js`, `ASP.NET`, `MS SQL Server` and `docker` installed to run both the projects in this repository.
+You'll need `git`, `node.js`, `ASP.NET`, `MS SQL Server`, `MongoDB` and `docker` installed to run both the projects in this repository.
 
 ## Installation and Development
 Follow each of the projects' readmes for how to develop with each one:
