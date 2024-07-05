@@ -10,6 +10,5 @@ namespace Portfolio.Infrastructure.Entities
         public ObjectId Id { get; set; }
         public SkillType Type { get; set; }
         public byte Priority { get; set; }
-        public string Image { get; set; }
     }
 }

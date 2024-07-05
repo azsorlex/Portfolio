@@ -44,15 +44,6 @@ export default function Home() {
         }
     }
 
-    const toggleExperience = async () => {
-        if ((currentWork && currentWork.length === 0) && (currentProjects && currentProjects.length === 0)) {
-            await getCurrentExperience();
-        } else {
-            setCurrentWork([]);
-            setCurrentProjects([]);
-        }
-    }
-
     return (
         <AnimatedMain>
             <Box display="flex" alignItems="center" height="calc(100vh - 48px)">
@@ -74,14 +65,14 @@ export default function Home() {
                 </Box>
             </Box>
             <Box display="flex" alignItems="center" height="100vh">
-                <Box className="animation-zone">
+                <Box className="animation-zone" width="100vh">
                     <Typography variant="h2" paragraph>
                         TOP SKILLS
                     </Typography>
                     <Box margin="auto" width="60%" p={1}>
                         <AnimatePresence mode="wait">
                             {topSkills
-                                ? <SkillsList key={topSkills} skills={topSkills} columns={4} />
+                                ? <SkillsList key={topSkills} skills={topSkills} />
                                 : <LoadingIcon key={topSkills} source={topSkills} />}
                         </AnimatePresence>
                     </Box>
@@ -94,9 +85,6 @@ export default function Home() {
             </Box>
             <Box display="flex" alignItems="center" height="75vh" width="100%">
                 <Box flexDirection="column" width="100%">
-                    <Button className="animation-zone" variant="outlined" color="secondary" onClick={toggleExperience}>
-                        {`(experimental) Toggle Work and Projects`}
-                    </Button>
                     <Box display="flex" flexDirection="row" width="100%">
                         <Box className="animation-zone" width="50%">
                             <Typography variant="h4">

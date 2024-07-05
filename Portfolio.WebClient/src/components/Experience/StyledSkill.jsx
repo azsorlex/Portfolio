@@ -11,7 +11,7 @@ const SkillBlock = styled(motion.div)({
 
 export default function StyledSkill({ text }) {
     return (
-        <SkillBlock className="prevent-select" sx={{ backgroundColor: "secondary.main" }}
+        <SkillBlock sx={{ backgroundColor: "secondary.main" }}
             variants={fadeUpChild}>
             <Typography>
                 {text}

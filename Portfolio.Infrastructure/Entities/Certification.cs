@@ -11,7 +11,6 @@ namespace Portfolio.Infrastructure.Entities
         public string CredentialId { get; set; }
         public DateOnly IssueDate { get; set; }
         public DateOnly? ExpiryDate { get; set; }
-        public string? Image { get; set; }
         public string? URL { get; set; }
 
         public CertificationIssuer CertificationIssuer { get; set; }

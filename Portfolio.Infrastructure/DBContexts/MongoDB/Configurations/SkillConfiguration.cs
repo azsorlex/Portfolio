@@ -44,104 +44,87 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
                     new Skill() {
                         Name = "C#",
                         Type = SkillType.Programming_Languages,
-                        Priority = 0,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1024px-C_Sharp_Logo_2023.svg.png"
+                        Priority = 0
                     },
                     new Skill() {
                         Name = "JavaScript",
                         Type = SkillType.Programming_Languages,
-                        Priority = 1,
-                        Image = "https://cdn.worldvectorlogo.com/logos/logo-javascript.svg"
+                        Priority = 1
                     },
                     new Skill() {
                         Name = "React.js",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 0,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                        Priority = 0
                     },
                     new Skill() {
                         Name = "ASP.NET Core",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 1,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg"
+                        Priority = 1
                     },
                     new Skill() {
                         Name = "Entity Framework Core",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 2,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/2/25/NuGet_project_logo.svg"
+                        Priority = 2
                     },
                     new Skill() {
                         Name = "MUI",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 3,
-                        Image = "https://www.svgrepo.com/show/354048/material-ui.svg"
+                        Priority = 3
                     },
                     new Skill() {
                         Name = "Docker",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 4,
-                        Image = "https://www.svgrepo.com/show/349342/docker.svg"
+                        Priority = 4
                     },
                     new Skill() {
                         Name = "Azure DevOps",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 5,
-                        Image = "https://www.svgrepo.com/show/448271/azure-devops.svg"
+                        Priority = 5
                     },
                     new Skill() {
                         Name = "Framer Motion",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 6,
-                        Image = "https://www.svgrepo.com/show/452207/framer.svg"
+                        Priority = 6
                     },
                     new Skill() {
                         Name = "Ant Design",
                         Type = SkillType.Libraries_Tools_and_Frameworks,
-                        Priority = 7,
-                        Image = "https://www.svgrepo.com/show/353401/ant-design.svg"
+                        Priority = 7
                     },
                     new Skill() {
                         Name = "MS SQL Server",
                         Type = SkillType.Databases,
-                        Priority = 0,
-                        Image = "https://cdn.worldvectorlogo.com/logos/microsoft-sql-server-1.svg"
+                        Priority = 0
                     },
                     new Skill() {
                         Name = "MySQL",
                         Type = SkillType.Databases,
-                        Priority = 1,
-                        Image = "https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg"
+                        Priority = 1
                     },
                     new Skill() {
                         Name = "MongoDB",
                         Type = SkillType.Databases,
-                        Priority = 2,
-                        Image = "https://www.svgrepo.com/show/331488/mongodb.svg"
+                        Priority = 2
                     },
                     new Skill() {
                         Name = "Azure",
-                        Type = SkillType.Operating_Systems_and_Environments,
-                        Priority = 0,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg"
+                        Type = SkillType.Platforms_and_Operating_Systems,
+                        Priority = 0
                     },
                     new Skill() {
                         Name = "AWS",
-                        Type = SkillType.Operating_Systems_and_Environments,
-                        Priority = 1,
-                        Image = "https://www.svgrepo.com/show/331300/aws.svg"
+                        Type = SkillType.Platforms_and_Operating_Systems,
+                        Priority = 1
                     },
                     new Skill() {
                         Name = "Linux",
-                        Type = SkillType.Operating_Systems_and_Environments,
-                        Priority = 2,
-                        Image = "https://kernel.org/theme/images/logos/tux.png"
+                        Type = SkillType.Platforms_and_Operating_Systems,
+                        Priority = 2
                     },
                     new Skill() {
                         Name = "Windows",
-                        Type = SkillType.Operating_Systems_and_Environments,
-                        Priority = 3,
-                        Image = "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg"
+                        Type = SkillType.Platforms_and_Operating_Systems,
+                        Priority = 3
                     }
                 ]);
             }

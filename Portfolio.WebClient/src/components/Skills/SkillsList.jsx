@@ -1,21 +1,24 @@
-import { ImageList, ImageListItem, Tooltip } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { motion } from "framer-motion";
-import { fadeInChild, skillsListContainer } from "../../data/constants/FramerVariants";
+import { skillsListContainer } from "../../data/constants/FramerVariants";
+import StyledSkill from "../Experience/StyledSkill";
 
-export default function SkillsList({ skills, columns }) {
+export default function SkillsList({ skills, certifications = false }) {
     return (
-        <ImageList cols={columns} gap={50} sx={{ width: "100%" }} component={motion.ul}
+        <Box component={motion.div}
             variants={skillsListContainer}
             initial="hidden"
             animate="show">
-            {skills.map((skill) => (
-                <Tooltip key={skill.name} title={skill.name}>
-                    <ImageListItem component={motion.li}
-                        variants={fadeInChild}>
-                        <img srcSet={skill.image} src={skill.image} alt={skill.name} />
-                    </ImageListItem>
-                </Tooltip>
-            ))}
-        </ImageList>
+            {skills.map((skill) => {
+                console.log(skill);
+                return (
+                    certifications && skill.url !== null
+                        ? <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
+                            <StyledSkill text={skill.name} />
+                        </Link>
+                        : <StyledSkill key={skill.id} text={skill.name} />
+                );
+            })}
+        </Box>
     );
 }

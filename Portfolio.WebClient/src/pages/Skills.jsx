@@ -43,7 +43,7 @@ export default function Skills() {
             <Box className="animation-zone" width={"75%"} mb={8}>
                 <AnimatePresence mode='wait'>
                     {skills
-                        ? <SkillsList key={skills} skills={skills} columns={6} />
+                        ? <SkillsList key={skills} skills={skills} />
                         : <LoadingIcon key={skills} source={skills} />}
                 </AnimatePresence>
             </Box>
@@ -51,7 +51,7 @@ export default function Skills() {
             <Box className="animation-zone" width={"75%"}>
                 <AnimatePresence mode='wait'>
                     {certifications
-                        ? <SkillsList key={certifications} skills={certifications} columns={6} />
+                        ? <SkillsList key={certifications} skills={certifications} certifications={true} />
                         : <LoadingIcon key={certifications} source={certifications} />}
                 </AnimatePresence>
             </Box>

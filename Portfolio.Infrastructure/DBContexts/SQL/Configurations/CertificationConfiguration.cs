@@ -28,10 +28,6 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
             builder.Property(x => x.ExpiryDate)
                 .HasColumnType("date");
 
-            builder.Property(x => x.Image)
-                .IsUnicode(false)
-                .HasMaxLength(300);
-
             builder.Property(x => x.URL)
                 .IsUnicode(false)
                 .HasMaxLength(300);
@@ -53,7 +49,6 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 CredentialId = "GR671331654AR",
                 IssueDate = new(2021, 11, 4),
                 ExpiryDate = new(2024, 11, 3),
-                Image = "https://www.peoplecert.org/-/media/folders-reorganized/images/logos-2024/peoplecert/product-logos/itil/pc_itil_rgb_outl_svg.svg",
             },
             new Certification()
             {
@@ -62,7 +57,6 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 Name = "Tricentis Tosca Fundamentals − Automating web application testing (AS1)",
                 CredentialId = "v4bejcn9852t",
                 IssueDate = new(2024, 3, 7),
-                Image = "https://asset.brandfetch.io/idaXelRI63/idEmaYvwMz.svg",
                 URL = "https://verify.skilljar.com/c/v4bejcn9852t"
             },
             new Certification()
@@ -72,7 +66,6 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 Name = "Azure Fundamentals (AZ-900)",
                 CredentialId = "A78FE043E18F7ADA",
                 IssueDate = new(2024, 5, 19),
-                Image = "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
                 URL = "https://learn.microsoft.com/api/credentials/share/en-gb/AlexanderRozsa/A78FE043E18F7ADA?sharingId=6D6A8C67B7D53131"
             });
         }
