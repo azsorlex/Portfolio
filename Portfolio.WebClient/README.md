@@ -1,8 +1,17 @@
-# React + Vite
+# WebClient Development Steps
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequesites
+- [Portfolio.WebApi/README.md](../Portfolio.WebApi#webapi-development-steps)
+- Run ```npm i``` to install the packages.
 
-Currently, two official plugins are available:
+### Dev
+- Run ```npm run dev``` to start.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Preview
+- Run ```npm run build``` to build the production files.
+- Run ```npm run preview``` to start the production build.
+
+### Docker
+- Set the CD to Portfolio.WebClient, then run ```docker build -t client .```
+- Run the container with: ```docker run -p 5173:5173 -e TESTING=true -it client```
+- Go to [http://localhost:5173](http://localhost:5173) to see the page in action.

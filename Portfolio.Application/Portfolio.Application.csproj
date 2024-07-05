@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Responses\" />
-    <Folder Include="Models\Requests\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Models\Responses\" />
+		<Folder Include="Models\Requests\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Portfolio.Domain\Portfolio.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Portfolio.Infrastructure\Portfolio.Infrastructure.csproj" PrivateAssets="All" />
+	</ItemGroup>
 
 </Project>

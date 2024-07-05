@@ -1,35 +1,61 @@
 import { useEffect, useState } from 'react';
 import SkillsService from '../services/SkillsService';
 import SkillsList from '../components/Skills/SkillsList';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import PageNav from '../components/Layouts/PageNav';
+import CertificationsService from '../services/CertificationsService';
+import LoadingIcon from '../components/LoadingIcon';
+import AnimatedMain from '../components/Layouts/AnimatedMain';
+import { AnimatePresence } from 'framer-motion';
 
-const Skills = () => {
-    const [skills, setSkills] = useState([]);
+export default function Skills() {
+    const [skills, setSkills] = useState(undefined);
+    const [certifications, setCertifications] = useState(undefined);
 
     useEffect(() => {
-        SkillsService.loadSkills()
-            .then(r => setSkills(r.data))
-            .catch(error => {
-                console.error(error);
-                const placeholder = ![undefined, ""].includes(error.response.data) && error.response.data.error.startsWith('SqlException: Connection Timeout Expired')
-                    ? [{ 'id': 'Please wait a little longer while the database resumes :)' }]
-                    : [{ 'id': 'Error', 'order': 0 }];
-                setSkills(placeholder);
-            });
+        loadSkills();
+        loadCertifications();
     }, []);
 
-    if (skills.length === 0) {
-        return (
-            <h1>Loading...</h1>
-        )
+    const loadSkills = async () => {
+        try {
+            const response = await SkillsService.getSkills();
+            setSkills(response.data);
+        } catch (error) {
+            console.error(error);
+            setSkills(null);
+        }
+    }
+
+    const loadCertifications = async () => {
+        try {
+            const response = await CertificationsService.getCertifications();
+            setCertifications(response.data);
+        } catch (error) {
+            console.error(error);
+            setCertifications(null);
+        }
     }
 
     return (
-        <>
-            <Typography variant='p'>These are my skills:</Typography>
-            <SkillsList skills={skills} />
-        </>
+        <AnimatedMain>
+            <Typography className="animation-zone" variant='h1'>SKILLS</Typography>
+            <Box className="animation-zone" width={"75%"} mb={8}>
+                <AnimatePresence mode='wait'>
+                    {skills
+                        ? <SkillsList key={skills} skills={skills} />
+                        : <LoadingIcon key={skills} source={skills} />}
+                </AnimatePresence>
+            </Box>
+            <Typography className="animation-zone" variant='h1'>CERTIFICATIONS</Typography>
+            <Box className="animation-zone" width={"75%"}>
+                <AnimatePresence mode='wait'>
+                    {certifications
+                        ? <SkillsList key={certifications} skills={certifications} certifications={true} />
+                        : <LoadingIcon key={certifications} source={certifications} />}
+                </AnimatePresence>
+            </Box>
+            <PageNav beforeTo="/about" beforeTitle="About" afterTo="/experience" afterTitle="Experience" mt={8} />
+        </AnimatedMain>
     );
 }
-
-export default Skills;

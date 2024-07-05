@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Portfolio.Application.Models.DTOs;
-using Portfolio.Domain.Entities;
+using Portfolio.Application.Models;
+using Portfolio.Infrastructure.Entities;
 
 namespace Portfolio.WebApi.Extensions
 {
@@ -8,7 +8,22 @@ namespace Portfolio.WebApi.Extensions
     {
         public MappingProfile()
         {
-            CreateMap<Skill, SkillDto>().ReverseMap();
+            CreateMap<Certification, CertificationDTO>()
+                .ForMember(dest => dest.Issuer, opt => opt.MapFrom(src => src.CertificationIssuer.Name))
+                .ReverseMap();
+
+            CreateMap<ContactDTO, Contact>().ReverseMap();
+
+            CreateMap<ExperienceDTO, Experience>().ReverseMap();
+
+            CreateMap<MediaDTO, Media>().ReverseMap();
+
+            CreateMap<Qualification, QualificationDTO>()
+                .ForMember(dest => dest.Institution, opt => opt.MapFrom(src => src.Institution.Name))
+                .ForMember(dest => dest.QualificationLevel, opt => opt.MapFrom(src => src.QualificationLevel.Name))
+                .ReverseMap();
+
+            CreateMap<SkillDTO, Skill>().ReverseMap();
         }
     }
 }

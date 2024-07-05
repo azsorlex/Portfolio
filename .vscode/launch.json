@@ -15,9 +15,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/WebsiteResume.WebApi/bin/Debug/net8.0/WebsiteResume.WebApi.dll",
+            "program": "${workspaceFolder}/Portfolio.WebApi/bin/Debug/net8.0/Portfolio.WebApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/WebsiteResume.WebApi",
+            "cwd": "${workspaceFolder}/Portfolio.WebApi",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

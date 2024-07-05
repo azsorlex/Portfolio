@@ -1,15 +1,28 @@
 # Portfolio
-A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around LinkedIn's 50 skills limit. The site utilises React.js for the frontend, ASP.NET Core + EntityFramework Core for the API, and Microsoft SQL Server for the database. As of now, there isn't too much in terms of the website. In the future, a more feature-rich site will be set up as well as various different backend functionalities.
+A personal project to showcase my expertise in .NET Fullstack Development, as well as a means to get around Seek's 50 skills limit.
+<br>
+In the future I plan to finalise the site structure as well as add in additional backend features.
 
-## Local testing
-  - ### Prerequesites
-    - Code environment and any necessary setup needed to run ASP.NET. I mainly use VS 2022, but VS Code can run it too.
-    - NodeJS for WebClient.
-    - Microsoft SQL Server. No encryption setup needed for local instance. Connection string included in appsettings.development.
+## Built with:
+- React.js
+- Material UI
+- Framer Motion
+- Vite
+- ASP.NET Core
+- Entity Framework Core
+- Docker
+- MongoDB
+- Microsoft SQL Server
+- Microsoft Azure
 
-  - ### WebClient
-    - Run ```npm i``` to install the packages.
-    - Run ```npm run dev``` to start.
-   
-  - ### WebApi
-    - Setup mentioned in [Prerequesites](#prerequesites).
+## Getting started
+You'll need `git`, `node.js`, `ASP.NET`, `MS SQL Server`, `MongoDB` and `docker` installed to run both the projects in this repository.
+
+## Installation and Development
+Follow each of the projects' readmes for how to develop with each one:
+<br>
+<br>
+<h2 align="center">
+  <a href="Portfolio.WebApi#webapi-development-steps">Portfolio.WebApi</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <a href="Portfolio.WebClient#webclient-development-steps">Portfolio.WebClient</a>
+</h2>

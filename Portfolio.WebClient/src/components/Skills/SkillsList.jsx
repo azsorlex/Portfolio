@@ -1,15 +1,24 @@
-const SkillsList = ({ skills }) => {
+import { Box, Link } from "@mui/material";
+import { motion } from "framer-motion";
+import { skillsListContainer } from "../../data/constants/FramerVariants";
+import StyledSkill from "../Experience/StyledSkill";
+
+export default function SkillsList({ skills, certifications = false }) {
     return (
-        <ol>
-            {
-                skills.map(x => {
-                    return (
-                        <li key={x.id}>{x.id}</li>
-                    )
-                })
-            }
-        </ol>
+        <Box component={motion.div}
+            variants={skillsListContainer}
+            initial="hidden"
+            animate="show">
+            {skills.map((skill) => {
+                console.log(skill);
+                return (
+                    certifications && skill.url !== null
+                        ? <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
+                            <StyledSkill text={skill.name} />
+                        </Link>
+                        : <StyledSkill key={skill.id} text={skill.name} />
+                );
+            })}
+        </Box>
     );
 }
-
-export default SkillsList;
