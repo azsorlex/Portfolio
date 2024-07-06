@@ -64,8 +64,8 @@ export default function Home() {
                     </Link>
                 </Box>
             </Box>
-            <Box display="flex" alignItems="center" height="100vh">
-                <Box className="animation-zone" width="100vh">
+            <Box display="flex" alignItems="center" width="100%" height="100vh">
+                <Box className="animation-zone" m="auto" width="75%">
                     <Typography variant="h2" paragraph>
                         TOP SKILLS
                     </Typography>

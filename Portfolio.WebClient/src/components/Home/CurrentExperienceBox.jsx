@@ -8,7 +8,8 @@ export default function CurrentExperienceBox({ experience }) {
         <Box pt={1} mb={4} component={motion.div}
             variants={currentExperienceContainer}
             initial="hidden"
-            animate="show">
+            whileInView="show"
+            viewport={{once: true}}>
             <Typography variant="h5" component={motion.h5}
                 variants={fadeUpChild}>
                 {experience.company && experience.type === 'Work'

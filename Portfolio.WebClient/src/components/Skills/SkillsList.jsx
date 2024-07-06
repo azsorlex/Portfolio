@@ -8,7 +8,8 @@ export default function SkillsList({ skills, certifications = false }) {
         <Box component={motion.div}
             variants={skillsListContainer}
             initial="hidden"
-            animate="show">
+            whileInView="show"
+            viewport={{ once: true }}>
             {skills.map((skill) => {
                 console.log(skill);
                 return (

@@ -10,7 +10,8 @@ export default function WorkExperience({ experience = {} }) {
         <Box mb={2} component={motion.div}
             variants={experienceContainer}
             initial="hidden"
-            animate="show">
+            whileInView="show"
+            viewport={{ once: true }}>
             <Typography variant="h4" component={motion.h4}
                 variants={fadeUpChild}>
                 {[
