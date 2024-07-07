@@ -6,6 +6,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  transition: all 0.25s ease-in-out;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -35,6 +39,17 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background-color: #F0F0F0;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: #4A4A4A;
+  }
+}
+
+[data-theme="dark"] {
   ::-webkit-scrollbar-thumb {
     background-color: #F0F0F0;
   }

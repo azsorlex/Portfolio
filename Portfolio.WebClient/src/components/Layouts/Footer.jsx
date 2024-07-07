@@ -16,7 +16,7 @@ export default function Footer() {
     };
 
     return (
-        <AppBar component="footer" position="static" enableColorOnDark sx={{boxShadow: 0}}>
+        <AppBar component="footer" position="static" enableColorOnDark sx={{ transition: "all 0.25s linear" }}>
             <Toolbar variant="dense">
                 <Copyright fontSize="xs" sx={{ mr: 0.5 }} />
                 <Typography fontSize={12}>
