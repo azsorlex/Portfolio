@@ -1,9 +1,7 @@
 export const experienceContainer = {
-    hidden: {
-        height: 0,
-    },
+    hidden: {},
     show: {
-        transition: { ease: "easeOut", duration: 1, staggerChildren: 0.15 }, height: "auto",
+        transition: { staggerChildren: 0.15 },
     },
 };
 
@@ -17,7 +15,7 @@ export const currentExperienceContainer = {
 export const skillsListContainer = {
     hidden: {},
     show: {
-        transition: { ease: "easeOut", duration: 1, staggerChildren: 0.15, delayChildren: 0.4 }
+        transition: { ease: "easeOut", duration: 1, staggerChildren: 0.15 }
     },
 };
 

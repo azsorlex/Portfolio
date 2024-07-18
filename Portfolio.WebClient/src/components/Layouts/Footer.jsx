@@ -8,15 +8,19 @@ export default function Footer() {
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
+        document.body.classList.remove("loaded");
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+        setTimeout(() => {
+            document.body.classList.add("loaded");
+        }, 5);
     };
 
     return (
-        <AppBar component="footer" position="static" enableColorOnDark sx={{ transition: "all 0.25s linear" }}>
+        <AppBar component="footer" position="static" color="primary" enableColorOnDark sx={{ transition: "all 0.25s linear" }}>
             <Toolbar variant="dense">
                 <Copyright fontSize="xs" sx={{ mr: 0.5 }} />
                 <Typography fontSize={12}>

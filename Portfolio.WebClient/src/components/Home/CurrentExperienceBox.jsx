@@ -23,7 +23,7 @@ export default function CurrentExperienceBox({ experience }) {
                         Skills used in this project:
                     </Typography>
                     {experience.skills.map((x) => (
-                        <StyledSkill key={x} text={x} />
+                        <StyledSkill key={x} name={x} />
                     ))}
                 </>
             }

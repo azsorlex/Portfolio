@@ -22,7 +22,7 @@ export default function WorkExperience({ experience = {} }) {
                 ].filter(Boolean).join(' | ')}
             </Typography>
             {experience.skills.map((x) => (
-                <StyledSkill key={`${x}_${experience.id}`} text={x} />
+                <StyledSkill key={`${x}_${experience.id}`} name={x} />
             ))}
             <List sx={{ listStyleType: 'disc' }}>
                 {experience.descriptionLines.map((x) => (

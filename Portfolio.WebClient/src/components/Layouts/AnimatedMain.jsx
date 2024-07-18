@@ -18,9 +18,7 @@ export default function AnimatedMain({ children }) {
         );
 
         const animationElements = document.querySelectorAll('.animation-zone');
-
         animationElements.forEach((element) => observer.observe(element));
-
         console.log("Intersection Observer initialised");
     }, []);
 

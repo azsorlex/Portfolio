@@ -3,16 +3,21 @@
 }
 
 #root,
-main {
+.PageContainer {
     display: flex !important;
     text-align: center;
     flex-flow: column;
     align-items: center;
+    min-height: 100vh;
 }
 
 main,
 .spacer {
     flex-grow: 1;
+}
+
+.page-padding {
+    height: 50vh;
 }
 
 header.transparent {

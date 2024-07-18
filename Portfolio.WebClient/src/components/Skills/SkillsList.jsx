@@ -1,25 +1,51 @@
-import { Box, Link } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Link } from "@mui/material";
 import { motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
 import StyledSkill from "../Experience/StyledSkill";
+import { useState } from "react";
 
 export default function SkillsList({ skills, certifications = false }) {
-    return (
-        <Box component={motion.div}
-            variants={skillsListContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}>
-            {skills.map((skill) => {
-                console.log(skill);
-                return (
-                    certifications && skill.url !== null
-                        ? <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
-                            <StyledSkill text={skill.name} />
-                        </Link>
-                        : <StyledSkill key={skill.id} text={skill.name} />
-                );
-            })}
+  const [topSkillsChecked, setTopSkillsChecked] = useState(false);
+
+  const handleTopSkillsChecked = (event) => {
+    setTopSkillsChecked(event.target.checked);
+  };
+
+  return (
+    <Box
+      component={motion.div}
+      variants={skillsListContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+    >
+      {!certifications && (
+        <Box>
+          <FormControlLabel
+            label="Top Skills"
+            control={
+              <Checkbox
+                checked={topSkillsChecked}
+                onChange={handleTopSkillsChecked}
+              />
+            }
+          />
         </Box>
-    );
+      )}
+      {skills.map((skill) => {
+        return certifications && skill.url !== null ? (
+          <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
+            <StyledSkill name={skill.name} />
+          </Link>
+        ) : (
+          <StyledSkill
+            key={skill.id}
+            name={skill.name}
+            priority={skill.priority}
+            checked={topSkillsChecked}
+          />
+        );
+      })}
+    </Box>
+  );
 }
