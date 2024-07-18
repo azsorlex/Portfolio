@@ -7,7 +7,7 @@ import AnimatedMain from "../components/Layouts/AnimatedMain";
 export default function Home() {
   return (
     <AnimatedMain>
-      <Box className="animation-zone PageContainer" minHeight="calc(100vh - 48px)">
+      <Box className="animation-zone PageContainer" minHeight="calc(100dvh - 48px)">
         <Box m="auto">
           <Typography variant="subtitle2">
             {"Hi, I'm"}

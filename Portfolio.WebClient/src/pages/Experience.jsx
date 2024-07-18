@@ -5,6 +5,7 @@ import ExperiencesService from "../services/ExperiencesService";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
+import { ItemContainer } from "../components/ItemContainer";
 
 export default function Experience() {
   const [work, setWork] = useState(undefined);
@@ -48,9 +49,9 @@ export default function Experience() {
     <Container className="PageContainer" maxWidth="lg">
       <Box className="page-padding" />
       <Box id="experience" height="48px" />
-      <Box m="auto" mb="10vh">
+      <Box m="auto" mb="10dvh">
         <Box display="flex" flexDirection="row" width="100%">
-          <Box width="50%">
+          <ItemContainer width="50%">
             <Typography variant="h4">{`CURRENTLY WORKING AT:`}</Typography>
             <AnimatePresence mode="wait">
               {currentWork ? (
@@ -71,8 +72,8 @@ export default function Experience() {
                 <LoadingIcon key={currentWork} source={currentWork} />
               )}
             </AnimatePresence>
-          </Box>
-          <Box width="50%" ml="auto">
+          </ItemContainer>
+          <ItemContainer width="50%" ml="auto">
             <Typography variant="h4">{`CURRENTLY WORKING ON:`}</Typography>
             <AnimatePresence mode="wait">
               {currentProjects ? (
@@ -96,7 +97,7 @@ export default function Experience() {
                 <LoadingIcon key={currentProjects} source={currentProjects} />
               )}
             </AnimatePresence>
-          </Box>
+          </ItemContainer>
         </Box>
         <Typography variant="h2">EXPERIENCE</Typography>
         <Container maxWidth="sm">
@@ -108,7 +109,7 @@ export default function Experience() {
             )}
           </AnimatePresence>
         </Container>
-        <Typography variant="h2">PROJECTS</Typography>
+        <Typography variant="h2" mt={8}>PROJECTS</Typography>
         <Container maxWidth="sm">
           <AnimatePresence mode="wait">
             {projects ? (

@@ -5,6 +5,15 @@ import "@fontsource-variable/noto-serif";
 const dark = grey[900];
 const light = grey['A200'];
 const accent = blue[400];
+const experienceDark = grey[800];
+const experienceLight = grey['A400'];
+
+const headerFont = {
+    fontFamily: [
+        '"Noto Serif Variable"',
+        'serif',
+    ].join(','),
+};
 
 const GetDesignTokens = (mode) => ({
     components: {
@@ -39,9 +48,11 @@ const GetDesignTokens = (mode) => ({
             ...(mode === 'light' ? {
                 default: light,
                 paper: dark,
+                experience: experienceLight,
             } : {
                 default: dark,
                 paper: light,
+                experience: experienceDark,
             })
         },
     },
@@ -52,24 +63,11 @@ const GetDesignTokens = (mode) => ({
                 'monospace',
             ].join(','),
         },
-        h1: {
-            fontFamily: [
-                '"Noto Serif Variable"',
-                'serif',
-            ].join(','),
-        },
-        h2: {
-            fontFamily: [
-                '"Noto Serif Variable"',
-                'serif',
-            ].join(','),
-        },
-        h4: {
-            fontFamily: [
-                '"Noto Serif Variable"',
-                'serif',
-            ].join(','),
-        },
+        h1: headerFont,
+        h2: headerFont,
+        h3: undefined,
+        h4: headerFont,
+        h5: headerFont,
     }
 });
 

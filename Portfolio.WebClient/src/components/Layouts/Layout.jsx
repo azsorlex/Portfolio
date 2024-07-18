@@ -17,7 +17,7 @@ export default function Layout(props) {
         color="primary"
         aria-label="toggle-theme"
         onClick={themeContext.update}
-        sx={{ position: "fixed", bottom: "5vh", right: "5vw" }}
+        sx={{ position: "fixed", bottom: "5dvh", right: "5dvw" }}
       >
         {themeContext.darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
       </Fab>
