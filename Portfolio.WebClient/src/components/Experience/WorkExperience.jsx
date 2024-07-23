@@ -12,6 +12,7 @@ import { ItemContainer } from "../ItemContainer";
 export default function WorkExperience({ experience = {} }) {
   return (
     <ItemContainer
+      id={experience.id}
       mb={2}
       component={motion.div}
       variants={experienceContainer}

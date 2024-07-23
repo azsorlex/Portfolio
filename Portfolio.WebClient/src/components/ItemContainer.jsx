@@ -9,8 +9,9 @@ const Container = styled(motion.div)(({ theme }) => ({
   backgroundColor: theme.palette.background.experience,
 }));
 
-export const ItemContainer = ({ children }) => (
+export const ItemContainer = ({ children, id }) => (
   <Container
+    id={id}
     variants={itemContainer}
     initial="hidden"
     whileInView="show"
