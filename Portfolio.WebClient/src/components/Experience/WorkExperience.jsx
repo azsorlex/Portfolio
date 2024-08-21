@@ -3,23 +3,12 @@ import dayjs from "dayjs";
 import StyledSkill from "./StyledSkill";
 import MediaSection from "./MediaSection";
 import { motion } from "framer-motion";
-import {
-  experienceContainer,
-  fadeUpChild,
-} from "../../data/constants/FramerVariants";
+import { fadeUpChild } from "../../data/constants/FramerVariants";
 import { ItemContainer } from "../ItemContainer";
 
 export default function WorkExperience({ experience = {} }) {
   return (
-    <ItemContainer
-      id={experience.id}
-      mb={2}
-      component={motion.div}
-      variants={experienceContainer}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-    >
+    <ItemContainer id={experience.id}>
       <Typography variant="h4" component={motion.h4} variants={fadeUpChild}>
         {experience.name}
       </Typography>

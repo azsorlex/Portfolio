@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 export default function Experience() {
   const [work, setWork] = useState(undefined);
   const [projects, setProjects] = useState(undefined);
-  
+
   useEffect(() => {
     getExperience();
   }, []);
@@ -35,7 +35,11 @@ export default function Experience() {
       <Container maxWidth="sm">
         <AnimatePresence mode="wait">
           {work ? (
-            work.map((x) => <WorkExperience key={x.id} experience={x} />)
+            <Box key="Work Container">
+              {work.map((x) => (
+                <WorkExperience key={x.id} experience={x} />
+              ))}
+            </Box>
           ) : (
             <LoadingIcon key={work} source={work} />
           )}
@@ -47,7 +51,11 @@ export default function Experience() {
       <Container maxWidth="sm">
         <AnimatePresence mode="wait">
           {projects ? (
-            projects.map((x) => <WorkExperience key={x.id} experience={x} />)
+            <Box key="Projects Container">
+              {projects.map((x) => (
+                <WorkExperience key={x.id} experience={x} />
+              ))}
+            </Box>
           ) : (
             <LoadingIcon key={projects} source={projects} />
           )}

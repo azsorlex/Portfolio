@@ -17,7 +17,6 @@ export default function SkillsList({ skills, certifications = false }) {
       variants={skillsListContainer}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true }}
     >
       {!certifications && (
         <Box>

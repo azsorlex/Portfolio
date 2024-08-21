@@ -15,7 +15,7 @@ export const ItemContainer = ({ children, id }) => (
     variants={itemContainer}
     initial="hidden"
     whileInView="show"
-    viewport={{ once: true }}
+    sx={{ backgroundColor: "auto" }}
   >
     {children}
   </Container>

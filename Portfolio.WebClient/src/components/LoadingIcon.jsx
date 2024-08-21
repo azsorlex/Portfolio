@@ -13,7 +13,6 @@ export default function LoadingIcon({ source }) {
         variants={loadingIconVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
         exit="exit"
       />
     </Tooltip>
