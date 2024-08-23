@@ -40,6 +40,11 @@ namespace Portfolio.Infrastructure.Repositories
             return await _set
                 .Where(x => x.EndDate == null)
                 .OrderByDescending(x => x.StartDate)
+                .Select(x => new Experience() {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Type = x.Type
+                })
                 .ToListAsync();
         }
     }

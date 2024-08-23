@@ -13,7 +13,5 @@ namespace Portfolio.Application.Models
         public SkillType Type { get; init; }
         [Required]
         public byte Priority { get; init; }
-        [Required]
-        public string Image { get; init; }
     }
 }
