@@ -2,6 +2,8 @@ import { blue, grey } from "@mui/material/colors";
 import "@fontsource-variable/source-code-pro";
 import "@fontsource-variable/noto-serif";
 
+type ModeProp = 'light' | 'dark';
+
 const dark = grey[900];
 const light = grey['A200'];
 const accent = blue[400];
@@ -15,7 +17,7 @@ const headerFont = {
     ].join(','),
 };
 
-const GetDesignTokens = (mode) => ({
+const GetDesignTokens = (mode: ModeProp) => ({
     components: {
         MuiCssBaseline: {
             styleOverrides: {

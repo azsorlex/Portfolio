@@ -1,9 +1,13 @@
 import { Autorenew, ErrorOutline } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import { Tooltip } from "@mui/material"
 import { loadingIconVariants } from "../data/constants/FramerVariants";
-import { Tooltip } from "@mui/material";
 
-export default function LoadingIcon({ source }) {
+interface LoadingIconProps {
+  source: Array<Record<any, any>> | undefined | null,
+};
+
+export default function LoadingIcon({ source }: LoadingIconProps) {
   return source === null ? (
     <Tooltip title="Couldn't retrieve data. Please refresh the page.">
       <ErrorOutline

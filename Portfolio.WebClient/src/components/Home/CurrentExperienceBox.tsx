@@ -4,8 +4,13 @@ import {
   currentExperienceContainer,
   fadeUpChild,
 } from "../../data/constants/FramerVariants";
+import { ExperienceDTO } from "../../services/ExperiencesService";
 
-export default function CurrentExperienceBox({ experience = {} }) {
+interface CurrentExperienceProps {
+  experience: ExperienceDTO
+};
+
+export default function CurrentExperienceBox({ experience }: CurrentExperienceProps) {
   return (
     <Box
       component={motion.div}
@@ -18,9 +23,7 @@ export default function CurrentExperienceBox({ experience = {} }) {
       <Link href={`#${experience.id}`} color="secondary">
         <Typography variant="h6" component={motion.h6} variants={fadeUpChild}>
           {experience.company && experience.type === "Work"
-            ? `${experience.company} as a${
-                experience.name.match("^[aeiouAEIOU].*") ? "n" : ""
-              } ${experience.name}`
+            ? `${experience.company} as a${experience.name.match("^[aeiouAEIOU].*") ? "n" : ""} ${experience.name}`
             : experience.name}
         </Typography>
       </Link>

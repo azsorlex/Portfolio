@@ -1,12 +1,17 @@
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import StyledSkill from "./StyledSkill";
 import MediaSection from "./MediaSection";
 import { motion } from "framer-motion";
 import { fadeUpChild } from "../../data/constants/FramerVariants";
 import { ItemContainer } from "../ItemContainer";
+import StyledSkill from "./StyledSkill";
+import { ExperienceDTO } from "../../services/ExperiencesService";
 
-export default function WorkExperience({ experience = {} }) {
+interface WorkExperienceProps {
+  experience: ExperienceDTO,
+};
+
+export default function WorkExperience({ experience }: WorkExperienceProps) {
   return (
     <ItemContainer id={experience.id}>
       <Typography variant="h4" component={motion.h4} variants={fadeUpChild}>
@@ -26,11 +31,11 @@ export default function WorkExperience({ experience = {} }) {
         }
         `}
       </Typography>
-      {experience.skills.map((x) => (
+      {experience.skills!.map((x) => (
         <StyledSkill key={`${x}_${experience.id}`} name={x} />
       ))}
       <List sx={{ listStyleType: "disc" }}>
-        {experience.descriptionLines.map((x) => (
+        {experience.descriptionLines!.map((x) => (
           <ListItem
             key={x}
             sx={{ display: "list-item" }}

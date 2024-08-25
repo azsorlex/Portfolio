@@ -1,13 +1,18 @@
 import { Box, Checkbox, FormControlLabel, Link } from "@mui/material";
 import { motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
+import { ChangeEvent, Key, useState } from "react"
 import StyledSkill from "../Experience/StyledSkill";
-import { useState } from "react";
 
-export default function SkillsList({ skills, certifications = false }) {
+interface SkillsListProps {
+  skills: Array<Record<any, any>>,
+  certifications?: boolean,
+};
+
+export default function SkillsList({ skills, certifications = false }: SkillsListProps) {
   const [topSkillsChecked, setTopSkillsChecked] = useState(false);
 
-  const handleTopSkillsChecked = (event) => {
+  const handleTopSkillsChecked = (event: ChangeEvent<HTMLInputElement>) => {
     setTopSkillsChecked(event.target.checked);
   };
 

@@ -25,13 +25,13 @@ export default function Footer() {
   const [anchorEl, setAnchorEl] = useState(undefined);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     document.body.classList.remove("loaded");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(undefined);
     setTimeout(() => {
       document.body.classList.add("loaded");
     }, 5);
@@ -46,7 +46,7 @@ export default function Footer() {
       sx={{ transition: "all 0.25s linear" }}
     >
       <Toolbar variant="dense">
-        <Copyright fontSize="xs" sx={{ mr: 0.5 }} />
+        <Copyright fontSize="small" sx={{ mr: 0.5 }} />
         <Typography fontSize={12}>
           {`${dayjs().year()} Alexander Rozsa`}
         </Typography>

@@ -3,7 +3,7 @@ import { Box, Container, Typography } from "@mui/material";
 export default function About() {
   return (
     <Container className="PageContainer" id="about" maxWidth="lg">
-      <Box m="auto">
+      <Box m="auto" className="ContentContainer">
         <Typography variant="h2" mb={8}>
           ABOUT ME
         </Typography>

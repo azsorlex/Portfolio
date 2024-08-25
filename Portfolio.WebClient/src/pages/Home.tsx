@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Skills from "./Skills";
 import About from "./About";
 import Experience from "./Experience";
@@ -7,14 +7,15 @@ import AnimatedMain from "../components/Layouts/AnimatedMain";
 import { AnimatePresence, motion } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
-import ExperiencesService from "../services/ExperiencesService";
+import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
 import { fadeUpChild, itemContainer } from "../data/constants/FramerVariants";
 
+type ExperienceType = Array<ExperienceDTO> | undefined | null;
+
 export default function Home() {
-  const [currentExperienceClicked, setCurrentExperienceClicked] =
-    useState(false);
-  const [currentWork, setCurrentWork] = useState(undefined);
-  const [currentProjects, setCurrentProjects] = useState(undefined);
+  const [currentExperienceClicked, setCurrentExperienceClicked] = useState<boolean>(false);
+  const [currentWork, setCurrentWork] = useState<ExperienceType>(undefined);
+  const [currentProjects, setCurrentProjects] = useState<ExperienceType>(undefined);
 
   const getCurrentExperience = async () => {
     try {
@@ -34,10 +35,7 @@ export default function Home() {
 
   return (
     <AnimatedMain>
-      <Box
-        className="animation-zone PageContainer"
-        minHeight="calc(100dvh - 48px)"
-      >
+      <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - 48px)" }}>
         <Box m="auto">
           <Typography variant="subtitle2">{"Hi, I'm"}</Typography>
           <Typography variant="h1" textTransform="uppercase">
@@ -141,9 +139,6 @@ export default function Home() {
                 variant="outlined"
                 color="secondary"
                 component={motion.button}
-                variants={fadeUpChild}
-                initial="hidden"
-                animate="show"
                 exit={{ scale: 0 }}
                 onClick={getCurrentExperience}
               >
@@ -152,7 +147,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </Box>
-      </Box>
+      </Container>
       <About />
       <Skills />
       <Experience />

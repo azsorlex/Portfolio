@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, MouseEventHandler, useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import {
   CssBaseline,
@@ -12,9 +12,14 @@ import GetDesignTokens from "./components/GetDesignTokens";
 import Layout from "./components/Layouts/Layout";
 import Home from "./pages/Home";
 
-const getModeName = (mode) => (mode ? "dark" : "light");
+interface ContextValues {
+  darkMode?: boolean,
+  update?: MouseEventHandler<HTMLButtonElement>,
+};
 
-export const ThemeContext = createContext();
+const getModeName = (mode: boolean) => (mode ? "dark" : "light");
+
+export const ThemeContext = createContext<ContextValues>({});
 
 export const ScrollToTop = (instant = false) => {
   document.documentElement.scrollTo({

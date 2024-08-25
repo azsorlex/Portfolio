@@ -1,13 +1,15 @@
 import { Box, Container, Typography } from "@mui/material";
 import WorkExperience from "../components/Experience/WorkExperience";
 import { useEffect, useState } from "react";
-import ExperiencesService from "../services/ExperiencesService";
+import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 
+type ExperienceType = Array<ExperienceDTO> | undefined | null;
+
 export default function Experience() {
-  const [work, setWork] = useState(undefined);
-  const [projects, setProjects] = useState(undefined);
+  const [work, setWork] = useState<ExperienceType>(undefined);
+  const [projects, setProjects] = useState<ExperienceType>(undefined);
 
   useEffect(() => {
     getExperience();

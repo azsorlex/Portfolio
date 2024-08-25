@@ -9,7 +9,7 @@ RUN npm install
 RUN npm run build
 
 FROM base as final
-COPY --from=build /app/package*.json /app/vite.config.js ./
+COPY --from=build /app/package*.json /app/vite.config.ts ./
 COPY --from=build /app/dist ./dist
 RUN npm install --omit=dev
 

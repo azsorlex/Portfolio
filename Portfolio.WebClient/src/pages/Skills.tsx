@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import SkillsService from "../services/SkillsService";
+import SkillsService, { SkillDTO } from "../services/SkillsService";
+import CertificationsService, { CertificationDTO } from "../services/CertificationsService";
 import SkillsList from "../components/Skills/SkillsList";
 import { Box, Container, Typography } from "@mui/material";
-import CertificationsService from "../services/CertificationsService";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 
+type SkillsType = Array<SkillDTO> | undefined | null;
+type CertificationsType = Array<CertificationDTO> | undefined | null;
+
 export default function Skills() {
-  const [skills, setSkills] = useState(undefined);
-  const [certifications, setCertifications] = useState(undefined);
+  const [skills, setSkills] = useState<SkillsType>(undefined);
+  const [certifications, setCertifications] = useState<CertificationsType>(undefined);
 
   useEffect(() => {
     loadSkills();
@@ -24,7 +27,7 @@ export default function Skills() {
     } catch (error) {
       console.error(error);
       setSkills(null);
-    }
+    } 0
   };
 
   const loadCertifications = async () => {
@@ -41,12 +44,12 @@ export default function Skills() {
 
   return (
     <Container className="PageContainer" id="skills" maxWidth="lg">
-      <Box m="auto">
+      <Box m="auto" className="ContentContainer">
         <Typography variant="h2">SKILLS</Typography>
         <Box width={"75%"} m="auto" mb={8}>
           <AnimatePresence mode="wait">
             {skills ? (
-              <SkillsList key={skills} skills={skills} />
+              <SkillsList key={skills.at(0)?.id} skills={skills} />
             ) : (
               <LoadingIcon key={skills} source={skills} />
             )}
@@ -57,7 +60,7 @@ export default function Skills() {
           <AnimatePresence mode="wait">
             {certifications ? (
               <SkillsList
-                key={certifications}
+                key={certifications.at(0)?.id}
                 skills={certifications}
                 certifications={true}
               />
