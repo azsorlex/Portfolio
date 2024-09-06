@@ -1,16 +1,15 @@
-import { Box, Link } from "@mui/material";
+import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
 import StyledSkill from "./StyledSkill";
-import { CertificationsType, SkillsType } from "../../pages/Skills";
+import { SkillsType } from "../../pages/Skills";
 
 interface SkillsListProps {
-  skills: SkillsType | CertificationsType,
+  skills: SkillsType,
   checked?: boolean,
-  certifications?: boolean,
 };
 
-export default function SkillsList({ skills, checked, certifications = false }: SkillsListProps) {
+export default function SkillsList({ skills, checked }: SkillsListProps) {
   return (
     <AnimatePresence mode="wait">
       <Box
@@ -21,22 +20,14 @@ export default function SkillsList({ skills, checked, certifications = false }: 
         whileInView="show"
         exit="exit"
       >
-        {
-          skills!.map((skill) => {
-            return certifications && skill.url !== null ? (
-              <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
-                <StyledSkill name={skill.name} />
-              </Link>
-            ) : (
-              <StyledSkill
-                key={skill.id}
-                name={skill.name}
-                priority={skill.priority}
-                checked={checked}
-              />
-            );
-          })
-        }
+        {skills!.map((skill) => (
+          <StyledSkill
+            key={skill.id}
+            name={skill.name}
+            priority={skill.priority}
+            checked={checked}
+          />
+        ))}
       </Box>
     </AnimatePresence>
   );

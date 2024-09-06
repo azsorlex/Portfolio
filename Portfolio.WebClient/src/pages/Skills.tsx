@@ -5,6 +5,7 @@ import SkillsList from "../components/Skills/SkillsList";
 import { Box, Checkbox, Container, FormControlLabel, Input, Typography } from "@mui/material";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
+import CertificationsList from "../components/Skills/CertificationsList";
 
 export type SkillsType = Array<SkillDTO> | undefined | null;
 export type CertificationsType = Array<CertificationDTO> | undefined | null;
@@ -93,10 +94,9 @@ export default function Skills() {
         <Box width={"75%"} m="auto">
           <AnimatePresence mode="wait">
             {certifications ? (
-              <SkillsList
+              <CertificationsList
                 key={certifications.at(0)?.id}
-                skills={certifications}
-                certifications={true}
+                certifications={certifications}
               />
             ) : (
               <LoadingIcon key={certifications} source={certifications} />
