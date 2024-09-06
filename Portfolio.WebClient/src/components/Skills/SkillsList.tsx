@@ -1,55 +1,43 @@
-import { Box, Checkbox, FormControlLabel, Link } from "@mui/material";
-import { motion } from "framer-motion";
+import { Box, Link } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
-import { ChangeEvent, Key, useState } from "react"
-import StyledSkill from "../Experience/StyledSkill";
+import StyledSkill from "./StyledSkill";
+import { CertificationsType, SkillsType } from "../../pages/Skills";
 
 interface SkillsListProps {
-  skills: Array<Record<any, any>>,
+  skills: SkillsType | CertificationsType,
+  checked?: boolean,
   certifications?: boolean,
 };
 
-export default function SkillsList({ skills, certifications = false }: SkillsListProps) {
-  const [topSkillsChecked, setTopSkillsChecked] = useState(false);
-
-  const handleTopSkillsChecked = (event: ChangeEvent<HTMLInputElement>) => {
-    setTopSkillsChecked(event.target.checked);
-  };
-
+export default function SkillsList({ skills, checked, certifications = false }: SkillsListProps) {
   return (
-    <Box
-      component={motion.div}
-      variants={skillsListContainer}
-      initial="hidden"
-      whileInView="show"
-    >
-      {!certifications && (
-        <Box>
-          <FormControlLabel
-            label="Top Skills"
-            control={
-              <Checkbox
-                checked={topSkillsChecked}
-                onChange={handleTopSkillsChecked}
+    <AnimatePresence mode="wait">
+      <Box
+        key={skills!.map((s) => s.name).join()}
+        component={motion.div}
+        variants={skillsListContainer}
+        initial="hidden"
+        whileInView="show"
+        exit="exit"
+      >
+        {
+          skills!.map((skill) => {
+            return certifications && skill.url !== null ? (
+              <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
+                <StyledSkill name={skill.name} />
+              </Link>
+            ) : (
+              <StyledSkill
+                key={skill.id}
+                name={skill.name}
+                priority={skill.priority}
+                checked={checked}
               />
-            }
-          />
-        </Box>
-      )}
-      {skills.map((skill) => {
-        return certifications && skill.url !== null ? (
-          <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
-            <StyledSkill name={skill.name} />
-          </Link>
-        ) : (
-          <StyledSkill
-            key={skill.id}
-            name={skill.name}
-            priority={skill.priority}
-            checked={topSkillsChecked}
-          />
-        );
-      })}
-    </Box>
+            );
+          })
+        }
+      </Box>
+    </AnimatePresence>
   );
 }

@@ -4,7 +4,7 @@ import MediaSection from "./MediaSection";
 import { motion } from "framer-motion";
 import { fadeUpChild } from "../../data/constants/FramerVariants";
 import { ItemContainer } from "../ItemContainer";
-import StyledSkill from "./StyledSkill";
+import StyledSkill from "../Skills/StyledSkill";
 import { ExperienceDTO } from "../../services/ExperiencesService";
 
 interface WorkExperienceProps {

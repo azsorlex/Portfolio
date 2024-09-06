@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import SkillsService, { SkillDTO } from "../services/SkillsService";
 import CertificationsService, { CertificationDTO } from "../services/CertificationsService";
 import SkillsList from "../components/Skills/SkillsList";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Checkbox, Container, FormControlLabel, Input, Typography } from "@mui/material";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 
-type SkillsType = Array<SkillDTO> | undefined | null;
-type CertificationsType = Array<CertificationDTO> | undefined | null;
+export type SkillsType = Array<SkillDTO> | undefined | null;
+export type CertificationsType = Array<CertificationDTO> | undefined | null;
 
 export default function Skills() {
   const [skills, setSkills] = useState<SkillsType>(undefined);
   const [certifications, setCertifications] = useState<CertificationsType>(undefined);
+  const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>('hello world');
+  const [filteredSkills, setFilteredSkills] = useState<SkillsType>([]);
 
   useEffect(() => {
     loadSkills();
@@ -22,12 +25,13 @@ export default function Skills() {
     try {
       console.log("Fetching skills...");
       const response = await SkillsService.getSkills();
-      console.log("Skills fetched.");
+      console.log("Skills fetched.")
+      setFilteredSkills(response.data);
       setSkills(response.data);
     } catch (error) {
       console.error(error);
       setSkills(null);
-    } 0
+    }
   };
 
   const loadCertifications = async () => {
@@ -42,6 +46,19 @@ export default function Skills() {
     }
   };
 
+  const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSearchTerm(event.target.value);
+  })
+
+  useEffect(() => {
+    const delayFilter = setTimeout(() => {
+      setFilteredSkills(skills!.filter((x) => x.name.toLowerCase().includes(searchTerm.toLowerCase())));
+      setTopSkillsChecked(false);
+    }, 500);
+
+    return () => clearTimeout(delayFilter);
+  }, [searchTerm]);
+
   return (
     <Container className="PageContainer" id="skills" maxWidth="lg">
       <Box m="auto" className="ContentContainer">
@@ -49,7 +66,24 @@ export default function Skills() {
         <Box width={"75%"} m="auto" mb={8}>
           <AnimatePresence mode="wait">
             {skills ? (
-              <SkillsList key={skills.at(0)?.id} skills={skills} />
+              <Box key={skills.at(0)?.id}>
+                <Box>
+                  <Input
+                    placeholder="Filter skills"
+                    onChange={handleSearchTerm}
+                    sx={{ mr: 2 }} />
+                  <FormControlLabel
+                    label="Top Skills"
+                    control={
+                      <Checkbox
+                        checked={topSkillsChecked}
+                        onChange={(e) => setTopSkillsChecked(e.target.checked)}
+                      />
+                    }
+                  />
+                </Box>
+                <SkillsList key={skills.at(0)?.id} skills={filteredSkills} checked={topSkillsChecked} />
+              </Box>
             ) : (
               <LoadingIcon key={skills} source={skills} />
             )}

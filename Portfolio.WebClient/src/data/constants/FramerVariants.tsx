@@ -54,6 +54,10 @@ export const fadeUpChild = {
     opacity: 1,
     y: 0,
   },
+  exit: {
+    opacity: 0,
+    y: 50,
+  },
 };
 
 export const fadeInChild = {
