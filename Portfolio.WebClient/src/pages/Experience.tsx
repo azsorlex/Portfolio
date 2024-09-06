@@ -31,7 +31,6 @@ export default function Experience() {
 
   return (
     <Container className="PageContainer" maxWidth="lg">
-      <Box className="page-padding" />
       <Box id="experience" height="48px" />
       <Typography variant="h2">EXPERIENCE</Typography>
       <Container maxWidth="sm">

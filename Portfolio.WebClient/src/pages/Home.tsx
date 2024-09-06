@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
-import { fadeUpChild, itemContainer } from "../data/constants/FramerVariants";
+import { itemContainer } from "../data/constants/FramerVariants";
 
 type ExperienceType = Array<ExperienceDTO> | undefined | null;
 
