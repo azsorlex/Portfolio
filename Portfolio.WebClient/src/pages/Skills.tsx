@@ -14,7 +14,7 @@ export default function Skills() {
   const [skills, setSkills] = useState<SkillsType>(undefined);
   const [certifications, setCertifications] = useState<CertificationsType>(undefined);
   const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>('hello world');
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredSkills, setFilteredSkills] = useState<SkillsType>([]);
 
   useEffect(() => {
@@ -53,7 +53,8 @@ export default function Skills() {
 
   useEffect(() => {
     const delayFilter = setTimeout(() => {
-      setFilteredSkills(skills!.filter((x) => x.name.toLowerCase().includes(searchTerm.toLowerCase())));
+      const regex = new RegExp(searchTerm.toLowerCase());
+      setFilteredSkills(skills?.filter(({ name }) => name.toLowerCase().match(regex)));
       setTopSkillsChecked(false);
     }, 500);
 
@@ -70,7 +71,7 @@ export default function Skills() {
               <Box key={skills.at(0)?.id}>
                 <Box>
                   <Input
-                    placeholder="Filter skills"
+                    placeholder="Find (can use RegEx)"
                     onChange={handleSearchTerm}
                     sx={{ mr: 2 }} />
                   <FormControlLabel
