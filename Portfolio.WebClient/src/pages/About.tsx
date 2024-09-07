@@ -4,10 +4,10 @@ export default function About() {
   return (
     <Container className="PageContainer" id="about" maxWidth="lg">
       <Box m="auto" className="ContentContainer">
-        <Typography variant="h2" mb={8}>
-          ABOUT ME
+        <Typography variant="h2" textTransform="uppercase" gutterBottom>
+          About Me
         </Typography>
-        <Typography mb={8}>
+        <Typography paragraph>
           {`I'm a software develper that's been doing what I do since 2014.
                 From humble beginings where I first picked up HTML4 and said "This. This is what I want to do.",
                 I've been gradually honing my craft through academia and individual study.

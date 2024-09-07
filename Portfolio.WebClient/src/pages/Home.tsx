@@ -37,19 +37,19 @@ export default function Home() {
     <AnimatedMain>
       <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - 48px)" }}>
         <Box m="auto">
-          <Typography variant="subtitle2">{"Hi, I'm"}</Typography>
-          <Typography variant="h1" textTransform="uppercase">
+          <Typography variant="subtitle1">{"Hi, I'm"}</Typography>
+          <Typography variant="h1" textTransform="uppercase" paragraph>
             {"Alexander Rozsa"}
           </Typography>
-          <Typography variant="subtitle1" mb={4}>
+          <Typography mb={4}>
             {
-              "But you can call me Alex. I'm a passionate software engineer with experience in full stack development, who enjoys building dynamic products from start to finish."
+              "But you can call me Alex. I'm a passionate software developer with experience in full stack development, who enjoys building dynamic products from start to finish."
             }
           </Typography>
           <Typography variant="h5" textTransform="uppercase" gutterBottom>
             About this site
           </Typography>
-          <Typography variant="subtitle1" mb={4}>
+          <Typography variant="body2" mb={4}>
             {
               "This site is also dynamic. Most of the info on here is retrieved from a custom API, which in turn gets data from multiple databases. Take a look:"
             }

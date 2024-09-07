@@ -1,15 +1,5 @@
 import { Code, Portrait, School } from "@mui/icons-material";
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Container,
-  Link,
-  Toolbar,
-  alpha,
-  useScrollTrigger,
-  useTheme,
-} from "@mui/material";
+import { AppBar, Avatar, Box, Container, Link, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
 import NavLink from "./NavLink";
 import { ScrollToTop } from "../../App";
 import { useLocation } from "react-router-dom";

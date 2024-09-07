@@ -1,23 +1,6 @@
 import { useState } from "react";
-import {
-  AppBar,
-  Box,
-  Divider,
-  Link,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import {
-  Code,
-  Copyright,
-  GitHub,
-  Home,
-  LinkedIn,
-  Send,
-} from "@mui/icons-material";
+import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typography, } from "@mui/material";
+import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
 import dayjs from "dayjs";
 import NavLink from "./NavLink";
 
