@@ -1,4 +1,4 @@
-import { Code, Portrait, School } from "@mui/icons-material";
+import { Code, DocumentScanner, Portrait, School } from "@mui/icons-material";
 import { AppBar, Avatar, Box, Container, Link, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
 import NavLink from "./NavLink";
 import { ScrollToTop } from "../../App";
@@ -21,7 +21,7 @@ export default function Header() {
       sx={{
         backgroundColor: alpha(theme.palette.primary.main, 0.2),
         boxShadow: 0,
-        zIndex: 0,
+        zIndex: 1,
       }}
     >
       <Container component="div" maxWidth="lg">
@@ -42,13 +42,14 @@ export default function Header() {
             />
           )}
           <Box className="spacer" />
-          <NavLink title="About" to="#about" icon={<Portrait />} />
+          <NavLink title="About" to="/#about" icon={<Portrait />} />
           <NavLink
             title="Skills & Certifications"
-            to="#skills"
+            to="/#skills"
             icon={<School />}
           />
-          <NavLink title="Experience" to="#experience" icon={<Code />} />
+          <NavLink title="Experience" to="/#experience" icon={<Code />} />
+          <NavLink title="Resume" to="/resume" icon={<DocumentScanner />} />
         </Toolbar>
       </Container>
     </AppBar>

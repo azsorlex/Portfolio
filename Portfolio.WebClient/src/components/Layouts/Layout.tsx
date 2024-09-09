@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment, useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Box, Fab } from "@mui/material";
@@ -7,10 +7,10 @@ import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import { RoutesProps } from "react-router-dom";
 
 export default function Layout({ children }: RoutesProps) {
-  const themeContext = React.useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Header />
       <Box className="spacer" />
       {children}
@@ -23,6 +23,6 @@ export default function Layout({ children }: RoutesProps) {
         {themeContext.darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
       </Fab>
       <Footer />
-    </React.Fragment>
+    </Fragment>
   );
 }

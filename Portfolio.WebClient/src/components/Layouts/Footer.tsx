@@ -9,15 +9,11 @@ export default function Footer() {
   const open = Boolean(anchorEl);
 
   const handleClick = (event: any) => {
-    document.body.classList.remove("loaded");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(undefined);
-    setTimeout(() => {
-      document.body.classList.add("loaded");
-    }, 5);
   };
 
   return (
