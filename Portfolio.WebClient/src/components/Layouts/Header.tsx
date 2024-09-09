@@ -49,7 +49,6 @@ export default function Header() {
             icon={<School />}
           />
           <NavLink title="Experience" to="/#experience" icon={<Code />} />
-          <NavLink title="Resume" to="/resume" icon={<DocumentScanner />} />
         </Toolbar>
       </Container>
     </AppBar>
