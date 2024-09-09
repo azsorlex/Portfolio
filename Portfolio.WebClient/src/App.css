@@ -1,8 +1,5 @@
-﻿#root {
-    min-height: 100vh;
-}
-
-#root,
+﻿#root,
+.PageContainer,
 main {
     display: flex !important;
     text-align: center;
@@ -13,6 +10,7 @@ main {
 main,
 .spacer {
     flex-grow: 1;
+    gap: 50dvh;
 }
 
 header.transparent {
@@ -34,27 +32,4 @@ header.blurred {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-
-.animation-zone {
-    opacity: 0;
-    transition: opacity 1s ease-out 0.25s;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .animation-zone-animation {
-        animation: slideUp 1.5s ease-out 0.25s;
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        transform: translateY(25px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
 }

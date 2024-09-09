@@ -1,9 +1,14 @@
 import { Box, Link, Typography } from "@mui/material"
 import { motion } from "framer-motion";
 import { fadeUpChild } from "../../data/constants/FramerVariants";
+import { MediaDTO } from "../../services/ExperiencesService";
 
-export default function MediaSection({ media = [] }) {
-    if (media.length == 0) {
+interface MediaSectionProps {
+    media?: Array<MediaDTO>,
+};
+
+export default function MediaSection({ media }: MediaSectionProps) {
+    if (!media || media.length == 0) {
         return;
     }
 

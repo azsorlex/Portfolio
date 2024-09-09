@@ -9,7 +9,6 @@ namespace Portfolio.Application.Models
         public string CredentialId { get; init; }
         public DateOnly IssueDate { get; init; }
         public DateOnly? ExpiryDate { get; init; }
-        public string? Image { get; init; }
         public string? URL { get; init; }
     }
 }
