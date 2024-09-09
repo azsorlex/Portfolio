@@ -6,6 +6,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  transition: all 0.25s ease-in-out;
+}
+
 @supports (color: var(--custom)) {
   ::-webkit-scrollbar {
     width: 8px;
