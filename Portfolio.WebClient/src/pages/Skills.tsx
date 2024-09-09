@@ -26,7 +26,7 @@ export default function Skills() {
     try {
       console.log("Fetching skills...");
       const response = await SkillsService.getSkills();
-      console.log("Skills fetched.")
+      console.log("Skills fetched.");
       setFilteredSkills(response.data);
       setSkills(response.data);
     } catch (error) {
@@ -54,7 +54,7 @@ export default function Skills() {
   useEffect(() => {
     const delayFilter = setTimeout(() => {
       const regex = new RegExp(searchTerm.toLowerCase());
-      setFilteredSkills(skills?.filter(({ name }) => name.toLowerCase().match(regex)));
+      setFilteredSkills(skills!.filter(({ name }) => name.toLowerCase().match(regex)));
       setTopSkillsChecked(false);
     }, 500);
 
