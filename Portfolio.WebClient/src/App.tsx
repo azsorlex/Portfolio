@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import "./App.css";
-import GetDesignTokens from "./components/GetDesignTokens";
+import getDesignTokens from "./components/GetDesignTokens";
 import Layout from "./components/Layouts/Layout";
 import Home from "./pages/Home";
 
@@ -34,7 +34,7 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(systemDarkMode);
   const theme = useMemo(
     () =>
-      responsiveFontSizes(createTheme(GetDesignTokens(getModeName(darkMode)))),
+      responsiveFontSizes(createTheme(getDesignTokens(getModeName(darkMode)))),
     [darkMode]
   );
 

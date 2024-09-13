@@ -5,6 +5,7 @@ In the future I plan to finalise the site structure as well as add in additional
 
 ## Built with:
 - React.js
+- TypeScript
 - Material UI
 - Framer Motion
 - Vite

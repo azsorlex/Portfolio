@@ -17,7 +17,7 @@ const headerFont = {
     ].join(','),
 };
 
-const GetDesignTokens = (mode: ModeProp) => ({
+const getDesignTokens = (mode: ModeProp) => ({
     components: {
         MuiCssBaseline: {
             styleOverrides: {
@@ -73,4 +73,4 @@ const GetDesignTokens = (mode: ModeProp) => ({
     }
 });
 
-export default GetDesignTokens;
+export default getDesignTokens;

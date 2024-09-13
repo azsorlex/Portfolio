@@ -30,7 +30,7 @@ export default function Experience() {
   };
 
   return (
-    <Container className="PageContainer" maxWidth="lg">
+    <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - (48px))" }}>
       <Box id="experience" height="48px" />
       <Typography variant="h2">EXPERIENCE</Typography>
       <Container maxWidth="sm">

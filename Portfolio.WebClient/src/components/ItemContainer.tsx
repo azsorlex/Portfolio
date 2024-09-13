@@ -20,7 +20,6 @@ export const ItemContainer = ({ children, id }: ItemContainerProps) => (
     variants={itemContainer}
     initial="hidden"
     whileInView="show"
-    sx={{ backgroundColor: "auto" }}
   >
     {children}
   </Container>
