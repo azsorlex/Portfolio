@@ -1,11 +1,11 @@
-import { Code, DocumentScanner, Portrait, School } from "@mui/icons-material";
-import { AppBar, Avatar, Box, Container, Link, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
+import { Code, DarkModeOutlined, DocumentScanner, Home, LightModeOutlined, Portrait, School } from "@mui/icons-material";
+import { AppBar, Box, Container, Fab, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
 import NavLink from "./NavLink";
-import { ScrollToTop } from "../../App";
-import { useLocation } from "react-router-dom";
+import { ThemeContext } from "../../App";
+import { useContext } from "react";
 
 export default function Header() {
-  const { pathname } = useLocation();
+  const themeContext = useContext(ThemeContext);
   const theme = useTheme();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -26,29 +26,20 @@ export default function Header() {
     >
       <Container component="div" maxWidth="lg">
         <Toolbar variant="dense">
-          {pathname === "/" ? (
-            <Avatar
-              alt="AR"
-              src="/android-chrome-192x192.png"
-              onClick={() => ScrollToTop(false)}
-              sx={{ ":hover": { cursor: "pointer" } }}
-            />
-          ) : (
-            <Avatar
-              alt="AR"
-              src="/android-chrome-192x192.png"
-              component={Link}
-              href="/"
-            />
-          )}
+          <Fab
+            color="primary"
+            aria-label="toggle-theme"
+            size="small"
+            onClick={themeContext.update}
+          >
+            {themeContext.darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
+          </Fab>
           <Box className="spacer" />
-          <NavLink title="About" to="/#about" icon={<Portrait />} />
-          <NavLink
-            title="Skills & Certifications"
-            to="/#skills"
-            icon={<School />}
-          />
-          <NavLink title="Experience" to="/#experience" icon={<Code />} />
+          <NavLink title="Home" href="/" icon={<Home />} />
+          <NavLink title="About" href="/#about" icon={<Portrait />} />
+          <NavLink title="Skills & Certifications" href="/#skills" icon={<School />} />
+          <NavLink title="Experience" href="/#experience" icon={<Code />} />
+          <NavLink title="Resume" href="/resume" icon={<DocumentScanner />} />
         </Toolbar>
       </Container>
     </AppBar>

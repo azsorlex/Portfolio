@@ -71,7 +71,7 @@ export default function Home() {
                   <Typography
                     variant="h5"
                     textTransform="uppercase"
-                  >{`currently working at:`}</Typography>
+                  >{`currently working as a:`}</Typography>
                   <AnimatePresence mode="wait">
                     {currentWork ? (
                       currentWork.length > 0 ? (
@@ -89,7 +89,7 @@ export default function Home() {
                           experience={{
                             id: "experience",
                             type: "Work",
-                            name: "Nowhere",
+                            name: "Job Seeker",
                           }}
                         />
                       )

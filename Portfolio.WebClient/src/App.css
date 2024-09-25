@@ -37,3 +37,7 @@ header.blurred {
     -ms-user-select: none;
     user-select: none;
 }
+
+.ResumeViewer {
+    z-index: -1;
+}

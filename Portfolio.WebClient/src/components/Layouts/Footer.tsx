@@ -79,15 +79,15 @@ export default function Footer() {
         </Menu>
         <NavLink
           title="LinkedIn"
+          href="https://www.linkedin.com/in/alexander-rozsa"
           icon={<LinkedIn />}
-          to="https://www.linkedin.com/in/alexander-rozsa"
           target="_blank"
           rel="noopener"
         />
         <NavLink
           title="Send me a message"
+          href="mailto:arozsa@proton.me"
           icon={<Send />}
-          to="mailto:arozsa@proton.me"
           target="_blank"
           rel="noopener"
         />
