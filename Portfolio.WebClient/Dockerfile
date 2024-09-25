@@ -6,6 +6,7 @@ EXPOSE 5173
 FROM base as build
 COPY . .
 RUN npm install
+RUN npm run lint
 RUN npm run build
 
 FROM base as final

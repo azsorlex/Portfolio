@@ -1,27 +1,35 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Box, Fab } from "@mui/material";
-import { ThemeContext } from "../../App";
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
-import { RoutesProps } from "react-router-dom";
+import { Box } from "@mui/material";
+import { scrollToTop } from "../../App";
+import { RoutesProps, useLocation } from "react-router-dom";
+import { animatedMainVariants } from "../../data/constants/FramerVariants";
 
 export default function Layout({ children }: RoutesProps) {
-  const themeContext = useContext(ThemeContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    scrollToTop(true);
+  }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      document.getElementById(location.hash.slice(1))?.scrollIntoView();
+    } else if (location.pathname === "/") {
+      scrollToTop(false);
+    } else {
+      setTimeout(() => {
+        scrollToTop(false);
+      }, animatedMainVariants.exit.transition.duration * 1050);
+    }
+  }, [location]);
 
   return (
     <Fragment>
       <Header />
       <Box className="spacer" />
       {children}
-      <Fab
-        color="primary"
-        aria-label="toggle-theme"
-        sx={{ position: "fixed", bottom: "5dvh", right: "5dvw" }}
-        onClick={themeContext.update}
-      >
-        {themeContext.darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
-      </Fab>
       <Footer />
     </Fragment>
   );

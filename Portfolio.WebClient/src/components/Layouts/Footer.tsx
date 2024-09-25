@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Toolbar, Tooltip, Typography, } from "@mui/material";
 import { Code, Copyright, GitHub, Home, LinkedIn, Send } from "@mui/icons-material";
 import dayjs from "dayjs";
 import NavLink from "./NavLink";
 
 export default function Footer() {
-  const [anchorEl, setAnchorEl] = useState(undefined);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: any) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    document.body.classList.remove("loaded");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(undefined);
+    setAnchorEl(null);
+    setTimeout(() => {
+      document.body.classList.add("loaded");
+    }, 5);
   };
 
   return (
@@ -75,15 +79,15 @@ export default function Footer() {
         </Menu>
         <NavLink
           title="LinkedIn"
+          href="https://www.linkedin.com/in/alexander-rozsa"
           icon={<LinkedIn />}
-          to="https://www.linkedin.com/in/alexander-rozsa"
           target="_blank"
           rel="noopener"
         />
         <NavLink
           title="Send me a message"
+          href="mailto:arozsa@proton.me"
           icon={<Send />}
-          to="mailto:arozsa@proton.me"
           target="_blank"
           rel="noopener"
         />

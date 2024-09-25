@@ -17,7 +17,7 @@ export default function WorkExperience({ experience }: WorkExperienceProps) {
       <Typography variant="h4" component={motion.h4} variants={fadeUpChild}>
         {experience.name}
       </Typography>
-      {experience.company !== null && experience.location !== null && (
+      {experience.company && experience.location && (
         <Typography variant="h5" component={motion.h5} variants={fadeUpChild}>
           {`${experience.company}, ${experience.location}`}
         </Typography>
@@ -31,11 +31,11 @@ export default function WorkExperience({ experience }: WorkExperienceProps) {
         }
         `}
       </Typography>
-      {experience.skills!.map((x) => (
+      {experience.skills?.map((x) => (
         <StyledSkill key={`${x}_${experience.id}`} name={x} />
       ))}
       <List sx={{ listStyleType: "disc" }}>
-        {experience.descriptionLines!.map((x) => (
+        {experience.descriptionLines?.map((x) => (
           <ListItem
             key={x}
             sx={{ display: "list-item" }}

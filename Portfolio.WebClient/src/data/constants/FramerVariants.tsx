@@ -1,3 +1,26 @@
+export const animatedMainVariants = {
+  hidden: {
+    opacity: 0,
+    translateY: "25px"
+  },
+  show: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      ease: "easeOut",
+      duration: 1.5,
+      delay: 0.25
+    },
+  },
+  exit: {
+    opacity: 0,
+    translateY: "25px",
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
+
 export const experienceContainer = {
   hidden: {},
   show: {
@@ -32,7 +55,6 @@ export const skillsListContainer = {
 export const itemContainer = {
   hidden: {
     scale: 0.5,
-    zIndex: -100,
   },
   show: {
     scale: 1,
@@ -90,3 +112,4 @@ export const loadingIconVariants = {
     },
   },
 };
+          

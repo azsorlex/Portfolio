@@ -7,6 +7,11 @@ main {
     align-items: center;
 }
 
+.PageContainer,
+.ItemContainer {
+    scroll-margin-top: 60px;
+}
+
 main,
 .spacer {
     flex-grow: 1;
@@ -32,4 +37,8 @@ header.blurred {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.ResumeViewer {
+    z-index: -1;
 }

@@ -1,9 +1,10 @@
 import { Container } from "@mui/material";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { animatedMainVariants } from "../../data/constants/FramerVariants";
 
 interface AnimatedMainProps {
-  children: Array<ReactNode>,
+  children: ReactNode[] | ReactNode,
 };
 
 export default function AnimatedMain({ children }: AnimatedMainProps) {
@@ -11,9 +12,10 @@ export default function AnimatedMain({ children }: AnimatedMainProps) {
     <Container
       maxWidth="xl"
       component={motion.main}
-      initial={{ opacity: 0, translateY: "25px" }}
-      animate={{ opacity: 1, translateY: 0, transition: { ease: "easeOut", duration: 1.5, delay: 0.25 } }}
-      exit={{ opacity: 0, translateY: "25px", transition: { duration: 0.5 } }}
+      variants={animatedMainVariants}
+      initial="hidden"
+      whileInView="show"
+      exit="exit"
     >
       {children}
     </Container>

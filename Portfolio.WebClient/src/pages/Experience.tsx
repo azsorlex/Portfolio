@@ -5,32 +5,34 @@ import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesServic
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 
-type ExperienceType = Array<ExperienceDTO> | undefined | null;
+type ExperienceType = ExperienceDTO[] | undefined | null;
 
 export default function Experience() {
   const [work, setWork] = useState<ExperienceType>(undefined);
   const [projects, setProjects] = useState<ExperienceType>(undefined);
 
   useEffect(() => {
-    getExperience();
+    getExperience()
+      .then((experiences) => {
+        setWork(experiences?.filter((x) => x.type === "Work"));
+        setProjects(experiences?.filter((x) => x.type === "Project"));
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+        setWork(null);
+        setProjects(null);
+      });
   }, []);
 
-  const getExperience = async () => {
-    try {
-      console.log("Fetching experiences...");
-      const response = await ExperiencesService.getExperiences();
-      console.log("Experiences fetched.");
-      setWork(response.data.filter((x) => x.type === "Work"));
-      setProjects(response.data.filter((x) => x.type === "Project"));
-    } catch (error) {
-      console.error(error);
-      setWork(null);
-      setProjects(null);
-    }
+  const getExperience = async (): Promise<ExperienceType> => {
+    console.log("Fetching experiences...");
+    const response = await ExperiencesService.getExperiences();
+    console.log("Experiences fetched.");
+    return response.data;
   };
 
   return (
-    <Container className="PageContainer" maxWidth="lg">
+    <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - (48px))" }}>
       <Box id="experience" height="48px" />
       <Typography variant="h2">EXPERIENCE</Typography>
       <Container maxWidth="sm">

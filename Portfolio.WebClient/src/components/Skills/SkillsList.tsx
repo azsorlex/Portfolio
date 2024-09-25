@@ -13,14 +13,14 @@ export default function SkillsList({ skills, checked }: SkillsListProps) {
   return (
     <AnimatePresence mode="wait">
       <Box
-        key={skills!.map((s) => s.name).join()}
+        key={skills?.map((s) => s.name).join()}
         component={motion.div}
         variants={skillsListContainer}
         initial="hidden"
         whileInView="show"
         exit="exit"
       >
-        {skills!.map((skill) => (
+        {skills?.map((skill) => (
           <StyledSkill
             key={skill.id}
             name={skill.name}

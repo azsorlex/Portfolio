@@ -4,7 +4,7 @@ import { Tooltip } from "@mui/material"
 import { loadingIconVariants } from "../data/constants/FramerVariants";
 
 interface LoadingIconProps {
-  source: Array<Record<any, any>> | undefined | null,
+  source: object[] | undefined | null,
 };
 
 export default function LoadingIcon({ source }: LoadingIconProps) {

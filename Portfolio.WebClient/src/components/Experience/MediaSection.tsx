@@ -4,7 +4,7 @@ import { fadeUpChild } from "../../data/constants/FramerVariants";
 import { MediaDTO } from "../../services/ExperiencesService";
 
 interface MediaSectionProps {
-    media?: Array<MediaDTO>,
+    media?: MediaDTO[],
 };
 
 export default function MediaSection({ media }: MediaSectionProps) {

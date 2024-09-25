@@ -23,7 +23,7 @@ export default function CurrentExperienceBox({ experience }: CurrentExperiencePr
       <Link href={`#${experience.id}`} color="secondary">
         <Typography variant="h6" component={motion.h6} variants={fadeUpChild}>
           {experience.company && experience.type === "Work"
-            ? `${experience.company} as a${experience.name.match("^[aeiouAEIOU].*") ? "n" : ""} ${experience.name}`
+            ? `${experience.company} as a${(/^[aeiouAEIOU].*/.exec(experience.name)) ? "n" : ""} ${experience.name}`
             : experience.name}
         </Typography>
       </Link>

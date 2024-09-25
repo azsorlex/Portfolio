@@ -2,13 +2,31 @@ import { blue, grey } from "@mui/material/colors";
 import "@fontsource-variable/source-code-pro";
 import "@fontsource-variable/noto-serif";
 
+declare module '@mui/material/styles' {
+    interface Theme {
+        palette: {
+            primary: {
+                main: string;
+            };
+            secondary: {
+                main: string;
+            }
+            background: {
+                default: string;
+                paper: string;
+                experience: string;
+            };
+        };
+    }
+}
+
 type ModeProp = 'light' | 'dark';
 
 const dark = grey[900];
-const light = grey['A200'];
+const light = grey.A200;
 const accent = blue[400];
 const experienceDark = grey[800];
-const experienceLight = grey['A400'];
+const experienceLight = grey.A400;
 
 const headerFont = {
     fontFamily: [
@@ -17,7 +35,7 @@ const headerFont = {
     ].join(','),
 };
 
-const GetDesignTokens = (mode: ModeProp) => ({
+const getDesignTokens = (mode: ModeProp) => ({
     components: {
         MuiCssBaseline: {
             styleOverrides: {
@@ -73,4 +91,4 @@ const GetDesignTokens = (mode: ModeProp) => ({
     }
 });
 
-export default GetDesignTokens;
+export default getDesignTokens;

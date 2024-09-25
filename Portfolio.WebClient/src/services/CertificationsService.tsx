@@ -15,7 +15,7 @@ export interface CertificationDTO {
 const CertificationsService = {
 
     getCertifications: async () => {
-        return await axios.get<Array<CertificationDTO>>(BASE_ENDPOINTS.CERTIFICATIONS);
+        return await axios.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS);
     }
 
 }
