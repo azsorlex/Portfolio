@@ -7,9 +7,9 @@ export interface ExperienceDTO {
     name: string,
     company?: string,
     location?: string,
-    skills?: Array<string>,
-    descriptionLines?: Array<string>,
-    media?: Array<MediaDTO>,
+    skills?: string[],
+    descriptionLines?: string[],
+    media?: MediaDTO[],
     startDate?: string,
     endDate?: string,
 };
@@ -23,11 +23,11 @@ export interface MediaDTO {
 const ExperiencesService = {
 
     getExperiences: async () => {
-        return await axios.get<Array<ExperienceDTO>>(BASE_ENDPOINTS.EXPERIENCES);
+        return await axios.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES);
     },
 
     getCurrentExperiences: async () => {
-        return await axios.get<Array<ExperienceDTO>>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`);
+        return await axios.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`);
     }
 
 }

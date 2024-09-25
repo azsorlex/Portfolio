@@ -1,13 +1,14 @@
 import { styled } from "@mui/material";
 import { motion } from "framer-motion";
 import { itemContainer } from "../data/constants/FramerVariants";
+import { ReactNode } from "react";
 
 interface ItemContainerProps {
-  children: any,
+  children: ReactNode,
   id: string,
 };
 
-const Container = styled(motion.div)(({ theme }: any) => ({
+const Container = styled(motion.div)(({ theme }) => ({
   padding: theme.spacing(4),
   margin: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
@@ -17,6 +18,7 @@ const Container = styled(motion.div)(({ theme }: any) => ({
 export const ItemContainer = ({ children, id }: ItemContainerProps) => (
   <Container
     id={id}
+    className="ItemContainer"
     variants={itemContainer}
     initial="hidden"
     whileInView="show"

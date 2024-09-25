@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { animatedMainVariants } from "../../data/constants/FramerVariants";
 
 interface AnimatedMainProps {
-  children: Array<ReactNode> | ReactNode,
+  children: ReactNode[] | ReactNode,
 };
 
 export default function AnimatedMain({ children }: AnimatedMainProps) {

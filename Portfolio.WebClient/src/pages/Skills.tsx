@@ -7,8 +7,8 @@ import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence } from "framer-motion";
 import CertificationsList from "../components/Skills/CertificationsList";
 
-export type SkillsType = Array<SkillDTO> | undefined | null;
-export type CertificationsType = Array<CertificationDTO> | undefined | null;
+export type SkillsType = SkillDTO[] | undefined | null;
+export type CertificationsType = CertificationDTO[] | undefined | null;
 
 export default function Skills() {
   const [skills, setSkills] = useState<SkillsType>(undefined);
@@ -18,33 +18,37 @@ export default function Skills() {
   const [filteredSkills, setFilteredSkills] = useState<SkillsType>([]);
 
   useEffect(() => {
-    loadSkills();
-    loadCertifications();
+    getSkillsAsync()
+      .then((skills) => {
+        setFilteredSkills(skills);
+        setSkills(skills);
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+        setSkills(null);
+      });
+    loadCertificationsAsync()
+      .then((certifications) => {
+        setCertifications(certifications);
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+        setCertifications(null);
+      });
   }, []);
 
-  const loadSkills = async () => {
-    try {
-      console.log("Fetching skills...");
-      const response = await SkillsService.getSkills();
-      console.log("Skills fetched.");
-      setFilteredSkills(response.data);
-      setSkills(response.data);
-    } catch (error) {
-      console.error(error);
-      setSkills(null);
-    }
+  const getSkillsAsync = async (): Promise<SkillsType> => {
+    console.log("Fetching skills...");
+    const response = await SkillsService.getSkills();
+    console.log("Skills fetched.");
+    return response.data;
   };
 
-  const loadCertifications = async () => {
-    try {
-      console.log("Fetching certifications...");
-      const response = await CertificationsService.getCertifications();
-      console.log("Certifications fetched.");
-      setCertifications(response.data);
-    } catch (error) {
-      console.error(error);
-      setCertifications(null);
-    }
+  const loadCertificationsAsync = async (): Promise<CertificationsType> => {
+    console.log("Fetching certifications...");
+    const response = await CertificationsService.getCertifications();
+    console.log("Certifications fetched.");
+    return response.data;
   };
 
   const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -52,13 +56,15 @@ export default function Skills() {
   })
 
   useEffect(() => {
-    const delayFilter = setTimeout(() => {
-      const regex = new RegExp(searchTerm.toLowerCase());
-      setFilteredSkills(skills!.filter(({ name }) => name.toLowerCase().match(regex)));
-      setTopSkillsChecked(false);
-    }, 500);
+    if (skills) {
+      const delayFilter = setTimeout(() => {
+        const regex = new RegExp(searchTerm.toLowerCase());
+        setFilteredSkills(skills.filter(({ name }) => name.toLowerCase().match(regex)));
+        setTopSkillsChecked(false);
+      }, 500);
 
-    return () => clearTimeout(delayFilter);
+      return () => { clearTimeout(delayFilter); };
+    }
   }, [searchTerm]);
 
   return (
@@ -79,7 +85,7 @@ export default function Skills() {
                     control={
                       <Checkbox
                         checked={topSkillsChecked}
-                        onChange={(e) => setTopSkillsChecked(e.target.checked)}
+                        onChange={(e) => { setTopSkillsChecked(e.target.checked); }}
                       />
                     }
                   />

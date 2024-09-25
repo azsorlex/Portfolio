@@ -20,7 +20,7 @@ export default function Resume() {
         setNumPages(numPages);
     });
 
-    const downloadPDF = async () => {
+    const downloadPDF = () => {
         saveAs(url, "Alexander Rozsa - Resume.pdf");
     }
 

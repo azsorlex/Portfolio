@@ -11,11 +11,11 @@ export interface SkillDTO {
 const SkillsService = {
 
     getSkills: async () => {
-        return await axios.get<Array<SkillDTO>>(BASE_ENDPOINTS.SKILLS);
+        return await axios.get<SkillDTO[]>(BASE_ENDPOINTS.SKILLS);
     },
 
     getTopSkills: async (limit: number) => {
-        return await axios.get<Array<SkillDTO>>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`);
+        return await axios.get<SkillDTO[]>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`);
     }
 
 }

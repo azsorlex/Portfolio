@@ -1,10 +1,11 @@
 import { Link, Tooltip } from "@mui/material";
+import { ReactElement } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
 interface NavLinkProps {
     title: string,
     href: string,
-    icon: any,
+    icon: ReactElement,
     target?: string,
     rel?: string,
 }

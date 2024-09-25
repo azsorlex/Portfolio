@@ -13,7 +13,7 @@ export interface QualificationDTO {
 const QualificationsService = {
 
     getQualifications: async () => {
-        return await axios.get<Array<QualificationDTO>>(BASE_ENDPOINTS.QUALIFICATIONS);
+        return await axios.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS);
     }
 
 }

@@ -25,6 +25,13 @@ export default [
       },
     },
   },
+  {
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -33,6 +40,12 @@ export default [
     rules: {
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        {
+          allowNumber: true,
+        },
+      ],
     },
   },
 ];

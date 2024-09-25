@@ -14,7 +14,7 @@ export default function Layout({ children }: RoutesProps) {
   }, []);
 
   useEffect(() => {
-    if (location!.hash) {
+    if (location.hash) {
       document.getElementById(location.hash.slice(1))?.scrollIntoView();
     } else if (location.pathname === "/") {
       scrollToTop(false);
@@ -23,7 +23,6 @@ export default function Layout({ children }: RoutesProps) {
         scrollToTop(false);
       }, animatedMainVariants.exit.transition.duration * 1050);
     }
-    console.log(children);
   }, [location]);
 
   return (

@@ -12,7 +12,7 @@ export interface ContactDTO {
 const ContactsService = {
     
     getContacts: async () => {
-        return await axios.get<Array<ContactDTO>>(BASE_ENDPOINTS.CONTACTS);
+        return await axios.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS);
     }
 
 }

@@ -42,7 +42,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (location!.hash) {
+    if (location.hash) {
       document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" });
     } else {
       scrollToTop(false);

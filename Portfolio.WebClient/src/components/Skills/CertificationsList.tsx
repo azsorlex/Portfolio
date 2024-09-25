@@ -16,18 +16,18 @@ export default function CertificationsList({ certifications }: CertificationsLis
             initial="hidden"
             whileInView="show"
         >
-            {certifications!.map((skill) => {
-                    return skill.url !== null ? (
-                        <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
-                            <StyledSkill name={skill.name} />
-                        </Link>
-                    ) : (
-                        <StyledSkill
-                            key={skill.id}
-                            name={skill.name}
-                        />
-                    );
-                })}
+            {certifications?.map((skill) => {
+                return skill.url ? (
+                    <Link key={skill.id} href={skill.url} target="_blank" rel="noopener">
+                        <StyledSkill name={skill.name} />
+                    </Link>
+                ) : (
+                    <StyledSkill
+                        key={skill.id}
+                        name={skill.name}
+                    />
+                );
+            })}
         </Box>
     );
 }
