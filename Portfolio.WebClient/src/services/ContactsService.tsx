@@ -1,7 +1,7 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { BaseDTO } from './BaseService';
 
-export interface ContactDTO {
+export interface ContactDTO extends BaseDTO {
     id: number,
     icon: string,
     name: string,
@@ -12,7 +12,7 @@ export interface ContactDTO {
 const ContactsService = {
     
     getContacts: async () => {
-        return await axios.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS);
+        return await BaseService.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS);
     }
 
 }

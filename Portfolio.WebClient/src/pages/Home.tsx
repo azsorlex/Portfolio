@@ -9,32 +9,19 @@ import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
 import { itemContainer } from "../data/constants/FramerVariants";
-
-type ExperienceType = ExperienceDTO[] | undefined | null;
+import { ApiResponseType } from "../services/BaseService";
 
 export default function Home() {
   const [currentExperienceClicked, setCurrentExperienceClicked] = useState<boolean>(false);
-  const [currentWork, setCurrentWork] = useState<ExperienceType>(undefined);
-  const [currentProjects, setCurrentProjects] = useState<ExperienceType>(undefined);
-
-  const getCurrentExperiencesAsync = async (): Promise<ExperienceType> => {
-    console.log("Fetching current experiences...");
-    const response = await ExperiencesService.getCurrentExperiences();
-    console.log("Current experiences fetched.");
-    return response.data;
-  }
+  const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
+  const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
 
   const getCurrentExperience = () => {
     setCurrentExperienceClicked(true);
-    getCurrentExperiencesAsync()
+    ExperiencesService.getCurrentExperiences()
       .then((experiences) => {
         setCurrentWork(experiences?.filter((x) => x.type === "Work"));
         setCurrentProjects(experiences?.filter((x) => x.type === "Project"));
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setCurrentWork(null);
-        setCurrentProjects(null);
       });
   };
 

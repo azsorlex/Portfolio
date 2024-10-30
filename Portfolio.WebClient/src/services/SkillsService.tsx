@@ -1,21 +1,19 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
-export interface SkillDTO {
-    id: string,
-    name: string,
+export interface SkillDTO extends BaseDTO {
     type: string,
     priority: number,
 };
 
 const SkillsService = {
 
-    getSkills: async () => {
-        return await axios.get<SkillDTO[]>(BASE_ENDPOINTS.SKILLS);
+    getSkills: async (): Promise<ApiResponseType<SkillDTO[]>> => {
+        return await BaseService.get<SkillDTO[]>(BASE_ENDPOINTS.SKILLS);
     },
 
-    getTopSkills: async (limit: number) => {
-        return await axios.get<SkillDTO[]>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`);
+    getTopSkills: async (limit: number): Promise<ApiResponseType<SkillDTO[]>> => {
+        return await BaseService.get<SkillDTO[]>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`);
     }
 
 }

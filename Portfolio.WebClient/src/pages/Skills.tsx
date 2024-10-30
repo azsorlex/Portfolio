@@ -1,55 +1,35 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import SkillsService, { SkillDTO } from "../services/SkillsService";
 import CertificationsService, { CertificationDTO } from "../services/CertificationsService";
 import SkillsList from "../components/Skills/SkillsList";
 import { Box, Checkbox, Container, FormControlLabel, Input, Typography } from "@mui/material";
 import LoadingIcon from "../components/LoadingIcon";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useInView } from "framer-motion";
 import CertificationsList from "../components/Skills/CertificationsList";
-
-export type SkillsType = SkillDTO[] | undefined | null;
-export type CertificationsType = CertificationDTO[] | undefined | null;
+import { ApiResponseType } from "../services/BaseService";
 
 export default function Skills() {
-  const [skills, setSkills] = useState<SkillsType>(undefined);
-  const [certifications, setCertifications] = useState<CertificationsType>(undefined);
+  const [skills, setSkills] = useState<ApiResponseType<SkillDTO[]>>(undefined);
+  const [certifications, setCertifications] = useState<ApiResponseType<CertificationDTO[]>>(undefined);
   const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filteredSkills, setFilteredSkills] = useState<SkillsType>([]);
+  const [filteredSkills, setFilteredSkills] = useState<ApiResponseType<SkillDTO[]>>([]);
+  const loadSkillsRef = useRef(null);
+  const isInView = useInView(loadSkillsRef, { once: true });
 
   useEffect(() => {
-    getSkillsAsync()
-      .then((skills) => {
-        setFilteredSkills(skills);
-        setSkills(skills);
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setSkills(null);
-      });
-    loadCertificationsAsync()
-      .then((certifications) => {
-        setCertifications(certifications);
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setCertifications(null);
-      });
-  }, []);
-
-  const getSkillsAsync = async (): Promise<SkillsType> => {
-    console.log("Fetching skills...");
-    const response = await SkillsService.getSkills();
-    console.log("Skills fetched.");
-    return response.data;
-  };
-
-  const loadCertificationsAsync = async (): Promise<CertificationsType> => {
-    console.log("Fetching certifications...");
-    const response = await CertificationsService.getCertifications();
-    console.log("Certifications fetched.");
-    return response.data;
-  };
+    if (isInView) {
+      SkillsService.getSkills()
+        .then(r => {
+          setFilteredSkills(r);
+          setSkills(r);
+        });
+      CertificationsService.getCertifications()
+        .then((r) => {
+          setCertifications(r);
+        });
+    }
+  }, [isInView]);
 
   const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setSearchTerm(event.target.value);
@@ -71,7 +51,7 @@ export default function Skills() {
     <Container className="PageContainer" id="skills" maxWidth="lg">
       <Box m="auto" className="ContentContainer">
         <Typography variant="h2">SKILLS</Typography>
-        <Box width={"75%"} m="auto" mb={8}>
+        <Box width={"75%"} m="auto" mb={8} ref={loadSkillsRef}>
           <AnimatePresence mode="wait">
             {skills ? (
               <Box key={skills.at(0)?.id}>

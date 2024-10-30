@@ -1,5 +1,5 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService from './BaseService';
 
 export interface QualificationDTO {
     id: number,
@@ -13,7 +13,7 @@ export interface QualificationDTO {
 const QualificationsService = {
 
     getQualifications: async () => {
-        return await axios.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS);
+        return await BaseService.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS);
     }
 
 }

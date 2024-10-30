@@ -1,9 +1,7 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { BaseDTO } from './BaseService';
 
-export interface CertificationDTO {
-    id: number,
-    name: string,
+export interface CertificationDTO extends BaseDTO {
     issuer: string,
     parent: null,
     credentialId: string,
@@ -15,7 +13,7 @@ export interface CertificationDTO {
 const CertificationsService = {
 
     getCertifications: async () => {
-        return await axios.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS);
+        return await BaseService.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS);
     }
 
 }
