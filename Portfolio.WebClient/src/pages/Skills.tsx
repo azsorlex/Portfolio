@@ -19,12 +19,12 @@ export default function Skills() {
 
   useEffect(() => {
     if (isInView) {
-      SkillsService.getSkills()
-        .then(r => {
+      void SkillsService.getSkills()
+        .then((r) => {
           setFilteredSkills(r);
           setSkills(r);
         });
-      CertificationsService.getCertifications()
+      void CertificationsService.getCertifications()
         .then((r) => {
           setCertifications(r);
         });

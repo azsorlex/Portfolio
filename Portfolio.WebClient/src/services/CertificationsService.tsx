@@ -1,5 +1,5 @@
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
-import BaseService, { BaseDTO } from './BaseService';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
 export interface CertificationDTO extends BaseDTO {
     issuer: string,
@@ -12,7 +12,7 @@ export interface CertificationDTO extends BaseDTO {
 
 const CertificationsService = {
 
-    getCertifications: async () => {
+    getCertifications: async (): Promise<ApiResponseType<CertificationDTO[]>> => {
         return await BaseService.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS);
     }
 

@@ -14,7 +14,7 @@ export default function Experience() {
 
   useEffect(() => {
     if (isInView) {
-      ExperiencesService.getExperiences()
+      void ExperiencesService.getExperiences()
         .then((experiences) => {
           setWork(experiences?.filter((x) => x.type === "Work"));
           setProjects(experiences?.filter((x) => x.type === "Project"));

@@ -18,7 +18,7 @@ export default function Home() {
 
   const getCurrentExperience = () => {
     setCurrentExperienceClicked(true);
-    ExperiencesService.getCurrentExperiences()
+    void ExperiencesService.getCurrentExperiences()
       .then((experiences) => {
         setCurrentWork(experiences?.filter((x) => x.type === "Work"));
         setCurrentProjects(experiences?.filter((x) => x.type === "Project"));

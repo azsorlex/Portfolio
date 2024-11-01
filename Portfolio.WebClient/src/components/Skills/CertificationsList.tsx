@@ -2,10 +2,11 @@ import { Box, Link } from "@mui/material";
 import { motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
 import StyledSkill from "./StyledSkill";
-import { CertificationsType } from "../../pages/Skills";
+import { ApiResponseType } from "../../services/BaseService";
+import { CertificationDTO } from "../../services/CertificationsService";
 
 interface CertificationsListProps {
-    certifications: CertificationsType,
+    certifications: ApiResponseType<CertificationDTO[]>,
 };
 
 export default function CertificationsList({ certifications }: CertificationsListProps) {

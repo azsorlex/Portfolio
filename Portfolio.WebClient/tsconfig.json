@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "jsx": "react-jsx",
     "module": "Preserve",
     "checkJs": false,

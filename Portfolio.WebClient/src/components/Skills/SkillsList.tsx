@@ -2,10 +2,11 @@ import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { skillsListContainer } from "../../data/constants/FramerVariants";
 import StyledSkill from "./StyledSkill";
-import { SkillsType } from "../../pages/Skills";
+import { ApiResponseType } from "../../services/BaseService";
+import { SkillDTO } from "../../services/SkillsService";
 
 interface SkillsListProps {
-  skills: SkillsType,
+  skills: ApiResponseType<SkillDTO[]>,
   checked?: boolean,
 };
 
