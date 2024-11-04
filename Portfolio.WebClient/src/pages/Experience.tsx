@@ -7,19 +7,17 @@ import { AnimatePresence, useInView } from "framer-motion";
 import { ApiResponseType } from "../services/BaseService";
 
 export default function Experience() {
-  const [work, setWork] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
-  const [projects, setProjects] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
+  const [work, setWork] = useState<ApiResponseType<ExperienceDTO[]>>();
+  const [projects, setProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
   const loadExperienceRef = useRef(null);
   const isInView = useInView(loadExperienceRef, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      void ExperiencesService.getExperiences()
+    void ExperiencesService.getExperiences(!isInView)
         .then((experiences) => {
           setWork(experiences?.filter((x) => x.type === "Work"));
           setProjects(experiences?.filter((x) => x.type === "Project"));
         });
-    }
   }, [isInView]);
 
   return (

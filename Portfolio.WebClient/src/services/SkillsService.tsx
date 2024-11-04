@@ -8,12 +8,12 @@ export interface SkillDTO extends BaseDTO {
 
 const SkillsService = {
 
-    getSkills: async (): Promise<ApiResponseType<SkillDTO[]>> => {
-        return await BaseService.get<SkillDTO[]>(BASE_ENDPOINTS.SKILLS);
+    getSkills: async (initialValue: boolean = false): Promise<ApiResponseType<SkillDTO[]>> => {
+        return await BaseService.get<SkillDTO[]>(BASE_ENDPOINTS.SKILLS, initialValue);
     },
 
-    getTopSkills: async (limit: number): Promise<ApiResponseType<SkillDTO[]>> => {
-        return await BaseService.get<SkillDTO[]>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`);
+    getTopSkills: async (limit: number, initialValue: boolean = false): Promise<ApiResponseType<SkillDTO[]>> => {
+        return await BaseService.get<SkillDTO[]>(`${BASE_ENDPOINTS.SKILLS}?limit=${limit}`, initialValue);
     }
 
 }

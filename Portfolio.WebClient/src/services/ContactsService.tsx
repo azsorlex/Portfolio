@@ -1,5 +1,5 @@
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
-import BaseService, { BaseDTO } from './BaseService';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
 export interface ContactDTO extends BaseDTO {
     id: number,
@@ -10,9 +10,9 @@ export interface ContactDTO extends BaseDTO {
 };
 
 const ContactsService = {
-    
-    getContacts: async () => {
-        return await BaseService.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS);
+
+    getContacts: async (initialValue: boolean = false): Promise<ApiResponseType<ContactDTO[]>> => {
+        return await BaseService.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS, initialValue);
     }
 
 }

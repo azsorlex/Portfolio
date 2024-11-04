@@ -13,8 +13,8 @@ import { ApiResponseType } from "../services/BaseService";
 
 export default function Home() {
   const [currentExperienceClicked, setCurrentExperienceClicked] = useState<boolean>(false);
-  const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
-  const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>(undefined);
+  const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>();
+  const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
 
   const getCurrentExperience = () => {
     setCurrentExperienceClicked(true);

@@ -1,5 +1,5 @@
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
-import BaseService from './BaseService';
+import BaseService, { ApiResponseType } from './BaseService';
 
 export interface QualificationDTO {
     id: number,
@@ -12,8 +12,8 @@ export interface QualificationDTO {
 
 const QualificationsService = {
 
-    getQualifications: async () => {
-        return await BaseService.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS);
+    getQualifications: async (initialValue: boolean = false): Promise<ApiResponseType<QualificationDTO[]>> => {
+        return await BaseService.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS, initialValue);
     }
 
 }

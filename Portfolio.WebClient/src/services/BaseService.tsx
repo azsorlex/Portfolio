@@ -11,11 +11,14 @@ const cache: Map<string, ApiValidResponseType> = new Map<string, ApiValidRespons
 
 const BaseService = {
 
-    get: async function get<T extends ApiValidResponseType>(endpoint: string): Promise<ApiResponseType<T>> {
-        if (cache.has(endpoint)) {
-            console.log(`Cache hit for ${endpoint}`);
+    get: async function get<T extends ApiValidResponseType>(endpoint: string, initialValue: boolean = false): Promise<ApiResponseType<T>> {
+        if (cache.has(endpoint) || initialValue) {
+            if (!initialValue) {
+                console.log(`Cache hit for ${endpoint}`);
+            }
             return cache.get(endpoint) as ApiResponseType<T>;
         }
+
         try {
             console.log(`Fetching ${endpoint}...`);
             const response = await axios.get<T>(endpoint);

@@ -9,8 +9,8 @@ import CertificationsList from "../components/Skills/CertificationsList";
 import { ApiResponseType } from "../services/BaseService";
 
 export default function Skills() {
-  const [skills, setSkills] = useState<ApiResponseType<SkillDTO[]>>(undefined);
-  const [certifications, setCertifications] = useState<ApiResponseType<CertificationDTO[]>>(undefined);
+  const [skills, setSkills] = useState<ApiResponseType<SkillDTO[]>>();
+  const [certifications, setCertifications] = useState<ApiResponseType<CertificationDTO[]>>();
   const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredSkills, setFilteredSkills] = useState<ApiResponseType<SkillDTO[]>>([]);
@@ -18,17 +18,15 @@ export default function Skills() {
   const isInView = useInView(loadSkillsRef, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      void SkillsService.getSkills()
-        .then((r) => {
-          setFilteredSkills(r);
-          setSkills(r);
-        });
-      void CertificationsService.getCertifications()
-        .then((r) => {
-          setCertifications(r);
-        });
-    }
+    void SkillsService.getSkills(!isInView)
+      .then((r) => {
+        setFilteredSkills(r);
+        setSkills(r);
+      });
+    void CertificationsService.getCertifications(!isInView)
+      .then((r) => {
+        setCertifications(r);
+      });
   }, [isInView]);
 
   const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -1,5 +1,5 @@
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
-import BaseService, { BaseDTO } from './BaseService';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
 export interface ExperienceDTO extends BaseDTO {
     type: string,
@@ -20,12 +20,12 @@ export interface MediaDTO {
 
 const ExperiencesService = {
 
-    getExperiences: async () => {
-        return await BaseService.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES);
+    getExperiences: async (initialValue: boolean = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+        return await BaseService.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES, initialValue);
     },
 
-    getCurrentExperiences: async () => {
-        return await BaseService.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`);
+    getCurrentExperiences: async (initialValue: boolean = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+        return await BaseService.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`, initialValue);
     }
 
 }
