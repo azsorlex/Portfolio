@@ -17,12 +17,20 @@ export default function Home() {
   const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
 
   const getCurrentExperience = () => {
+    if (currentWork === null) {
+      setCurrentWork(undefined);
+      setCurrentProjects(undefined);
+    }
     setCurrentExperienceClicked(true);
-    void ExperiencesService.getCurrentExperiences()
+
+    // State wouldn't switch back to null from undefined; give a little time for the undefined state to register before setting back to null
+    setTimeout(() => {
+      void ExperiencesService.getCurrentExperiences()
       .then((experiences) => {
-        setCurrentWork(experiences?.filter((x) => x.type === "Work"));
-        setCurrentProjects(experiences?.filter((x) => x.type === "Project"));
+        setCurrentWork(experiences?.filter((x) => x.type === "Work") ?? experiences);
+        setCurrentProjects(experiences?.filter((x) => x.type === "Project") ?? experiences);
       });
+    }, 0);
   };
 
   return (
@@ -86,7 +94,10 @@ export default function Home() {
                         />
                       )
                     ) : (
-                      <LoadingIcon key={currentWork} source={currentWork} />
+                      <LoadingIcon
+                        key={currentWork}
+                        source={currentWork}
+                        callback={getCurrentExperience} />
                     )}
                   </AnimatePresence>
                 </Box>
@@ -120,7 +131,7 @@ export default function Home() {
                       <LoadingIcon
                         key={currentProjects}
                         source={currentProjects}
-                      />
+                        callback={getCurrentExperience} />
                     )}
                   </AnimatePresence>
                 </Box>

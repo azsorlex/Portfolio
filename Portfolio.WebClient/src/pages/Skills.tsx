@@ -18,20 +18,9 @@ export default function Skills() {
   const isInView = useInView(loadSkillsRef, { once: true });
 
   useEffect(() => {
-    void SkillsService.getSkills(!isInView)
-      .then((r) => {
-        setFilteredSkills(r);
-        setSkills(r);
-      });
-    void CertificationsService.getCertifications(!isInView)
-      .then((r) => {
-        setCertifications(r);
-      });
+    getSkills();
+    getCertifications();
   }, [isInView]);
-
-  const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSearchTerm(event.target.value);
-  })
 
   useEffect(() => {
     if (skills) {
@@ -44,6 +33,33 @@ export default function Skills() {
       return () => { clearTimeout(delayFilter); };
     }
   }, [searchTerm]);
+
+  const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSearchTerm(event.target.value);
+  });
+
+  const getSkills = () => {
+    if (skills === null) {
+      setSkills(undefined);
+    }
+
+    void SkillsService.getSkills(!isInView)
+      .then((r) => {
+        setFilteredSkills(r);
+        setSkills(r);
+      });
+  };
+
+  const getCertifications = () => {
+    if (certifications === null) {
+      setCertifications(undefined);
+    }
+
+    void CertificationsService.getCertifications(!isInView)
+      .then((r) => {
+        setCertifications(r);
+      });
+  }
 
   return (
     <Container className="PageContainer" id="skills" maxWidth="lg">
@@ -71,7 +87,10 @@ export default function Skills() {
                 <SkillsList key={skills.at(0)?.id} skills={filteredSkills} checked={topSkillsChecked} />
               </Box>
             ) : (
-              <LoadingIcon key={skills} source={skills} />
+              <LoadingIcon
+                key={skills}
+                source={skills}
+                callback={getSkills} />
             )}
           </AnimatePresence>
         </Box>
@@ -84,7 +103,10 @@ export default function Skills() {
                 certifications={certifications}
               />
             ) : (
-              <LoadingIcon key={certifications} source={certifications} />
+              <LoadingIcon
+                key={certifications}
+                source={certifications}
+                callback={getCertifications} />
             )}
           </AnimatePresence>
         </Box>

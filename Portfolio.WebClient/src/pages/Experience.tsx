@@ -13,12 +13,21 @@ export default function Experience() {
   const isInView = useInView(loadExperienceRef, { once: true });
 
   useEffect(() => {
-    void ExperiencesService.getExperiences(!isInView)
-        .then((experiences) => {
-          setWork(experiences?.filter((x) => x.type === "Work"));
-          setProjects(experiences?.filter((x) => x.type === "Project"));
-        });
+    getExperiences();
   }, [isInView]);
+
+  const getExperiences = () => {
+    if (work === null) {
+      setWork(undefined);
+      setProjects(undefined);
+    }
+
+    void ExperiencesService.getExperiences(!isInView)
+      .then((experiences) => {
+        setWork(experiences?.filter((x) => x.type === "Work") ?? experiences);
+        setProjects(experiences?.filter((x) => x.type === "Project") ?? experiences);
+      });
+  };
 
   return (
     <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - (48px))" }}>
@@ -33,7 +42,10 @@ export default function Experience() {
               ))}
             </Box>
           ) : (
-            <LoadingIcon key={work} source={work} />
+            <LoadingIcon
+              key={work}
+              source={work}
+              callback={getExperiences} />
           )}
         </AnimatePresence>
       </Container>
@@ -49,7 +61,10 @@ export default function Experience() {
               ))}
             </Box>
           ) : (
-            <LoadingIcon key={projects} source={projects} />
+            <LoadingIcon
+              key={projects}
+              source={projects}
+              callback={getExperiences} />
           )}
         </AnimatePresence>
       </Container>

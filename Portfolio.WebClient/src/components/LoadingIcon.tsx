@@ -1,23 +1,27 @@
 import { Autorenew, ErrorOutline } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Tooltip } from "@mui/material"
-import { loadingIconVariants } from "../data/constants/FramerVariants";
+import { errorIconVariants, loadingIconVariants } from "../data/constants/FramerVariants";
+import { ApiResponseType, BaseDTO } from "../services/BaseService";
+import { MouseEventHandler } from "react";
 
 interface LoadingIconProps {
-  source: object[] | undefined | null,
+  source: ApiResponseType<BaseDTO[]>,
+  callback: MouseEventHandler<SVGSVGElement>
 };
 
-export default function LoadingIcon({ source }: LoadingIconProps) {
+export default function LoadingIcon({ source, callback }: LoadingIconProps) {
   return source === null ? (
-    <Tooltip title="Couldn't retrieve data. Please refresh the page.">
+    <Tooltip title="Couldn't retrieve data. Click to retry.">
       <ErrorOutline
         color="error"
         fontSize="large"
+        onClick={callback}
+        sx={{ ":hover": { cursor: "pointer" } }}
         component={motion.svg}
-        variants={loadingIconVariants}
+        variants={errorIconVariants}
         initial="hidden"
         whileInView="show"
-        exit="exit"
       />
     </Tooltip>
   ) : (
@@ -26,10 +30,8 @@ export default function LoadingIcon({ source }: LoadingIconProps) {
         fontSize="large"
         component={motion.svg}
         variants={loadingIconVariants}
-        initial="show"
-        whileInView={{ rotate: 360 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.5, ease: "easeOut", repeat: Infinity }}
+        initial="hidden"
+        whileInView={["scaleUp", "rotate"]}
         exit="exit"
       />
     </Tooltip>

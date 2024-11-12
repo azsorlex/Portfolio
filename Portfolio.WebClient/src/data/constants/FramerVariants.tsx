@@ -97,13 +97,20 @@ export const loadingIconVariants = {
   hidden: {
     scale: 0,
   },
-  show: {
+  scaleUp: {
     scale: 1,
     transition: {
       type: "spring",
       stiffness: 100,
     },
-    rotate: -360,
+  },
+  rotate: {
+    rotate: 360,
+    transition: {
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeOut",
+    },
   },
   exit: {
     scale: 0,
@@ -112,4 +119,17 @@ export const loadingIconVariants = {
     },
   },
 };
-          
+
+export const errorIconVariants = {
+  hidden: {
+    scale: 0,
+  },
+  show: {
+    scale: 1,
+    rotate: -360,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+};
