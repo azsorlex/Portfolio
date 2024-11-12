@@ -22,6 +22,7 @@ export default function LoadingIcon({ source, callback }: LoadingIconProps) {
         variants={errorIconVariants}
         initial="hidden"
         whileInView="show"
+        exit="exit"
       />
     </Tooltip>
   ) : (

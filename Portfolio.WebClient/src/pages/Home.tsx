@@ -23,14 +23,11 @@ export default function Home() {
     }
     setCurrentExperienceClicked(true);
 
-    // State wouldn't switch back to null from undefined; give a little time for the undefined state to register before setting back to null
-    setTimeout(() => {
-      void ExperiencesService.getCurrentExperiences()
+    void ExperiencesService.getCurrentExperiences()
       .then((experiences) => {
         setCurrentWork(experiences?.filter((x) => x.type === "Work") ?? experiences);
         setCurrentProjects(experiences?.filter((x) => x.type === "Project") ?? experiences);
       });
-    }, 0);
   };
 
   return (

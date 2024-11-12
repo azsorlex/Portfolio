@@ -132,4 +132,11 @@ export const errorIconVariants = {
       stiffness: 100,
     },
   },
+  exit: {
+    scale: 0,
+    rotate: 180,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };

@@ -12,7 +12,7 @@ export interface CertificationDTO extends BaseDTO {
 
 const CertificationsService = {
 
-    getCertifications: async (initialValue: boolean = false): Promise<ApiResponseType<CertificationDTO[]>> => {
+    getCertifications: async (initialValue = false): Promise<ApiResponseType<CertificationDTO[]>> => {
         return await BaseService.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS, initialValue);
     }
 

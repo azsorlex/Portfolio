@@ -20,11 +20,11 @@ export interface MediaDTO {
 
 const ExperiencesService = {
 
-    getExperiences: async (initialValue: boolean = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+    getExperiences: async (initialValue = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
         return await BaseService.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES, initialValue);
     },
 
-    getCurrentExperiences: async (initialValue: boolean = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+    getCurrentExperiences: async (initialValue = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
         return await BaseService.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`, initialValue);
     }
 

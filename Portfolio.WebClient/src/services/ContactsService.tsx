@@ -11,7 +11,7 @@ export interface ContactDTO extends BaseDTO {
 
 const ContactsService = {
 
-    getContacts: async (initialValue: boolean = false): Promise<ApiResponseType<ContactDTO[]>> => {
+    getContacts: async (initialValue = false): Promise<ApiResponseType<ContactDTO[]>> => {
         return await BaseService.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS, initialValue);
     }
 

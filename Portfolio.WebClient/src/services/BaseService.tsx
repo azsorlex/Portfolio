@@ -11,7 +11,7 @@ const cache: Map<string, ApiValidResponseType> = new Map<string, ApiValidRespons
 
 const BaseService = {
 
-    get: async function get<T extends ApiValidResponseType>(endpoint: string, initialValue: boolean = false): Promise<ApiResponseType<T>> {
+    get: async function get<T extends ApiValidResponseType>(endpoint: string, initialValue = false): Promise<ApiResponseType<T>> {
         if (cache.has(endpoint) || initialValue) {
             if (!initialValue) {
                 console.log(`Cache hit for ${endpoint}`);

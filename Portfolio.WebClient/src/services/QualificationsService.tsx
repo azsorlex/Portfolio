@@ -12,7 +12,7 @@ export interface QualificationDTO {
 
 const QualificationsService = {
 
-    getQualifications: async (initialValue: boolean = false): Promise<ApiResponseType<QualificationDTO[]>> => {
+    getQualifications: async (initialValue = false): Promise<ApiResponseType<QualificationDTO[]>> => {
         return await BaseService.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS, initialValue);
     }
 
