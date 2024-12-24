@@ -12,6 +12,7 @@ export default function Skills() {
   const [skills, setSkills] = useState<ApiResponseType<SkillDTO[]>>();
   const [certifications, setCertifications] = useState<ApiResponseType<CertificationDTO[]>>();
   const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
+  const [groupByChecked, setGroupByChecked] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredSkills, setFilteredSkills] = useState<ApiResponseType<SkillDTO[]>>([]);
   const loadSkillsRef = useRef(null);
@@ -83,8 +84,21 @@ export default function Skills() {
                       />
                     }
                   />
+                  <FormControlLabel
+                    label="Group By Category"
+                    control={
+                      <Checkbox
+                        checked={groupByChecked}
+                        onChange={(e) => { setGroupByChecked(e.target.checked); }}
+                      />
+                    }
+                  />
                 </Box>
-                <SkillsList key={skills.at(0)?.id} skills={filteredSkills} checked={topSkillsChecked} />
+                <SkillsList
+                  key={skills.at(0)?.id}
+                  skills={filteredSkills}
+                  topSkillsChecked={topSkillsChecked}
+                  groupByChecked={groupByChecked} />
               </Box>
             ) : (
               <LoadingIcon

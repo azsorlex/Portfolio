@@ -50,6 +50,10 @@ export const skillsListContainer = {
       staggerChildren: 0.15,
     },
   },
+  exit: {
+    opacity: 0,
+    y: 50,
+  },
 };
 
 export const itemContainer = {
