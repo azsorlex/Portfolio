@@ -26,9 +26,9 @@ export default function SkillsList({ skills, topSkillsChecked, groupByChecked }:
           >
             <AnimatePresence mode="wait">
               {
-                Object.entries(Object.groupBy(skills!, ({ type }) => type)).map(([type, groupedSkills]) => (
+                Object.entries(Object.groupBy(skills ?? [], ({ type }) => type)).map(([type, groupedSkills]) => (
                   <Box
-                    key={type + skills?.map((s) => s.name).join()}
+                    key={`${type}${skills?.map((s) => s.name).join()}`}
                     mb={3}
                     component={motion.div}
                     variants={skillsListContainer}
