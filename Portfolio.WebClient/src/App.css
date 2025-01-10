@@ -33,6 +33,11 @@ header.blurred {
     margin-top: 5px !important;
 }
 
+.navlink-github {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+}
+
 .prevent-select {
     -webkit-user-select: none;
     -ms-user-select: none;

@@ -30,19 +30,34 @@ namespace Portfolio.Infrastructure.DBContexts.SQL.Configurations
                 .IsUnicode(false)
                 .HasMaxLength(200);
 
-            builder.HasData(new Contact()
+            builder.HasData(
+            new Contact()
             {
                 Id = 1,
-                Name = "LinkedIn",
-                Icon = "linkedin",
-                URL = "https://linkedin.com/in/alexander-rozsa"
+                Name = "Profile",
+                Icon = "home",
+                URL = "https://github.com/azsorlex"
             },
             new Contact()
             {
                 Id = 2,
-                Name = "GitHub",
-                Icon = "github",
-                URL = "https://github.com/azsorlex"
+                Name = "Repository",
+                Icon = "code",
+                URL = "https://github.com/azsorlex/website-resume"
+            },
+            new Contact()
+            {
+                Id = 3,
+                Name = "LinkedIn",
+                Icon = "linkedin",
+                URL = "https://www.linkedin.com/in/alexander-rozsa"
+            },
+            new Contact()
+            {
+                Id = 4,
+                Name = "Send me a message",
+                Icon = "send",
+                URL = "mailto:arozsa@proton.me"
             });
         }
     }

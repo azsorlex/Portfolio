@@ -8,10 +8,11 @@ COPY . .
 RUN npm install
 RUN npm run lint
 RUN npm run build
+RUN npm prune --omit=dev
 
 FROM base as final
 COPY --from=build /app/package*.json /app/vite.config.ts ./
 COPY --from=build /app/dist ./dist
-RUN npm install --omit=dev
+COPY --from=build /app/node_modules ./node_modules
 
 CMD ["npm", "run", "preview"]

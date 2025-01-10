@@ -44,7 +44,6 @@ export default function SkillsList({ skills, topSkillsChecked, groupByChecked }:
                       {type}
                     </Typography>
                     {groupedSkills?.map((skill) => {
-                      console.log(`Skill: ${skill.name}`);
                       return (<StyledSkill
                         key={skill.id}
                         name={skill.name}
