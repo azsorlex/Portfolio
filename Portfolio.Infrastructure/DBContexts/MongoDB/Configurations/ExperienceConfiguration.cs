@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoDB.EntityFrameworkCore.Extensions;
 using Portfolio.Domain.Enums;
 using Portfolio.Infrastructure.Entities;
+using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
 {
@@ -19,14 +20,19 @@ namespace Portfolio.Infrastructure.DBContexts.MongoDB.Configurations
         {
             try
             {
+                var collectionName = nameof(Experience);
+                if (await Db.HasCollectionAsync(collectionName)){
+                    return;
+                }
+
                 await Db.RunCommandAsync<BsonDocument>($$"""
                 {
-                    create: "{{nameof(Experience)}}",
+                    create: "{{collectionName}}",
                     clusteredIndex: { "key": { _id: 1 }, "unique": true }
                 }
                 """);
 
-                var collection = Db.GetCollection<Experience>(nameof(Experience));
+                var collection = Db.GetCollection<Experience>(collectionName);
                 var baseBuilder = Builders<Experience>.IndexKeys;
                 await collection.Indexes.CreateOneAsync(
                     new CreateIndexModel<Experience>(baseBuilder.Descending(x => x.StartDate), new() { Name = "StartDate -1" })
