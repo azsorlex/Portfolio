@@ -19,7 +19,7 @@ export default function About() {
           {`I'm a software develper that's been doing what I do since 2014.
                 From humble beginings where I first picked up HTML4 and said "This. This is what I want to do.",
                 I've been gradually honing my craft through academia and individual study.
-                Now I have 2 years of experience in full stack development and I'd like to broaden my horizons with new opportunities.`}
+                Now I have 2.5 years of experience in full stack development and I'd like to broaden my horizons with new opportunities.`}
         </Typography>
         <Typography
           component={motion.p}
