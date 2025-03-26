@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 interface ItemContainerProps {
   children: ReactNode,
-  id: string,
+  id: number | string,
 };
 
 const Container = styled(motion.div)(({ theme }) => ({
@@ -17,7 +17,7 @@ const Container = styled(motion.div)(({ theme }) => ({
 
 export const ItemContainer = ({ children, id }: ItemContainerProps) => (
   <Container
-    id={id}
+    id={id.toString()}
     className="ItemContainer"
     variants={itemContainer}
     initial="hidden"

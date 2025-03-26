@@ -1,4 +1,4 @@
-import { Code, DarkModeOutlined, DocumentScanner, Home, LightModeOutlined, Portrait, School } from "@mui/icons-material";
+import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import { AppBar, Box, Container, Fab, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
 import NavLink from "./NavLink";
 import { ThemeContext } from "../../App";
@@ -35,11 +35,11 @@ export default function Header() {
             {themeContext.darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
           </Fab>
           <Box className="spacer" />
-          <NavLink title="Home" href="/" icon={<Home />} />
-          <NavLink title="About" href="/#about" icon={<Portrait />} />
-          <NavLink title="Skills & Certifications" href="/#skills" icon={<School />} />
-          <NavLink title="Experience" href="/#experience" icon={<Code />} />
-          <NavLink title="Resume" href="/resume" icon={<DocumentScanner />} />
+          <NavLink title="Home" href="/" icon="home" />
+          <NavLink title="About" href="/#about" icon="portrait" />
+          <NavLink title="Skills & Certifications" href="/#skills" icon="school" />
+          <NavLink title="Experience" href="/#experience" icon="code" />
+          <NavLink title="Resume" href="/resume" icon="documentscanner" />
         </Toolbar>
       </Container>
     </AppBar>
