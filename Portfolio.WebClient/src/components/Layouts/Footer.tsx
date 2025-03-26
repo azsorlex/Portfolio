@@ -6,7 +6,7 @@ import NavLink from "./NavLink";
 import ContactsService, { ContactDTO } from "../../services/ContactsService";
 import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";
-import { GITHUB_URL_PREFIX } from "../../data/constants/GlobalConstants";
+import { GITHUB_FOOTER_SUB_ITEMS, GITHUB_URL_PREFIX } from "../../data/constants/GlobalConstants";
 import { AnimatePresence, motion } from "framer-motion";
 import { itemContainer } from "../../data/constants/FramerVariants";
 
@@ -68,16 +68,22 @@ export default function Footer() {
               variants={itemContainer}
               initial="hidden"
               animate="show">
-              <Tooltip title="GitHub">
-                <Link
-                  className="navlink"
-                  color="secondary"
-                  component="button"
-                  onClick={handleGithubClick}
-                >
-                  <GitHub />
-                </Link>
-              </Tooltip>
+              {contacts
+                .filter(x => x.name === "GitHub")
+                .map(x => (
+                  <Tooltip
+                    key={x.name}
+                    title={x.name}>
+                    <Link
+                      className="navlink"
+                      color="secondary"
+                      component="button"
+                      onClick={handleGithubClick}
+                    >
+                      <GitHub />
+                    </Link>
+                  </Tooltip>
+                ))}
               <Menu
                 anchorEl={anchorEl}
                 open={open}
@@ -86,9 +92,9 @@ export default function Footer() {
                 anchorOrigin={{ horizontal: "center", vertical: "top" }}
               >
                 {contacts
-                  .filter((x) => x.url?.startsWith(GITHUB_URL_PREFIX))
+                  .filter((x) => x.alt === GITHUB_FOOTER_SUB_ITEMS)
                   .map((x, index, arr) => (
-                    <Fragment key={x.name}>
+                    <Fragment key={index}>
                       <MenuItem>
                         <NavLink
                           title={x.name}
@@ -100,22 +106,25 @@ export default function Footer() {
                       </MenuItem>
                       {index < arr.length - 1
                         && <Divider
+                          color="secondary"
                           variant="middle"
                           aria-hidden="true" />}
                     </Fragment>
                   ))}
 
               </Menu>
-              {contacts.filter((x) => !x.url?.startsWith(GITHUB_URL_PREFIX)).map((x) => (
-                <NavLink
-                  key={x.name}
-                  title={x.name}
-                  href={x.url ?? ""}
-                  icon={x.icon}
-                  target="_blank"
-                  rel="noopener"
-                />
-              ))}
+              {contacts
+                .filter((x) => x.url != null && !x.url.startsWith(GITHUB_URL_PREFIX))
+                .map((x) => (
+                  <NavLink
+                    key={x.name}
+                    title={x.name}
+                    href={x.url ?? ""}
+                    icon={x.icon}
+                    target="_blank"
+                    rel="noopener"
+                  />
+                ))}
             </Stack>
             :
             <LoadingIcon
