@@ -1,4 +1,4 @@
-import { Fragment, MouseEvent, useEffect, useState } from "react";
+import { Fragment, MouseEvent, useEffect, useRef, useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography, } from "@mui/material";
 import { Copyright, GitHub } from "@mui/icons-material";
 import dayjs from "dayjs";
@@ -7,17 +7,19 @@ import ContactsService, { ContactDTO } from "../../services/ContactsService";
 import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";
 import { GITHUB_FOOTER_SUB_ITEMS, GITHUB_URL_PREFIX } from "../../data/constants/GlobalConstants";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { itemContainer } from "../../data/constants/FramerVariants";
 
 export default function Footer() {
   const [contacts, setContacts] = useState<ApiResponseType<ContactDTO[]>>()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
+  const loadContactsRef = useRef(null);
+  const isInView = useInView(loadContactsRef, { once: true });
 
   useEffect(() => {
     getContacts();
-  }, []);
+  }, [isInView]);
 
   const handleGithubClick = (event: MouseEvent<HTMLElement>) => {
     // To temporarily make the animations instant when opening the menu.
@@ -38,7 +40,7 @@ export default function Footer() {
       setContacts(undefined);
     }
 
-    void ContactsService.getContacts()
+    void ContactsService.getContacts(!isInView)
       .then((response) => {
         setContacts(response);
       });
@@ -52,7 +54,9 @@ export default function Footer() {
       enableColorOnDark
       sx={{ transition: "all 0.25s linear" }}
     >
-      <Toolbar variant="dense">
+      <Toolbar
+        variant="dense"
+        ref={loadContactsRef}>
         <Copyright fontSize="small" sx={{ mr: 0.5 }} />
         <Typography fontSize={12}>
           {`${dayjs().year()} Alexander Rozsa`}
