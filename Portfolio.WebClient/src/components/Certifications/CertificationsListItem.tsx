@@ -3,9 +3,10 @@ import CertificationsService, { CertificationDTO } from "../../services/Certific
 import StyledSkill from "../Skills/StyledSkill";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { skillsListContainer } from "../../data/constants/FramerVariants";
+import { fadeUpChild, skillsListContainer } from "../../data/constants/FramerVariants";
 import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";
+import { Info } from "@mui/icons-material";
 
 interface CertificationsListItemProps {
     certification: CertificationDTO;
@@ -99,8 +100,16 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                         },
                     }}>
                     <Button
+                        variant="text"
+                        color="info"
                         onClick={handleTooltipOpen}
-                        sx={{ p: 0, textTransform: "none" }}
+                        startIcon={<Info />}
+                        sx={{
+                            p: 0,
+                            borderRadius: 8,
+                        }}
+                        component={motion.button}
+                        variants={fadeUpChild}
                     >
                         <StyledSkill
                             key={certification.id}
