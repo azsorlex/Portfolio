@@ -2,11 +2,11 @@ import { Autorenew, ErrorOutline } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Tooltip } from "@mui/material"
 import { errorIconVariants, loadingIconVariants } from "../data/constants/FramerVariants";
-import { ApiResponseType, BaseDTO } from "../services/BaseService";
+import { ApiResponseType, ApiValidResponseType } from "../services/BaseService";
 import { MouseEventHandler } from "react";
 
 interface LoadingIconProps {
-  source: ApiResponseType<BaseDTO[]>,
+  source: ApiResponseType<ApiValidResponseType>,
   callback: MouseEventHandler<SVGSVGElement>
 };
 

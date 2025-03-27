@@ -79,7 +79,7 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                                                 ? <CertificationsListItem certification={parentCert} />
                                                 : <LoadingIcon
                                                     key={certification.id}
-                                                    source={[certification]}
+                                                    source={parentCert}
                                                     callback={() => { getParentCert(certification.parentId ?? 0) }} />
                                         }
                                     </AnimatePresence>

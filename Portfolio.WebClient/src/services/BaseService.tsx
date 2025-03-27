@@ -4,7 +4,7 @@ export interface BaseDTO {
     id: number | string,
     name: string,
 };
-type ApiValidResponseType = BaseDTO | BaseDTO[];
+export type ApiValidResponseType = BaseDTO | BaseDTO[];
 export type ApiResponseType<T extends ApiValidResponseType> = T | undefined | null;
 
 const cache: Map<string, ApiValidResponseType> = new Map<string, ApiValidResponseType>();
