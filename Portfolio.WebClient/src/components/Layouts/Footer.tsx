@@ -1,4 +1,4 @@
-import { Fragment, MouseEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography, } from "@mui/material";
 import { Copyright, GitHub } from "@mui/icons-material";
 import dayjs from "dayjs";
@@ -98,7 +98,7 @@ export default function Footer() {
                 {contacts
                   .filter((x) => x.alt === GITHUB_FOOTER_SUB_ITEMS)
                   .map((x, index, arr) => (
-                    <Fragment key={index}>
+                    <Box key={index}>
                       <MenuItem>
                         <NavLink
                           title={x.name}
@@ -113,7 +113,7 @@ export default function Footer() {
                           color="secondary"
                           variant="middle"
                           aria-hidden="true" />}
-                    </Fragment>
+                    </Box>
                   ))}
 
               </Menu>
