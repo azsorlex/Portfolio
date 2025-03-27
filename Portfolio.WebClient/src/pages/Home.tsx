@@ -35,7 +35,10 @@ export default function Home() {
       <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - 48px)" }}>
         <Box m="auto">
           <Typography variant="subtitle1">{"Hi, I'm"}</Typography>
-          <Typography variant="h1" textTransform="uppercase" paragraph>
+          <Typography
+            variant="h1"
+            textTransform="uppercase"
+            mb={2}>
             {"Alexander Rozsa"}
           </Typography>
           <Typography mb={4}>

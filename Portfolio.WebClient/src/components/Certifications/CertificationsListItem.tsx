@@ -62,7 +62,7 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                             variants={skillsListContainer}
                             initial="hidden"
                             animate="show">
-                            <Typography variant="h4" paragraph>{certification.name}</Typography>
+                            <Typography variant="h4" gutterBottom>{certification.name}</Typography>
                             <Typography gutterBottom>{`Issue date: ${certification.issueDate}`}</Typography>
                             {
                                 certification.expiryDate &&
@@ -107,6 +107,7 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                         sx={{
                             p: 0,
                             borderRadius: 8,
+                            textTransform: "none"
                         }}
                         component={motion.button}
                         variants={fadeUpChild}

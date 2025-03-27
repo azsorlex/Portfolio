@@ -10,7 +10,7 @@ export default function About() {
           About Me
         </Typography>
         <Typography
-          paragraph
+          mb={2}
           component={motion.p}
           variants={itemContainer}
           initial="hidden"
