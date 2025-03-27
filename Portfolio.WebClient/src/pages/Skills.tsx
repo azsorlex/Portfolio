@@ -5,7 +5,7 @@ import SkillsList from "../components/Skills/SkillsList";
 import { Box, Checkbox, Container, FormControlLabel, Input, Typography } from "@mui/material";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence, useInView } from "framer-motion";
-import CertificationsList from "../components/Skills/CertificationsList";
+import CertificationsList from "../components/Certifications/CertificationsList";
 import { ApiResponseType } from "../services/BaseService";
 
 export default function Skills() {

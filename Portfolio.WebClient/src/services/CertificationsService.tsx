@@ -3,7 +3,7 @@ import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
 export interface CertificationDTO extends BaseDTO {
     issuer: string,
-    parent: null,
+    parentId?: number,
     credentialId: string,
     issueDate: string,
     expiryDate?: string,
@@ -14,6 +14,10 @@ const CertificationsService = {
 
     getCertifications: async (initialValue = false): Promise<ApiResponseType<CertificationDTO[]>> => {
         return await BaseService.get<CertificationDTO[]>(BASE_ENDPOINTS.CERTIFICATIONS, initialValue);
+    },
+
+    getCertification: async (id: number): Promise<ApiResponseType<CertificationDTO>> => {
+        return await BaseService.get<CertificationDTO>(`${BASE_ENDPOINTS.CERTIFICATIONS}/${id}`);
     }
 
 }
