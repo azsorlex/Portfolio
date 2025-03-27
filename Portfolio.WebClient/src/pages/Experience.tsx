@@ -1,10 +1,11 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import WorkExperience from "../components/Experience/WorkExperience";
 import { useEffect, useRef, useState } from "react";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
 import LoadingIcon from "../components/LoadingIcon";
 import { AnimatePresence, useInView } from "framer-motion";
 import { ApiResponseType } from "../services/BaseService";
+import { Link } from "react-router-dom";
 
 export default function Experience() {
   const [work, setWork] = useState<ApiResponseType<ExperienceDTO[]>>();
@@ -49,7 +50,7 @@ export default function Experience() {
           )}
         </AnimatePresence>
       </Container>
-      <Typography variant="h2" mt={8}>
+      <Typography variant="h2" mt={4}>
         PROJECTS
       </Typography>
       <Container maxWidth="sm">
@@ -68,6 +69,14 @@ export default function Experience() {
           )}
         </AnimatePresence>
       </Container>
+      <Link to="/resume">
+        <Button
+          variant='outlined'
+          color='secondary'
+          sx={{ mt: 5, mb: 8 }}>
+          Go to my resume
+        </Button>
+      </Link>
     </Container>
   );
 }

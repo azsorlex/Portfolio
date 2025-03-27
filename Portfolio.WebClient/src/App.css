@@ -15,7 +15,7 @@ main {
 main,
 .spacer {
     flex-grow: 1;
-    gap: 50dvh;
+    gap: 25dvh;
 }
 
 header.transparent {

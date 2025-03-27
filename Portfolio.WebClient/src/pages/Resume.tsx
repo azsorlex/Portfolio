@@ -31,7 +31,7 @@ export default function Resume() {
                     variant='h2'
                     textTransform="uppercase"
                     gutterBottom>
-                    My latest resume
+                    Resume
                 </Typography>
                 <Document
                     className="ResumeViewer"
