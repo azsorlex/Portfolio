@@ -1,6 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { itemContainer } from "../data/constants/FramerVariants";
+import { container } from "../data/constants/FramerVariants";
 
 export default function About() {
   return (
@@ -12,18 +12,19 @@ export default function About() {
         <Typography
           mb={2}
           component={motion.p}
-          variants={itemContainer}
+          variants={container}
           initial="hidden"
           whileInView="show"
           transition={{ duration: 0.75 }}>
-          {`I'm a software develper that's been doing what I do since 2014.
-                From humble beginings where I first picked up HTML4 and said "This. This is what I want to do.",
-                I've been gradually honing my craft through academia and individual study.
-                Now I have 2.5 years of experience in full stack development and I'd like to broaden my horizons with new opportunities.`}
+          {`I'm a software develper that's been doing what I do since 2014 in high school; 
+          a university-qualified professional with a Bachelors of Computer Science and
+          2.5 years of experience in full stack development. 
+          I'm always looking to broaden my horizons with new opportunities.`}
         </Typography>
         <Typography
+          sx={{ mb: 4 }}
           component={motion.p}
-          variants={itemContainer}
+          variants={container}
           initial="hidden"
           whileInView="show"
           transition={{ duration: 0.75 }}>
@@ -31,6 +32,7 @@ export default function About() {
                 My perfect job in this industry would be one where my contributions will have real, tangible effects. 
                 Much like how a bridge or tunnel being built will allow people to get to their destination faster, the systems I contribute to should visibly, positively impact peoples lives; to make advancements in the space.`}
         </Typography>
+        <Divider />
       </Box>
     </Container>
   );

@@ -7,15 +7,23 @@ main {
     align-items: center;
 }
 
-.PageContainer,
-.ItemContainer {
-    scroll-margin-top: 60px;
-}
-
 main,
 .spacer {
     flex-grow: 1;
-    gap: 25dvh;
+}
+
+main {
+    gap: 20dvh;
+}
+
+/* Applying to the About Me section */
+main > :nth-child(2) {
+    margin-top: -10dvh;
+}
+
+.PageContainer,
+.ItemContainer {
+    scroll-margin-top: 60px;
 }
 
 header.transparent {

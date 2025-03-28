@@ -66,7 +66,7 @@ export default function Skills() {
     <Container className="PageContainer" id="skills" maxWidth="lg">
       <Box m="auto" className="ContentContainer">
         <Typography variant="h2">SKILLS</Typography>
-        <Box width={"75%"} m="auto" mb={4} ref={loadSkillsRef}>
+        <Box width={"75%"} m="auto" mb={5} ref={loadSkillsRef}>
           <AnimatePresence mode="wait">
             {skills ? (
               <Box key={skills.at(0)?.id}>

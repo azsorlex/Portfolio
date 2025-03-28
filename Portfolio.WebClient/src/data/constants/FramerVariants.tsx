@@ -56,7 +56,7 @@ export const skillsListContainer = {
   },
 };
 
-export const itemContainer = {
+export const container = {
   hidden: {
     scale: 0.5,
   },
@@ -66,7 +66,23 @@ export const itemContainer = {
       type: "spring",
       stiffness: 100,
       delayChildren: 0.2,
-      staggerChildren: 0.15,
+      staggerChildren: 0.15
+    },
+  },
+};
+
+export const itemContainer = {
+  hidden: {
+    scale: 0.5,
+    transformOrigin: "top center",
+  },
+  show: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      delayChildren: 0.2,
+      staggerChildren: 0.15
     },
   },
 };

@@ -31,7 +31,7 @@ export default function Experience() {
   };
 
   return (
-    <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - (48px))" }}>
+    <Container className="PageContainer" maxWidth="lg">
       <Box id="experience" height="48px" />
       <Typography variant="h2">EXPERIENCE</Typography>
       <Container maxWidth="sm" ref={loadExperienceRef}>
@@ -50,7 +50,7 @@ export default function Experience() {
           )}
         </AnimatePresence>
       </Container>
-      <Typography variant="h2" mt={4}>
+      <Typography variant="h2" mt={5}>
         PROJECTS
       </Typography>
       <Container maxWidth="sm">

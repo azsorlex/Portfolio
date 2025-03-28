@@ -58,7 +58,7 @@ export default function SkillsList({ skills, topSkillsChecked, groupByChecked }:
           </Box>
           :
           <Box
-            key={skills?.map((s) => s.name).join()}
+            key="skillsContainer"
             component={motion.div}
             variants={skillsListContainer}
             initial="hidden"

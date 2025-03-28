@@ -8,7 +8,7 @@ import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";
 import { GITHUB_FOOTER_SUB_ITEMS, GITHUB_URL_PREFIX } from "../../data/constants/GlobalConstants";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { itemContainer } from "../../data/constants/FramerVariants";
+import { container } from "../../data/constants/FramerVariants";
 
 export default function Footer() {
   const [contacts, setContacts] = useState<ApiResponseType<ContactDTO[]>>()
@@ -69,7 +69,7 @@ export default function Footer() {
               direction="row"
               spacing={3}
               component={motion.div}
-              variants={itemContainer}
+              variants={container}
               initial="hidden"
               animate="show">
               {contacts

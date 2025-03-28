@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
-import { itemContainer } from "../data/constants/FramerVariants";
+import { container } from "../data/constants/FramerVariants";
 import { ApiResponseType } from "../services/BaseService";
 
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
           </Typography>
           <Typography variant="body2" mb={4}>
             {
-              "This site is also dynamic. Most of the info on here is retrieved from a custom API, which in turn gets data from multiple databases. Take a look:"
+              "This site is an example of a developed dynamic product. Most of the info on here is retrieved from a custom API, which in turn gets data from multiple databases. Take a look:"
             }
           </Typography>
           <AnimatePresence mode="wait">
@@ -63,7 +63,7 @@ export default function Home() {
                 width="80%"
                 m="auto"
                 component={motion.div}
-                variants={itemContainer}
+                variants={container}
                 initial="hidden"
                 animate="show"
               >
