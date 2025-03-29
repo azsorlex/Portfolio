@@ -17,22 +17,23 @@ export default function Home() {
   const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>();
   const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
 
-  // Remove the negative space on smaller screens
+  // Remove the negative space on smaller screens.
   useEffect(() => {
+    // Using timeout to wait for framer motion exit animation; for the dom to update with the new data.
     setTimeout(() => {
       const pageContainer = document.getElementById("home");
       if (!pageContainer) return;
 
       const computedStyle = getComputedStyle(pageContainer);
-      const dvhToPx = window.innerHeight * 0.15; // Convert 15dvh to pixels
+      const dvhToPx = window.innerHeight * 0.25; // Convert 25dvh to pixels.
 
       const child = pageContainer.firstElementChild;
       if (!child) return;
       const height = parseFloat(getComputedStyle(child).height);
       const minHeightThreshold = parseFloat(computedStyle.minHeight) - dvhToPx;
 
-      if (height <= minHeightThreshold) {
-        pageContainer.style.marginBottom = "-15dvh";
+      if (height < minHeightThreshold) {
+        pageContainer.style.marginBottom = "-15lvh"; // Used to counteract a visual bug in Safari ios
       } else {
         pageContainer.style.marginBottom = "0";
       }

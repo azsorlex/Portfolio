@@ -13,7 +13,7 @@ main,
 }
 
 main {
-    gap: 15dvh;
+    gap: 15lvh; /* Used to counteract a visual bug in Safari ios */
 }
 
 .PageContainer {
@@ -21,12 +21,12 @@ main {
 }
 
 #home {
-    min-height: calc(100dvh - 48px);
-    margin-bottom: -15dvh;
+    min-height: calc(100svh - 48px); /* Used to counteract a visual bug in Safari ios */
+    margin-bottom: -15lvh; /* Used to counteract a visual bug in Safari ios */
 }
 
 #resume {
-    min-height: calc(100dvh - 96px);
+    min-height: calc(100svh - 96px); /* Used to counteract a visual bug in Safari ios */
 }
 
 .PageContainer,
