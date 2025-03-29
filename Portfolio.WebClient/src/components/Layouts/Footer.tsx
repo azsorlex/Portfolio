@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useRef, useState } from "react";
 import { AppBar, Box, Divider, Link, Menu, MenuItem, Stack, Toolbar, Tooltip, Typography, } from "@mui/material";
 import { Copyright, GitHub } from "@mui/icons-material";
 import dayjs from "dayjs";
-import NavLink from "./NavLink";
+import NavLink from "../Shared/NavLink";
 import ContactsService, { ContactDTO } from "../../services/ContactsService";
 import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";

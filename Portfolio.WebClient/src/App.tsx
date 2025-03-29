@@ -59,6 +59,7 @@ export default function App() {
     } else {
       scrollToTop(false);
     }
+
     document.body.classList.add("loaded");
   }, []);
 

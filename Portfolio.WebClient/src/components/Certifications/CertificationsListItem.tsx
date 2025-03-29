@@ -102,7 +102,7 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                     <Button
                         variant="text"
                         color="info"
-                        onClick={handleTooltipOpen}
+                        onClick={open ? handleTooltipClose : handleTooltipOpen}
                         startIcon={<Info />}
                         sx={{
                             p: 0,

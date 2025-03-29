@@ -64,66 +64,64 @@ export default function Skills() {
 
   return (
     <Container className="PageContainer" id="skills" maxWidth="lg">
-      <Box m="auto" className="ContentContainer">
-        <Typography variant="h2">SKILLS</Typography>
-        <Box width={"75%"} m="auto" mb={5} ref={loadSkillsRef}>
-          <AnimatePresence mode="wait">
-            {skills ? (
-              <Box key={skills.at(0)?.id}>
-                <Box>
-                  <Input
-                    placeholder="Find (can use RegEx)"
-                    onChange={handleSearchTerm}
-                    sx={{ mr: 2 }} />
-                  <FormControlLabel
-                    label="Top Skills"
-                    control={
-                      <Checkbox
-                        checked={topSkillsChecked}
-                        onChange={(e) => { setTopSkillsChecked(e.target.checked); }}
-                      />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Group By Category"
-                    control={
-                      <Checkbox
-                        checked={groupByChecked}
-                        onChange={(e) => { setGroupByChecked(e.target.checked); }}
-                      />
-                    }
-                  />
-                </Box>
-                <SkillsList
-                  key={skills.at(0)?.id}
-                  skills={filteredSkills}
-                  topSkillsChecked={topSkillsChecked}
-                  groupByChecked={groupByChecked} />
+      <Typography variant="h2">SKILLS</Typography>
+      <Box width={"75%"} mb={4} ref={loadSkillsRef}>
+        <AnimatePresence mode="wait">
+          {skills ? (
+            <Box key={skills.at(0)?.id}>
+              <Box>
+                <Input
+                  placeholder="Find (can use RegEx)"
+                  onChange={handleSearchTerm}
+                  sx={{ mr: 2 }} />
+                <FormControlLabel
+                  label="Top Skills"
+                  control={
+                    <Checkbox
+                      checked={topSkillsChecked}
+                      onChange={(e) => { setTopSkillsChecked(e.target.checked); }}
+                    />
+                  }
+                />
+                <FormControlLabel
+                  label="Group By Category"
+                  control={
+                    <Checkbox
+                      checked={groupByChecked}
+                      onChange={(e) => { setGroupByChecked(e.target.checked); }}
+                    />
+                  }
+                />
               </Box>
-            ) : (
-              <LoadingIcon
-                key={skills}
-                source={skills}
-                callback={getSkills} />
-            )}
-          </AnimatePresence>
-        </Box>
-        <Typography variant="h2">CERTIFICATIONS</Typography>
-        <Box width={"75%"} m="auto">
-          <AnimatePresence mode="wait">
-            {certifications ? (
-              <CertificationsList
-                key={certifications.at(0)?.id}
-                certifications={certifications}
-              />
-            ) : (
-              <LoadingIcon
-                key={certifications}
-                source={certifications}
-                callback={getCertifications} />
-            )}
-          </AnimatePresence>
-        </Box>
+              <SkillsList
+                key={skills.at(0)?.id}
+                skills={filteredSkills}
+                topSkillsChecked={topSkillsChecked}
+                groupByChecked={groupByChecked} />
+            </Box>
+          ) : (
+            <LoadingIcon
+              key={skills}
+              source={skills}
+              callback={getSkills} />
+          )}
+        </AnimatePresence>
+      </Box>
+      <Typography variant="h2">CERTIFICATIONS</Typography>
+      <Box width={"75%"}>
+        <AnimatePresence mode="wait">
+          {certifications ? (
+            <CertificationsList
+              key={certifications.at(0)?.id}
+              certifications={certifications}
+            />
+          ) : (
+            <LoadingIcon
+              key={certifications}
+              source={certifications}
+              callback={getCertifications} />
+          )}
+        </AnimatePresence>
       </Box>
     </Container>
   );

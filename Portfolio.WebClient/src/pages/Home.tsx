@@ -1,20 +1,43 @@
-import { useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import Skills from "./Skills";
 import About from "./About";
 import Experience from "./Experience";
-import AnimatedMain from "../components/Layouts/AnimatedMain";
+import AnimatedMain from "../components/Shared/AnimatedMain";
 import { AnimatePresence, motion } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
 import { container } from "../data/constants/FramerVariants";
 import { ApiResponseType } from "../services/BaseService";
+import PageContainer from "../components/Shared/PageContainer";
 
 export default function Home() {
   const [currentExperienceClicked, setCurrentExperienceClicked] = useState<boolean>(false);
   const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>();
   const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
+
+  // Remove the negative space on smaller screens
+  useEffect(() => {
+    setTimeout(() => {
+      const pageContainer = document.getElementById("home");
+      if (!pageContainer) return;
+
+      const computedStyle = getComputedStyle(pageContainer);
+      const dvhToPx = window.innerHeight * 0.15; // Convert 15dvh to pixel
+
+      const child = pageContainer.firstElementChild;
+      if (!child) return;
+      const height = parseFloat(getComputedStyle(child).height);
+      const minHeightThreshold = parseFloat(computedStyle.minHeight) - dvhToPx;
+
+      if (height <= minHeightThreshold) {
+        pageContainer.style.marginBottom = "-15dvh";
+      } else {
+        pageContainer.style.marginBottom = "0";
+      }
+    }, 350);
+  }, [currentWork]);
 
   const getCurrentExperience = () => {
     if (currentWork === null) {
@@ -32,7 +55,7 @@ export default function Home() {
 
   return (
     <AnimatedMain>
-      <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - 48px)" }}>
+      <PageContainer id="home">
         <Box m="auto">
           <Typography variant="subtitle1">{"Hi, I'm"}</Typography>
           <Typography
@@ -150,7 +173,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </Box>
-      </Container>
+      </PageContainer>
       <About />
       <Skills />
       <Experience />

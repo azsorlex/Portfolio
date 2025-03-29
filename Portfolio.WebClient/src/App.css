@@ -2,8 +2,8 @@
 .PageContainer,
 main {
     display: flex !important;
-    text-align: center;
     flex-flow: column;
+    text-align: center;
     align-items: center;
 }
 
@@ -13,12 +13,20 @@ main,
 }
 
 main {
-    gap: 20dvh;
+    gap: 15dvh;
 }
 
-/* Applying to the About Me section */
-main > :nth-child(2) {
-    margin-top: -10dvh;
+.PageContainer {
+    min-height: 60dvh;
+}
+
+#home {
+    min-height: calc(100dvh - 48px);
+    margin-bottom: -15dvh;
+}
+
+#resume {
+    min-height: calc(100dvh - 96px);
 }
 
 .PageContainer,

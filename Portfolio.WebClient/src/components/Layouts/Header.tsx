@@ -1,6 +1,6 @@
 import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import { AppBar, Box, Container, Fab, Toolbar, alpha, useScrollTrigger, useTheme, } from "@mui/material";
-import NavLink from "./NavLink";
+import NavLink from "../Shared/NavLink";
 import { ThemeContext } from "../../App";
 import { useContext } from "react";
 

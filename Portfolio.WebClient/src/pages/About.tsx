@@ -1,12 +1,12 @@
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { container } from "../data/constants/FramerVariants";
+import PageContainer from "../components/Shared/PageContainer";
 
 export default function About() {
   return (
-    <Container className="PageContainer" id="about" maxWidth="lg">
-      <Box m="auto" className="ContentContainer">
-        <Typography variant="h2" textTransform="uppercase" gutterBottom>
+    <PageContainer id="about">
+      <Typography variant="h2" textTransform="uppercase" gutterBottom>
           About Me
         </Typography>
         <Typography
@@ -33,7 +33,6 @@ export default function About() {
                 Much like how a bridge or tunnel being built will allow people to get to their destination faster, the systems I contribute to should visibly, positively impact peoples lives; to make advancements in the space.`}
         </Typography>
         <Divider />
-      </Box>
-    </Container>
+    </PageContainer>
   );
 }
