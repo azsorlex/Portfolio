@@ -4,8 +4,9 @@ ENV API_URL https://arwebapi.azurewebsites.net
 EXPOSE 5173
 
 FROM base as build
-COPY . .
+COPY package.json package-lock.json ./
 RUN npm install
+COPY . .
 RUN npm run lint
 RUN npm run build
 RUN npm prune --omit=dev
