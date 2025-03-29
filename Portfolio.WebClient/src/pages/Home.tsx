@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import Skills from "./Skills";
 import About from "./About";
 import Experience from "./Experience";
@@ -24,7 +24,7 @@ export default function Home() {
       if (!pageContainer) return;
 
       const computedStyle = getComputedStyle(pageContainer);
-      const dvhToPx = window.innerHeight * 0.15; // Convert 15dvh to pixel
+      const dvhToPx = window.innerHeight * 0.15; // Convert 15dvh to pixels
 
       const child = pageContainer.firstElementChild;
       if (!child) return;
@@ -97,25 +97,36 @@ export default function Home() {
                   >{`currently working as a:`}</Typography>
                   <AnimatePresence mode="wait">
                     {currentWork ? (
-                      currentWork.length > 0 ? (
-                        <Box key="Current Work Container">
-                          {currentWork.map((work) => (
-                            <CurrentExperienceBox
-                              key={work.id}
-                              experience={work}
-                            />
-                          ))}
-                        </Box>
-                      ) : (
-                        <CurrentExperienceBox
-                          key="Empty Work"
-                          experience={{
-                            id: "experience",
-                            type: "Work",
-                            name: "Job Seeker",
-                          }}
-                        />
-                      )
+                      <List
+                        key="Current Work Container"
+                        sx={{ listStyleType: "disc" }}>
+                        {
+                          currentWork.length > 0 ?
+                            currentWork.map((work) => (
+                              <ListItem
+                                key={work.id}
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  key={work.id}
+                                  experience={work}
+                                />
+                              </ListItem>
+                            ))
+                            : (
+                              <ListItem
+                                key="Empty Work"
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  experience={{
+                                    id: "experience",
+                                    type: "Work",
+                                    name: "Job Seeker",
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                        }
+                      </List>
                     ) : (
                       <LoadingIcon
                         key={currentWork}
@@ -131,25 +142,36 @@ export default function Home() {
                   >{`currently working on:`}</Typography>
                   <AnimatePresence mode="wait">
                     {currentProjects ? (
-                      currentProjects.length > 0 ? (
-                        <Box key="Current Projects Container">
-                          {currentProjects.map((project) => (
-                            <CurrentExperienceBox
-                              key={project.id}
-                              experience={project}
-                            />
-                          ))}
-                        </Box>
-                      ) : (
-                        <CurrentExperienceBox
-                          key="Empty Project"
-                          experience={{
-                            id: "projects",
-                            type: "Project",
-                            name: "Nothing. Some inspiration should come soon though.",
-                          }}
-                        />
-                      )
+                      <List
+                        key="Current Projects Container"
+                        sx={{ listStyleType: "disc" }}>
+                        {
+                          currentProjects.length > 0 ?
+                            currentProjects.map((project) => (
+                              <ListItem
+                                key={project.id}
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  key={project.id}
+                                  experience={project}
+                                />
+                              </ListItem>
+                            ))
+                            : (
+                              <ListItem
+                                key="Empty Project"
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  experience={{
+                                    id: "projects",
+                                    type: "Project",
+                                    name: "Nothing. Some inspiration should come soon though.",
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                        }
+                      </List>
                     ) : (
                       <LoadingIcon
                         key={currentProjects}

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { fadeUpChild, skillsListContainer } from "../../data/constants/FramerVariants";
 import { ApiResponseType } from "../../services/BaseService";
 import LoadingIcon from "../LoadingIcon";
-import { Info } from "@mui/icons-material";
+import { InfoOutlined } from "@mui/icons-material";
 
 interface CertificationsListItemProps {
     certification: CertificationDTO;
@@ -103,7 +103,7 @@ const CertificationsListItem = ({ certification }: CertificationsListItemProps) 
                         variant="text"
                         color="info"
                         onClick={open ? handleTooltipClose : handleTooltipOpen}
-                        startIcon={<Info />}
+                        endIcon={<InfoOutlined />}
                         sx={{
                             p: 0,
                             borderRadius: 8,
