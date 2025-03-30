@@ -1,10 +1,8 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
-export interface ExperienceDTO {
-    id: string,
+export interface ExperienceDTO extends BaseDTO {
     type: string,
-    name: string,
     company?: string,
     location?: string,
     skills?: string[],
@@ -22,12 +20,12 @@ export interface MediaDTO {
 
 const ExperiencesService = {
 
-    getExperiences: async () => {
-        return await axios.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES);
+    getExperiences: async (initialValue = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+        return await BaseService.get<ExperienceDTO[]>(BASE_ENDPOINTS.EXPERIENCES, initialValue);
     },
 
-    getCurrentExperiences: async () => {
-        return await axios.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`);
+    getCurrentExperiences: async (initialValue = false): Promise<ApiResponseType<ExperienceDTO[]>> => {
+        return await BaseService.get<ExperienceDTO[]>(`${BASE_ENDPOINTS.EXPERIENCES}?current=true`, initialValue);
     }
 
 }

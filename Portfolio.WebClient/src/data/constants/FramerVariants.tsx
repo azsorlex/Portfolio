@@ -50,9 +50,13 @@ export const skillsListContainer = {
       staggerChildren: 0.15,
     },
   },
+  exit: {
+    opacity: 0,
+    y: 50,
+  },
 };
 
-export const itemContainer = {
+export const container = {
   hidden: {
     scale: 0.5,
   },
@@ -62,7 +66,23 @@ export const itemContainer = {
       type: "spring",
       stiffness: 100,
       delayChildren: 0.2,
-      staggerChildren: 0.15,
+      staggerChildren: 0.15
+    },
+  },
+};
+
+export const itemContainer = {
+  hidden: {
+    scale: 0.5,
+    transformOrigin: "top center",
+  },
+  show: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      delayChildren: 0.2,
+      staggerChildren: 0.15
     },
   },
 };
@@ -97,13 +117,20 @@ export const loadingIconVariants = {
   hidden: {
     scale: 0,
   },
-  show: {
+  scaleUp: {
     scale: 1,
     transition: {
       type: "spring",
       stiffness: 100,
     },
-    rotate: -360,
+  },
+  rotate: {
+    rotate: 360,
+    transition: {
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeOut",
+    },
   },
   exit: {
     scale: 0,
@@ -112,4 +139,24 @@ export const loadingIconVariants = {
     },
   },
 };
-          
+
+export const errorIconVariants = {
+  hidden: {
+    scale: 0,
+  },
+  show: {
+    scale: 1,
+    rotate: -360,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+  exit: {
+    scale: 0,
+    rotate: 180,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};

@@ -1,10 +1,11 @@
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-import AnimatedMain from "../components/Layouts/AnimatedMain";
-import { Button, Container, Typography } from '@mui/material';
+import AnimatedMain from "../components/Shared/AnimatedMain";
+import { Button, Typography } from '@mui/material';
 import { useState } from "react";
 import { Document, Page, pdfjs } from 'react-pdf';
 import { saveAs } from 'file-saver';
+import PageContainer from '../components/Shared/PageContainer';
 
 const url = "https://portfoliowebsite.blob.core.windows.net/public-files/Alexander%20Rozsa%20-%20Resume.pdf";
 
@@ -26,12 +27,12 @@ export default function Resume() {
 
     return (
         <AnimatedMain>
-            <Container className="PageContainer" sx={{ minHeight: "calc(100dvh - 96px)" }}>
+            <PageContainer id="resume">
                 <Typography
                     variant='h2'
                     textTransform="uppercase"
                     gutterBottom>
-                    My latest resume
+                    Resume
                 </Typography>
                 <Document
                     className="ResumeViewer"
@@ -46,7 +47,7 @@ export default function Resume() {
                     sx={{ m: 2 }}>
                     Download
                 </Button>
-            </Container>
+            </PageContainer>
         </AnimatedMain>
     );
 }

@@ -2,20 +2,37 @@
 .PageContainer,
 main {
     display: flex !important;
-    text-align: center;
     flex-flow: column;
+    text-align: center;
     align-items: center;
-}
-
-.PageContainer,
-.ItemContainer {
-    scroll-margin-top: 60px;
 }
 
 main,
 .spacer {
     flex-grow: 1;
-    gap: 50dvh;
+}
+
+main {
+    gap: 20lvh; /* Used to counteract a visual bug in Safari ios */
+}
+
+.PageContainer {
+    min-height: 60dvh;
+}
+
+#home {
+    min-height: calc(100svh - 48px); /* Used to counteract a visual bug in Safari ios */
+    /* Updated in Home.tsx */
+    margin-bottom: -20lvh; /* Used to counteract a visual bug in Safari ios */
+}
+
+#resume {
+    min-height: calc(100svh - 96px); /* Used to counteract a visual bug in Safari ios */
+}
+
+.PageContainer,
+.ItemContainer {
+    scroll-margin-top: 60px;
 }
 
 header.transparent {
@@ -31,6 +48,11 @@ header.blurred {
 .navlink {
     margin-left: 15px !important;
     margin-top: 5px !important;
+}
+
+.navlink-github {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
 }
 
 .prevent-select {

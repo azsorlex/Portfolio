@@ -1,59 +1,27 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import SkillsService, { SkillDTO } from "../services/SkillsService";
 import CertificationsService, { CertificationDTO } from "../services/CertificationsService";
 import SkillsList from "../components/Skills/SkillsList";
 import { Box, Checkbox, Container, FormControlLabel, Input, Typography } from "@mui/material";
 import LoadingIcon from "../components/LoadingIcon";
-import { AnimatePresence } from "framer-motion";
-import CertificationsList from "../components/Skills/CertificationsList";
-
-export type SkillsType = SkillDTO[] | undefined | null;
-export type CertificationsType = CertificationDTO[] | undefined | null;
+import { AnimatePresence, useInView } from "framer-motion";
+import CertificationsList from "../components/Certifications/CertificationsList";
+import { ApiResponseType } from "../services/BaseService";
 
 export default function Skills() {
-  const [skills, setSkills] = useState<SkillsType>(undefined);
-  const [certifications, setCertifications] = useState<CertificationsType>(undefined);
+  const [skills, setSkills] = useState<ApiResponseType<SkillDTO[]>>();
+  const [certifications, setCertifications] = useState<ApiResponseType<CertificationDTO[]>>();
   const [topSkillsChecked, setTopSkillsChecked] = useState<boolean>(false);
+  const [groupByChecked, setGroupByChecked] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filteredSkills, setFilteredSkills] = useState<SkillsType>([]);
+  const [filteredSkills, setFilteredSkills] = useState<ApiResponseType<SkillDTO[]>>([]);
+  const loadSkillsRef = useRef(null);
+  const isInView = useInView(loadSkillsRef, { once: true });
 
   useEffect(() => {
-    getSkillsAsync()
-      .then((skills) => {
-        setFilteredSkills(skills);
-        setSkills(skills);
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setSkills(null);
-      });
-    loadCertificationsAsync()
-      .then((certifications) => {
-        setCertifications(certifications);
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setCertifications(null);
-      });
-  }, []);
-
-  const getSkillsAsync = async (): Promise<SkillsType> => {
-    console.log("Fetching skills...");
-    const response = await SkillsService.getSkills();
-    console.log("Skills fetched.");
-    return response.data;
-  };
-
-  const loadCertificationsAsync = async (): Promise<CertificationsType> => {
-    console.log("Fetching certifications...");
-    const response = await CertificationsService.getCertifications();
-    console.log("Certifications fetched.");
-    return response.data;
-  };
-
-  const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSearchTerm(event.target.value);
-  })
+    getSkills();
+    getCertifications();
+  }, [isInView]);
 
   useEffect(() => {
     if (skills) {
@@ -67,49 +35,93 @@ export default function Skills() {
     }
   }, [searchTerm]);
 
+  const handleSearchTerm = ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSearchTerm(event.target.value);
+  });
+
+  const getSkills = () => {
+    if (skills === null) {
+      setSkills(undefined);
+    }
+
+    void SkillsService.getSkills(!isInView)
+      .then((r) => {
+        setFilteredSkills(r);
+        setSkills(r);
+      });
+  };
+
+  const getCertifications = () => {
+    if (certifications === null) {
+      setCertifications(undefined);
+    }
+
+    void CertificationsService.getCertifications(!isInView)
+      .then((r) => {
+        setCertifications(r);
+      });
+  }
+
   return (
     <Container className="PageContainer" id="skills" maxWidth="lg">
-      <Box m="auto" className="ContentContainer">
-        <Typography variant="h2">SKILLS</Typography>
-        <Box width={"75%"} m="auto" mb={8}>
-          <AnimatePresence mode="wait">
-            {skills ? (
-              <Box key={skills.at(0)?.id}>
-                <Box>
-                  <Input
-                    placeholder="Find (can use RegEx)"
-                    onChange={handleSearchTerm}
-                    sx={{ mr: 2 }} />
-                  <FormControlLabel
-                    label="Top Skills"
-                    control={
-                      <Checkbox
-                        checked={topSkillsChecked}
-                        onChange={(e) => { setTopSkillsChecked(e.target.checked); }}
-                      />
-                    }
-                  />
-                </Box>
-                <SkillsList key={skills.at(0)?.id} skills={filteredSkills} checked={topSkillsChecked} />
+      <Typography variant="h2">SKILLS</Typography>
+      <Box width={"75%"} mb={4} ref={loadSkillsRef}>
+        <AnimatePresence mode="wait">
+          {skills ? (
+            <Box key={skills.at(0)?.id}>
+              <Box>
+                <Input
+                  placeholder="Find (can use RegEx)"
+                  onChange={handleSearchTerm}
+                  sx={{ mr: 2 }} />
+                <FormControlLabel
+                  label="Top Skills"
+                  control={
+                    <Checkbox
+                      checked={topSkillsChecked}
+                      onChange={(e) => { setTopSkillsChecked(e.target.checked); }}
+                    />
+                  }
+                />
+                <FormControlLabel
+                  label="Group By Category"
+                  control={
+                    <Checkbox
+                      checked={groupByChecked}
+                      onChange={(e) => { setGroupByChecked(e.target.checked); }}
+                    />
+                  }
+                />
               </Box>
-            ) : (
-              <LoadingIcon key={skills} source={skills} />
-            )}
-          </AnimatePresence>
-        </Box>
-        <Typography variant="h2">CERTIFICATIONS</Typography>
-        <Box width={"75%"} m="auto">
-          <AnimatePresence mode="wait">
-            {certifications ? (
-              <CertificationsList
-                key={certifications.at(0)?.id}
-                certifications={certifications}
-              />
-            ) : (
-              <LoadingIcon key={certifications} source={certifications} />
-            )}
-          </AnimatePresence>
-        </Box>
+              <SkillsList
+                key={skills.at(0)?.id}
+                skills={filteredSkills}
+                topSkillsChecked={topSkillsChecked}
+                groupByChecked={groupByChecked} />
+            </Box>
+          ) : (
+            <LoadingIcon
+              key={skills}
+              source={skills}
+              callback={getSkills} />
+          )}
+        </AnimatePresence>
+      </Box>
+      <Typography variant="h2">CERTIFICATIONS</Typography>
+      <Box width={"75%"}>
+        <AnimatePresence mode="wait">
+          {certifications ? (
+            <CertificationsList
+              key={certifications.at(0)?.id}
+              certifications={certifications}
+            />
+          ) : (
+            <LoadingIcon
+              key={certifications}
+              source={certifications}
+              callback={getCertifications} />
+          )}
+        </AnimatePresence>
       </Box>
     </Container>
   );

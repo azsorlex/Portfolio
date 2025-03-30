@@ -24,7 +24,7 @@ export default function StyledSkill({ name, priority, checked = false }: StyledS
         backgroundColor: checked
           ? priority === 0
             ? "secondary.dark"
-            : "primary.main"
+            : "background.experience"
           : "secondary.main",
         color: "primary.main",
       }}

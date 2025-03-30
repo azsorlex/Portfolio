@@ -1,7 +1,7 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { ApiResponseType, BaseDTO } from './BaseService';
 
-export interface ContactDTO {
+export interface ContactDTO extends BaseDTO {
     id: number,
     icon: string,
     name: string,
@@ -10,9 +10,9 @@ export interface ContactDTO {
 };
 
 const ContactsService = {
-    
-    getContacts: async () => {
-        return await axios.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS);
+
+    getContacts: async (initialValue = false): Promise<ApiResponseType<ContactDTO[]>> => {
+        return await BaseService.get<ContactDTO[]>(BASE_ENDPOINTS.CONTACTS, initialValue);
     }
 
 }

@@ -13,6 +13,7 @@ COPY ["Portfolio.WebApi/Portfolio.WebApi.csproj", "Portfolio.WebApi/"]
 COPY ["Portfolio.Application/Portfolio.Application.csproj", "Portfolio.Application/"]
 COPY ["Portfolio.Domain/Portfolio.Domain.csproj", "Portfolio.Domain/"]
 COPY ["Portfolio.Infrastructure/Portfolio.Infrastructure.csproj", "Portfolio.Infrastructure/"]
+COPY ["Portfolio.Presentation/Portfolio.Presentation.csproj", "Portfolio.Presentation/"]
 RUN dotnet restore "./Portfolio.WebApi/Portfolio.WebApi.csproj"
 COPY . .
 WORKDIR "/src/Portfolio.WebApi"

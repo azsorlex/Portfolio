@@ -7,6 +7,7 @@ import Layout from "./components/Layouts/Layout";
 import Home from "./pages/Home";
 import Resume from "./pages/Resume";
 import { AnimatePresence } from "framer-motion";
+import { ErrorBoundary } from 'react-error-boundary';
 
 interface ContextValues {
   darkMode?: boolean,
@@ -14,6 +15,17 @@ interface ContextValues {
 };
 
 const getModeName = (mode: boolean) => (mode ? "dark" : "light");
+
+function fallbackRender({ error }: { error: Error; resetErrorBoundary: () => void }) {
+  return (
+    <div role="alert">
+      <h3>Something went wrong:</h3>
+      <pre style={{ color: "red" }}>{error.name}: {error.message}</pre>
+      <h3>Full trace:</h3>
+      <pre style={{ color: "red" }}>{error.stack}</pre>
+    </div>
+  );
+}
 
 export const ThemeContext = createContext<ContextValues>({});
 
@@ -47,6 +59,7 @@ export default function App() {
     } else {
       scrollToTop(false);
     }
+
     document.body.classList.add("loaded");
   }, []);
 
@@ -56,23 +69,27 @@ export default function App() {
   }, [systemDarkMode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme />
-      <ThemeContext.Provider
-        value={{
-          darkMode: darkMode,
-          update: toggleTheme,
-        }}
-      >
-        <AnimatePresence mode="wait">
-          <Layout key={location.pathname}>
-            <Routes location={location}>
-              <Route path="/" element={<Home />} />
-              <Route path="/resume" element={<Resume />} />
-            </Routes>
-          </Layout>
-        </AnimatePresence>
-      </ThemeContext.Provider>
-    </ThemeProvider>
+    <ErrorBoundary
+      fallbackRender={fallbackRender}
+      onError={console.error}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline enableColorScheme />
+        <ThemeContext.Provider
+          value={{
+            darkMode: darkMode,
+            update: toggleTheme,
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <Layout key={location.pathname}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/resume" element={<Resume />} />
+              </Routes>
+            </Layout>
+          </AnimatePresence>
+        </ThemeContext.Provider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }

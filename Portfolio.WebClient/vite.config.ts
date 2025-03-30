@@ -3,8 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { env } from 'process';
 
-const target = env.TESTING ? 'http://host.docker.internal:29560' :
-    env.API_URL ? env.API_URL : 'https://localhost:44373';
+const target = env.TESTING ? 'http://host.docker.internal:29560' : env.API_URL ?? 'https://localhost:44373';
 
 export default defineConfig({
     plugins: [react()],
@@ -14,6 +13,10 @@ export default defineConfig({
         }
     },
     server: {
+        allowedHosts: [
+            'alexanderrozsa.azurewebsites.net',
+            'alexanderrozsa-testing.azurewebsites.net'
+        ],
         proxy: {
             '^/api/.*': {
                 target,

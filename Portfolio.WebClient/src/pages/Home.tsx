@@ -1,49 +1,64 @@
-import { useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import Skills from "./Skills";
 import About from "./About";
 import Experience from "./Experience";
-import AnimatedMain from "../components/Layouts/AnimatedMain";
+import AnimatedMain from "../components/Shared/AnimatedMain";
 import { AnimatePresence, motion } from "framer-motion";
 import CurrentExperienceBox from "../components/Home/CurrentExperienceBox";
 import LoadingIcon from "../components/LoadingIcon";
 import ExperiencesService, { ExperienceDTO } from "../services/ExperiencesService";
-import { itemContainer } from "../data/constants/FramerVariants";
-
-type ExperienceType = ExperienceDTO[] | undefined | null;
+import { container } from "../data/constants/FramerVariants";
+import { ApiResponseType } from "../services/BaseService";
+import PageContainer from "../components/Shared/PageContainer";
 
 export default function Home() {
   const [currentExperienceClicked, setCurrentExperienceClicked] = useState<boolean>(false);
-  const [currentWork, setCurrentWork] = useState<ExperienceType>(undefined);
-  const [currentProjects, setCurrentProjects] = useState<ExperienceType>(undefined);
+  const [currentWork, setCurrentWork] = useState<ApiResponseType<ExperienceDTO[]>>();
+  const [currentProjects, setCurrentProjects] = useState<ApiResponseType<ExperienceDTO[]>>();
 
-  const getCurrentExperiencesAsync = async (): Promise<ExperienceType> => {
-    console.log("Fetching current experiences...");
-    const response = await ExperiencesService.getCurrentExperiences();
-    console.log("Current experiences fetched.");
-    return response.data;
-  }
+  // Remove the negative space on smaller screens.
+  useEffect(() => {
+    // Using timeout to wait for framer motion exit animation and the dom to update with new data.
+    setTimeout(() => {
+      const pageContainer = document.getElementById("home");
+      const child = pageContainer?.firstElementChild;
+      if (!child) return;
+
+      const height = parseFloat(getComputedStyle(child).height);
+      const minHeightThreshold = parseFloat(getComputedStyle(pageContainer).minHeight) - (window.innerHeight * 0.25); // Minheight - 25dvh
+
+      if (height < minHeightThreshold) {
+        pageContainer.style.marginBottom = "-20lvh"; // Used to counteract a visual bug in Safari ios
+      } else {
+        pageContainer.style.marginBottom = "0";
+      }
+    }, 350);
+  }, [currentWork]);
 
   const getCurrentExperience = () => {
+    if (currentWork === null) {
+      setCurrentWork(undefined);
+      setCurrentProjects(undefined);
+    }
     setCurrentExperienceClicked(true);
-    getCurrentExperiencesAsync()
+
+    void ExperiencesService.getCurrentExperiences()
       .then((experiences) => {
-        setCurrentWork(experiences?.filter((x) => x.type === "Work"));
-        setCurrentProjects(experiences?.filter((x) => x.type === "Project"));
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-        setCurrentWork(null);
-        setCurrentProjects(null);
+        setCurrentWork(experiences?.filter((x) => x.type === "Work") ?? experiences);
+        setCurrentProjects(experiences?.filter((x) => x.type === "Project") ?? experiences);
       });
   };
 
   return (
     <AnimatedMain>
-      <Container className="PageContainer" maxWidth="lg" sx={{ minHeight: "calc(100dvh - 48px)" }}>
+      <PageContainer id="home">
         <Box m="auto">
           <Typography variant="subtitle1">{"Hi, I'm"}</Typography>
-          <Typography variant="h1" textTransform="uppercase" paragraph>
+          <Typography
+            variant="h1"
+            textTransform="uppercase"
+            mb={2}>
             {"Alexander Rozsa"}
           </Typography>
           <Typography mb={4}>
@@ -56,7 +71,7 @@ export default function Home() {
           </Typography>
           <Typography variant="body2" mb={4}>
             {
-              "This site is also dynamic. Most of the info on here is retrieved from a custom API, which in turn gets data from multiple databases. Take a look:"
+              "This site is an example of a developed dynamic product. Most of the info on here is retrieved from a custom API, which in turn gets data from multiple databases. Take a look:"
             }
           </Typography>
           <AnimatePresence mode="wait">
@@ -68,7 +83,7 @@ export default function Home() {
                 width="80%"
                 m="auto"
                 component={motion.div}
-                variants={itemContainer}
+                variants={container}
                 initial="hidden"
                 animate="show"
               >
@@ -79,27 +94,41 @@ export default function Home() {
                   >{`currently working as a:`}</Typography>
                   <AnimatePresence mode="wait">
                     {currentWork ? (
-                      currentWork.length > 0 ? (
-                        <Box key="Current Work Container">
-                          {currentWork.map((work) => (
-                            <CurrentExperienceBox
-                              key={work.id}
-                              experience={work}
-                            />
-                          ))}
-                        </Box>
-                      ) : (
-                        <CurrentExperienceBox
-                          key="Empty Work"
-                          experience={{
-                            id: "experience",
-                            type: "Work",
-                            name: "Job Seeker",
-                          }}
-                        />
-                      )
+                      <List
+                        key="Current Work Container"
+                        sx={{ listStyleType: "disc" }}>
+                        {
+                          currentWork.length > 0 ?
+                            currentWork.map((work) => (
+                              <ListItem
+                                key={work.id}
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  key={work.id}
+                                  experience={work}
+                                />
+                              </ListItem>
+                            ))
+                            : (
+                              <ListItem
+                                key="Empty Work"
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  experience={{
+                                    id: "experience",
+                                    type: "Work",
+                                    name: "Job Seeker",
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                        }
+                      </List>
                     ) : (
-                      <LoadingIcon key={currentWork} source={currentWork} />
+                      <LoadingIcon
+                        key={currentWork}
+                        source={currentWork}
+                        callback={getCurrentExperience} />
                     )}
                   </AnimatePresence>
                 </Box>
@@ -110,30 +139,41 @@ export default function Home() {
                   >{`currently working on:`}</Typography>
                   <AnimatePresence mode="wait">
                     {currentProjects ? (
-                      currentProjects.length > 0 ? (
-                        <Box key="Current Projects Container">
-                          {currentProjects.map((project) => (
-                            <CurrentExperienceBox
-                              key={project.id}
-                              experience={project}
-                            />
-                          ))}
-                        </Box>
-                      ) : (
-                        <CurrentExperienceBox
-                          key="Empty Project"
-                          experience={{
-                            id: "projects",
-                            type: "Project",
-                            name: "Nothing. Some inspiration should come soon though.",
-                          }}
-                        />
-                      )
+                      <List
+                        key="Current Projects Container"
+                        sx={{ listStyleType: "disc" }}>
+                        {
+                          currentProjects.length > 0 ?
+                            currentProjects.map((project) => (
+                              <ListItem
+                                key={project.id}
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  key={project.id}
+                                  experience={project}
+                                />
+                              </ListItem>
+                            ))
+                            : (
+                              <ListItem
+                                key="Empty Project"
+                                sx={{ display: "list-item", textAlign: "center" }}>
+                                <CurrentExperienceBox
+                                  experience={{
+                                    id: "projects",
+                                    type: "Project",
+                                    name: "Nothing. Some inspiration should come soon though.",
+                                  }}
+                                />
+                              </ListItem>
+                            )
+                        }
+                      </List>
                     ) : (
                       <LoadingIcon
                         key={currentProjects}
                         source={currentProjects}
-                      />
+                        callback={getCurrentExperience} />
                     )}
                   </AnimatePresence>
                 </Box>
@@ -152,7 +192,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </Box>
-      </Container>
+      </PageContainer>
       <About />
       <Skills />
       <Experience />

@@ -8,11 +8,13 @@ namespace Portfolio.Infrastructure.Repositories
     {
         public override async Task<IEnumerable<Certification>> GetAll()
         {
+            var currentDate = DateOnly.FromDateTime(DateTime.Now);
+
             return await _set
-                .Where(c => c.ExpiryDate == null || c.ExpiryDate > DateOnly.FromDateTime(DateTime.Now))
-                .OrderByDescending(c => c.IssueDate)
                 .Include(c => c.CertificationIssuer)
-                .Include(c => c.Parent)
+                .Where(c => c.ExpiryDate == null || c.ExpiryDate > currentDate)
+                .OrderBy(x => x.ParentId)
+                .ThenByDescending(c => c.IssueDate)
                 .ToListAsync();
         }
 

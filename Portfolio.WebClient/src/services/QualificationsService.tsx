@@ -1,5 +1,5 @@
-import axios from 'axios';
 import BASE_ENDPOINTS from '../data/constants/BaseEndpoints';
+import BaseService, { ApiResponseType } from './BaseService';
 
 export interface QualificationDTO {
     id: number,
@@ -12,8 +12,8 @@ export interface QualificationDTO {
 
 const QualificationsService = {
 
-    getQualifications: async () => {
-        return await axios.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS);
+    getQualifications: async (initialValue = false): Promise<ApiResponseType<QualificationDTO[]>> => {
+        return await BaseService.get<QualificationDTO[]>(BASE_ENDPOINTS.QUALIFICATIONS, initialValue);
     }
 
 }
